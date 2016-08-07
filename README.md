@@ -19,7 +19,7 @@ cd sdr-bootstrap-address-book
 npm install
 ```
 
-* Start server in development mode:
+* Start server in the development mode:
 
 ```
 npm run start
