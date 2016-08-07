@@ -13,6 +13,12 @@ git clone https://github.com/ipselon/sdr-bootstrap-address-book.git
 cd sdr-bootstrap-address-book
 ```
 
+* Install deps
+
+```
+npm install
+```
+
 * Start server in development mode:
 
 ```
