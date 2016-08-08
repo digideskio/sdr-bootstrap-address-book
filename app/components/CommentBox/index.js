@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import CommentList from 'components/CommentList';
 import CommentForm from 'components/CommentForm';
 
+
 class CommentBox extends Component {
 
   constructor(props) {
@@ -16,7 +17,7 @@ class CommentBox extends Component {
 
   render() {
     return (
-      <div className="CommentBox">
+      <div className="CommentBox col-md-6 col-md-offset-3">
         <h1>Comments</h1>
         <CommentList data={this.state.data} />
         <CommentForm />

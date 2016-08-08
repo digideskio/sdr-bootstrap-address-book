@@ -47,7 +47,7 @@ class CommentForm extends Component {
           value={this.state.text}
           onChange={this.handleTextChange}
         />
-        <input type="submit" value="Post" />
+        <input type="submit" value="Post" className="btn btn-success" />
       </form>
     );
   }

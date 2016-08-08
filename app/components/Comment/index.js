@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 var Remarkable = require('remarkable');
 
 class Comment extends Component {
-  
+
   rawMarkup() {
     var md = new Remarkable();
     var rawMarkup = md.render(this.props.children.toString());
@@ -11,7 +11,7 @@ class Comment extends Component {
 
   render() {
     return(
-      <div className="comment">
+      <div className="Comment">
         <h2 className="commentAuthor">
           {this.props.author}
         </h2>
