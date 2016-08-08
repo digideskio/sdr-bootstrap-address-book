@@ -34,7 +34,7 @@ class CommentBox extends Component {
       <div className="CommentBox">
         <h1>Comments</h1>
         <CommentList data={this.state.data} />
-        <CommentForm ref="comment" onUpdate={this.onNewComment} />
+        <CommentForm onUpdate={this.onNewComment} />
 
       </div>
     );
