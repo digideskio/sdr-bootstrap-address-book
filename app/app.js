@@ -25,6 +25,8 @@ import configureStore from './store';
 // Import i18n messages
 import { translationMessages } from './i18n';
 
+import 'assets/bootstrap-3.3.7-dist/css/bootstrap.css';
+
 // Import the CSS reset, which HtmlWebpackPlugin transfers to the build folder
 import 'sanitize.css/sanitize.css';
 
