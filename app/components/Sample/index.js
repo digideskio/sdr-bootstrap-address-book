@@ -8,6 +8,7 @@ class Sample extends Component {
 				<p style={{border: '1px solid #cdcdcd', borderRadius: '5px', padding: '10px'}}>
 					This is the sample component
 				</p>
+				<button className="btn btn-primary">Test Button</button>
 			</div>
 		);
 	}
