@@ -11,6 +11,8 @@
 
 import React from 'react';
 import Sample from 'components/Sample';
+import Simple from 'components/Simple';
+import ContactsList from 'components/ContactsList';
 
 export default class HomePage extends React.Component { // eslint-disable-line react/prefer-stateless-function
 
@@ -20,6 +22,8 @@ export default class HomePage extends React.Component { // eslint-disable-line r
           <h1>Address Book</h1>
           <h3>This is a place where you should place your components</h3>
           <Sample />
+            <Simple />
+            <ContactsList />
         </div>
     );
   }
