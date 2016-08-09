@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 var Remarkable = require('remarkable');
 
 class Comment extends Component {
-  
+
   rawMarkup() {
 
     var md = new Remarkable();
@@ -13,7 +13,7 @@ class Comment extends Component {
 
   render() {
     return(
-      <div className="comment">
+      <div id={this.props.id} className="comment"  onClick={this.props.fun}>
         <h2 className="commentAuthor">
           {this.props.author}
         </h2>
