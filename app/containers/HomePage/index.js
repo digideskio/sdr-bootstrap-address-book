@@ -22,6 +22,7 @@ export default class HomePage extends React.Component { // eslint-disable-line r
           <h3>This is a place where you should place your components</h3>
           <Sample />
           <CommentBox />
+
         </div>
     );
   }

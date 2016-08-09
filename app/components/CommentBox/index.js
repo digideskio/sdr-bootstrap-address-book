@@ -24,28 +24,62 @@ class CommentBox extends Component {
 
     this.state = {
       data: arr,
-      id_n: nextIndex()
+      edit: {'author':'','text':'','id':0},
+      id_n: 3
     };
-    this.onAddComment = this.onAddComment.bind(this);
+    this.onNewComment = this.onNewComment.bind(this);
+    this.onUpdateComment = this.onUpdateComment.bind(this);
   }
 
-  onAddComment(author,text) {
+  onNewComment(author,text, id) {
+      if (id == 0) {
+          const newComment = {
+              id: this.state.id_n,
+              author: author,
+              text: text
+          };
+          const newData = this.state.data.concat(newComment);
+          this.setState({
+              data: newData,
+              edit: {'author': '', 'text': '', 'id': 0},
+              id_n: this.state.id_n + 1
+          });
+      }
+      else
+      {
+          var newData = this.state.data;
+          newData[id-1]['author'] = author;
+          newData[id-1]['text'] = text;
+          this.setState({
+              data: newData,
+              edit: {'author': '', 'text': '', 'id': 0}
+          });
+      }
+  }
 
-    const newComment = { id: this.state.id_n,
-                          author: author,
-                          text: text};
-    const newData = this.state.data.concat(newComment);
-    this.setState({data: newData,
-                    id_n: this.state.id_n+1});
 
+  onUpdateComment(el)
+  {
+      var id = el._targetInst._hostParent._hostNode.id;
+      var mas;
+      if (id)
+      {
+          mas = this.state.data[id-1];
+      }
+      else
+      {
+          mas = {'author':'','text':'','id':0};
+      }
+      this.setState({edit: mas});
   }
 
   render() {
     return (
       <div className="CommentBox">
         <h1>Comments</h1>
-        <CommentList data={this.state.data} />
-        <CommentForm onUpdate={this.onAddComment} />
+        <CommentList onUpdateComment={this.onUpdateComment} data={this.state.data} />
+        <CommentForm onUpdate={this.onNewComment} data={this.state.data} edit={this.state.edit} />
+
 
       </div>
     );
