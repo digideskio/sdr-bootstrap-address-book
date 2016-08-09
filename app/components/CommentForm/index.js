@@ -28,8 +28,6 @@ class CommentForm extends Component {
     if (!text || !author) {
       return;
     }
-    //TODO: send request to the server
-    
     this.props.onUpdate(author,text);
     this.setState({author: '', text: ''});
   }
