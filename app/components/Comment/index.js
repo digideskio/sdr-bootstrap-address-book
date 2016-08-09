@@ -13,7 +13,7 @@ class Comment extends Component {
 
   render() {
     return(
-      <div className="Comment">
+      <div id={this.props.id} className="comment"  onClick={this.props.fun}>
         <h2 className="commentAuthor">
           {this.props.author}
         </h2>
