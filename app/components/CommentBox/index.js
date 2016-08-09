@@ -13,9 +13,10 @@ class CommentBox extends Component {
   constructor(props) {
     super(props);
     this.state = {
-                    data: arr,
-                    id_n: 3
-                 };
+      data: arr,
+      id_n: 3
+    };
+
     this.onNewComment = this.onNewComment.bind(this);
    }
 
