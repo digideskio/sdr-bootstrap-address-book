@@ -5,10 +5,10 @@ import CommentForm from 'components/CommentForm';
 const arr = [
   {id: 1, author: "Pete Hunt", text: "This is one comment"},
   {id: 2, author: "Jordan Walke", text: "This is *another* comment"},
-  {id: 5, author: "Samuel Jeckson", text: "Hello another one comment"}
+  {id: 3, author: "Samuel Jeckson", text: "Hello another one comment"}
 ];
 
-function nextIndex() {
+function nextIndex(arr) {
 
     let id;
     if (!arr.length) {return 0; }
@@ -25,13 +25,13 @@ class CommentBox extends Component {
     this.state = {
       data: arr,
       edit: {'author':'','text':'','id':0},
-      id_n: 3
+      id_n: nextIndex(arr)
     };
-    this.onNewComment = this.onNewComment.bind(this);
+    this.onAddComment = this.onAddComment.bind(this);
     this.onUpdateComment = this.onUpdateComment.bind(this);
   }
 
-  onNewComment(author,text, id) {
+  onAddComment(author,text, id) {
       if (id == 0) {
           const newComment = {
               id: this.state.id_n,
@@ -78,7 +78,7 @@ class CommentBox extends Component {
       <div className="CommentBox">
         <h1>Comments</h1>
         <CommentList onUpdateComment={this.onUpdateComment} data={this.state.data} />
-        <CommentForm onUpdate={this.onNewComment} data={this.state.data} edit={this.state.edit} />
+        <CommentForm onUpdate={this.onAddComment} data={this.state.data} edit={this.state.edit} />
 
 
       </div>
