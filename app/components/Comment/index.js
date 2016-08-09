@@ -4,9 +4,11 @@ var Remarkable = require('remarkable');
 class Comment extends Component {
   
   rawMarkup() {
+
     var md = new Remarkable();
     var rawMarkup = md.render(this.props.children.toString());
     return { __html: rawMarkup};
+
   }
 
   render() {
