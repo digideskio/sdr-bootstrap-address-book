@@ -13,11 +13,12 @@ class Comment extends Component {
 
   render() {
     return(
-      <div id={this.props.id} className="comment"  onClick={this.props.fun}>
-        <h2 className="commentAuthor">
+      <div id={this.props.id} className="comment"  onClick={this.props.fun} >
+        <h3 className="commentAuthor">
           {this.props.author}
-        </h2>
+        </h3>
         <span dangerouslySetInnerHTML={this.rawMarkup()} />
+          <hr/>
       </div>
     );
   }

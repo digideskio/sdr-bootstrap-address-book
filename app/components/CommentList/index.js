@@ -16,7 +16,7 @@ class CommentList extends Component {
     });
 
     return (
-      <div className="CommentList">
+      <div className="panel-group">
         {commentNodes}
       </div>
     );

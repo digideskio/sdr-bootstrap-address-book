@@ -63,12 +63,13 @@ class CommentBox extends Component {
 
   render() {
     return (
-      <div className="CommentBox">
+      <center><div style={{border: '1px solid #cdcdcd', borderRadius: '5px', padding: '10px', width: '500px'}}>
         <h1>Comments</h1>
+          <hr/>
         <CommentList onUpdateComment={this.onUpdateComment} data={this.state.data} />
         <CommentForm onUpdate={this.onNewComment} data={this.state.data} edit={this.state.edit} />
 
-      </div>
+      </div></center>
     );
   }
 
