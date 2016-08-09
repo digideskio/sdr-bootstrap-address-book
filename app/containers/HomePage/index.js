@@ -15,14 +15,15 @@ import CommentBox from 'components/CommentBox';
 
 export default class HomePage extends React.Component { // eslint-disable-line react/prefer-stateless-function
 
-    render() {
-        return (
-            <div>
-                <h1>Address Book</h1>
-                <h3>This is a place where you should place your components</h3>
-                <Sample />
-                <CommentBox />
-            </div>
-        );
-    }
+  render() {
+    return (
+        <div>
+          <h1>Address Book</h1>
+          <h3>This is a place where you should place your components</h3>
+          <Sample />
+          <CommentBox />
+
+        </div>
+    );
+  }
 }
