@@ -1,37 +1,60 @@
 import React, {Component} from 'react';
 var Remarkable = require('remarkable');
 
-class Comment extends Component {
+export default class Comment extends Component {
 
-  rawMarkup() {
-
-    var md = new Remarkable();
-    var rawMarkup = md.render(this.props.children.toString());
-    return { __html: rawMarkup};
-
+  constructor(props) {
+    super(props);
+    this.state = {
+      hovered: false
+    }
   }
 
-  //get comment id for editable Comment
-  handleOnClick = () => {
-    this.props.fun(this.props.id);
+  rawMarkup() {
+    let md = new Remarkable();
+    let rawMarkup = md.render(this.props.children.toString());
+    return { __html: rawMarkup};
+  }
+
+  handleMouseOver = () => {
+    this.setState({hovered: true});
+  }
+
+  handleMouseOut = () => {
+    this.setState({hovered: false});
+  }
+
+  hoverStyle() {
+    if (this.state.hovered) {
+      return {backgroundColor: '#ecf0f1'}
+    } else {
+      return {backgroundColor: 'white'}
+    }
   }
 
   render() {
-    var commentStyle = {
+    const commentStyle = {
       fontStile: '1.5rem',
       lineHeight: '1.5rem'
     }
-
+    const headCommentStyle = {
+      fontWeight:'bold'
+    }
+    const {id, author, onGetEditable} = this.props;
     return(
-      <div id={this.props.id} className="comment"  onClick={this.handleOnClick}>
-        <h4 className="commentAuthor" style={{'fontWeight':'bold'}}>
-          {this.props.author}
+      <div id={id} data-id={id}
+                              className="comment"
+                              onClick={onGetEditable}
+                              onMouseOver={this.handleMouseOver}
+                              onMouseOut={this.handleMouseOut}
+                              style={this.hoverStyle()}>
+        <h4 className="commentAuthor" style={headCommentStyle}>
+          {author}
         </h4>
         <span style={commentStyle}
               dangerouslySetInnerHTML={this.rawMarkup()} />
       </div>
     );
   }
-}
 
-export default Comment;
+}

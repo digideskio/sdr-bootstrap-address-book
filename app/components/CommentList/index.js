@@ -1,21 +1,22 @@
 import React, {Component} from 'react';
 import Comment from 'components/Comment';
 
-class CommentList extends Component {
+export default class CommentList extends Component {
 
   render() {
+    let onGetEditable = this.props.onGetEditableComment;
 
-    var func = this.props.onUpdateComment;
-    var commentNodes = this.props.data.map(function(comment){
+    const commentNodes = this.props.data.map((comment) => {
       return (
         <Comment author={comment.author} key={comment.id} id={comment.id}
-                 fun={func}>
+                 onGetEditable={onGetEditable}>
           {comment.text}
         </Comment>
       );
     });
-    var styleCommentList = {
-      'marginLeft': '10px'
+
+    const styleCommentList = {
+      padding: '10px'
     }
     return (
       <div className="CommentList" style={styleCommentList}>
@@ -25,5 +26,3 @@ class CommentList extends Component {
   }
 
 }
-
-export default CommentList;

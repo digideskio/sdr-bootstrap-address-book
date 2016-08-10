@@ -2,26 +2,23 @@ import React, {Component} from 'react';
 import CommentList from 'components/CommentList';
 import CommentForm from 'components/CommentForm';
 
-var arr = [
-  {id: 1, author: "Pete Hunt", text: "This is one comment"},
-  {id: 5, author: "Jordan Walke", text: "This is *another* comment"}
+let arr = [
+  {id: 1, author: 'Pete Hunt', text: 'This is one comment'},
+  {id: 5, author: 'Jordan Walke', text: 'This is *another* comment'}
 ];
 
-class CommentBox extends Component {
-
+export default class CommentBox extends Component {
 
   constructor(props) {
     super(props);
     this.state = {
       data: arr,
-      editableCommetn: {author:'', text:'', id:0},
+      editableComment: {author:'', text:'', id:0},
       id_n: arr[arr.length-1].id + 1
     };
-    this.onNewComment = this.onNewComment.bind(this);
-    //this.onUpdateComment = this.onUpdateComment.bind(this);
   }
 
-  onNewComment(author,text, id) {
+  onAddorUpdateComment = (author,text, id) => {
     if (id == 0) {
       const newComment = {
         id: this.state.id_n,
@@ -29,57 +26,59 @@ class CommentBox extends Component {
         text: text
       };
 
-      const newData = this.state.data.concat(newComment);
+      let comments = Object.assign({}, this.state);
+
+      comments.data.push(newComment);
+      const newData = comments.data;
 
       this.setState({
         data: newData,
-        editableCommetn: {author: '', text: '', id: 0},
+        editableComment: {author: '', text: '', id: 0},
         id_n: this.state.id_n + 1
       });
 
     } else {
-      var newData = this.state.data.map(function(comment){
+      const newData = this.state.data.map((comment) => {
         if (comment.id == id) {
           comment.author = author;
           comment.text = text;
         }
         return comment;
       });
-          // newData[id-1]['author'] = author;
-          // newData[id-1]['text'] = text;
+
       this.setState({
         data: newData,
-        editableCommetn: {author: '', text: '', id: 0}
+        editableComment: {author: '', text: '', id: 0}
       });
     }
   }
 
-  onUpdateComment = (id) => {
-    var id = id; // el._targetInst._hostParent._hostNode.id - What is it?? Google no response
-    var editableComment;
+  onGetEditableComment = (el) => {
+    const id = el.currentTarget.dataset.id;
+    let editableComment;
     if (id) {
-      editableComment = this.state.data.find(function(comment){
+      editableComment = this.state.data.find((comment) => {
         return comment.id == id;
-      }); //this.state.data[id-1];
+      });
     } else {
       editableComment = {author:'', text:'', id:0};
     }
-    this.setState({editableCommetn: editableComment});
+    this.setState({editableComment: editableComment});
   }
 
   render() {
-    var chatBoxStyle = {
+    const chatBoxStyle = {
       height: 400,
       overflow: 'auto',
       border: '1px solid #ccc',
-      'marginBottom': '20px'
+      marginBottom: '20px'
     };
-    var headerStyle = {
-      'backgroundColor':'#4d394b',
-      'color':'#fcfcfc',
-      'marginBottom':'0px'
+    const headerStyle = {
+      backgroundColor:'#4d394b',
+      color:'#fcfcfc',
+      marginBottom:'0px'
     };
-
+    const {data, editableComment} = this.state;
     return (
       <div className="container">
         <div className="row">
@@ -88,9 +87,9 @@ class CommentBox extends Component {
               CHAT
             </h1>
             <div style={chatBoxStyle} className="pre-scrollable">
-              <CommentList onUpdateComment={this.onUpdateComment} data={this.state.data} />
+              <CommentList onGetEditableComment={this.onGetEditableComment} data={data} />
             </div>
-            <CommentForm onUpdate={this.onNewComment} data={this.state.data} editableComment={this.state.editableCommetn} />
+            <CommentForm onUpdate={this.onAddorUpdateComment} data={data} editableComment={editableComment} />
           </div>
         </div>
       </div>
@@ -98,5 +97,3 @@ class CommentBox extends Component {
   }
 
 }
-
-export default CommentBox;
