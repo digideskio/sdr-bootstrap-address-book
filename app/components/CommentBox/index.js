@@ -5,7 +5,7 @@ import CommentForm from 'components/CommentForm';
 const arr = [
   {id: 1, author: "Pete Hunt", text: "This is one comment"},
   {id: 2, author: "Jordan Walke", text: "This is *another* comment"},
-  {id: 3, author: "Samuel Jeckson", text: "Hello another one comment"}
+  {id: 3, author: "Samuel Jackson", text: "Hello another one comment"}
 ];
 
 function nextIndex(arr) {
@@ -30,6 +30,7 @@ class CommentBox extends Component {
     this.onAddComment = this.onAddComment.bind(this);
     this.onUpdateComment = this.onUpdateComment.bind(this);
   }
+
 
   onAddComment(author,text, id) {
       if (id == 0) {
