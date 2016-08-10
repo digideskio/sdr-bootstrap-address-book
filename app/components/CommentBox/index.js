@@ -11,11 +11,17 @@ const arr = [
 function nextIndex(arr) {
 
     let id;
-    if (!arr.length) {return 0; }
-    else { const id_arr = arr.map((x) => {return x.id});
-      id = Math.max(...id_arr) }
-    return id+1;
-  }
+    if (!arr.length) {
+        return 0;
+    }
+    else {
+        const id_arr = arr.map((x) => {
+            return x.id
+        });
+        id = Math.max(...id_arr)
+    }
+    return id + 1;
+}
 
 class CommentBox extends Component {
 
