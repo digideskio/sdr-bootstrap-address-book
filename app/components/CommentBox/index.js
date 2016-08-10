@@ -2,17 +2,18 @@ import React, {Component} from 'react';
 import CommentList from 'components/CommentList';
 import CommentForm from 'components/CommentForm';
 
+
 let arr = [
   {id: 1, author: 'Pete Hunt', text: 'This is one comment'},
   {id: 5, author: 'Jordan Walke', text: 'This is *another* comment'}
 ];
 
 export default class CommentBox extends Component {
-
   constructor(props) {
     super(props);
+
     this.state = {
-      data: arr,
+      data: this.props.data,
       editableComment: {author:'', text:'', id:0},
       id_n: arr[arr.length-1].id + 1
     };
