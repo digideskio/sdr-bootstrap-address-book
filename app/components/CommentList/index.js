@@ -14,14 +14,16 @@ class CommentList extends Component {
         </Comment>
       );
     });
-
+    var styleCommentList = {
+      'marginLeft': '10px'
+    }
     return (
-      <div className="CommentList">
+      <div className="CommentList" style={styleCommentList}>
         {commentNodes}
       </div>
     );
   }
-  
+
 }
 
 export default CommentList;

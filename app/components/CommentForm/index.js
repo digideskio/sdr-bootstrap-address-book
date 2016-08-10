@@ -5,8 +5,8 @@ class CommentForm extends Component {
     super(props);
     this.state = {
       author: '',
-      text: '',
-      edit: 0
+      text: ''
+      //editableComment: 0
     };
 
     this.handleAuthorChange = this.handleAuthorChange.bind(this);
@@ -15,9 +15,9 @@ class CommentForm extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.edit['id'] !== 0) {
-      this.setState({author: nextProps.edit['author']});
-      this.setState({text: nextProps.edit['text']});
+    if (nextProps.editableComment['id'] !== 0) {
+      this.setState({author: nextProps.editableComment['author']});
+      this.setState({text: nextProps.editableComment['text']});
     }
   }
 
@@ -36,26 +36,33 @@ class CommentForm extends Component {
     if (!text || !author) {
       return;
     }
-    this.props.onUpdate(author,text,this.props.edit['id']);
-    this.setState({author: '', text: '', edit: {author:'',text:'',edit:0}});
+    this.props.onUpdate(author,text,this.props.editableComment['id']);
+    this.setState({author: '', text: ''});//, editableComment: {author:'',text:'',editableComment:0}});
   }
 
   render() {
       return (
-          <form className="commentForm" onSubmit={this.handleSubmit}>
-            <input
-                type="text"
-                placeholder="Your name"
-                value={this.state.author}
-                onChange={this.handleAuthorChange}
-            />
-            <input
-                type="text"
-                placeholder="Say something..."
-                value={this.state.text}
-                onChange={this.handleTextChange}
-            />
-            <input type="submit" value="Post"/>
+          <form className="commentForm" onSubmit={this.handleSubmit} >
+            <div className="input-group">
+              <input
+                  className="form-control"
+                  type="text"
+                  placeholder="Your name"
+                  value={this.state.author}
+                  onChange={this.handleAuthorChange}
+              />
+              <span className="input-group-addon">&</span>
+              <input
+                  className="form-control"
+                  type="text"
+                  placeholder="Say something..."
+                  value={this.state.text}
+                  onChange={this.handleTextChange}
+              />
+              <span className="input-group-addon">
+                <input type="submit" value="Post"/>
+              </span>
+            </div>
           </form>
       );
   }
