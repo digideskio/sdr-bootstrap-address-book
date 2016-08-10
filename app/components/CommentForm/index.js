@@ -11,14 +11,9 @@ export default class CommentForm extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-<<<<<<< HEAD
-    if (nextProps.edit.id !== 0) {
-      this.setState({author: nextProps.edit['author'], text: nextProps.edit.text});
-=======
     if (nextProps.editableComment.id !== 0) {
       this.setState({author: nextProps.editableComment.author,
                      text: nextProps.editableComment.text});
->>>>>>> 7dca4cf163b9052de278bc838a5a44ec5bfdcfb2
     }
   }
 
