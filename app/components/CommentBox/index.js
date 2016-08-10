@@ -13,7 +13,7 @@ export default class CommentBox extends Component {
     super(props);
 
     this.state = {
-      data: arr,
+      data: this.props.data,
       editableComment: {author:'', text:'', id:0},
       id_n: arr[arr.length-1].id + 1
     };

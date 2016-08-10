@@ -9,7 +9,7 @@ import ChatSwitcher from 'components/ChatSwitcher';
 const arr = [
     {id: 1, author: "Pete Hunt", text: "This is one comment"},
     {id: 2, author: "Jordan Walke", text: "This is *another* comment"},
-    {id: 5, author: "Samuel Jeckson", text: "Hello another one comment"}
+    {id: 5, author: "Samuel Jackson", text: "Hello another one comment"}
 ];
 
 const arr2 = [
