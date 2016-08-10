@@ -23,17 +23,17 @@ const arr3 = [
 
 const chats = [
     {
-        chat_id: 0,
+        chatId: 0,
         name: 'chat1',
         messages: arr
     },
     {
-        chat_id: 1,
+        chatId: 1,
         name: 'chat2',
         messages: arr2
     },
     {
-        chat_id: 2,
+        chatId: 2,
         name: 'chat3',
         messages: arr3
     }
@@ -48,12 +48,12 @@ class Chat extends React.Component {
             data: chats
         };
         this.onChatSwitch = this.onChatSwitch.bind(this);
-        
+
 
     }
 
-    onChatSwitch(id) {
-        
+    onChatSwitch() {
+
     }
 
     render() {
@@ -61,7 +61,7 @@ class Chat extends React.Component {
             <div>
                 <h2 style={{textAlign: "center"}}> CHAT </h2>
                 <ChatSwitcher />
-                <CommentBox data={this.state.data[this.state.currentChat].messages} />
+                <CommentBox data={this.state.data[this.state.currentChat].messages}/>
             </div>
         );
     }
