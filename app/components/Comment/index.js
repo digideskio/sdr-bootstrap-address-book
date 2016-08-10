@@ -33,15 +33,6 @@ export default class Comment extends Component {
   }
 
   render() {
-<<<<<<< HEAD
-      const {id, fun, author} = this.props;
-    return(
-      <div id={id} data-id={id} className="comment" onClick={fun}>
-        <h2 className="commentAuthor">
-          {author}
-        </h2>
-        <span dangerouslySetInnerHTML={this.rawMarkup()} />
-=======
     const commentStyle = {
       fontStile: '1.5rem',
       lineHeight: '1.5rem'
@@ -62,7 +53,6 @@ export default class Comment extends Component {
         </h4>
         <span style={commentStyle}
               dangerouslySetInnerHTML={this.rawMarkup()} />
->>>>>>> 7dca4cf163b9052de278bc838a5a44ec5bfdcfb2
       </div>
     );
   }
