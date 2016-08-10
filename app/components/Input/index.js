@@ -13,9 +13,44 @@ export default class Input extends Component {
     this.setState({value: e.target.value});
   }
 
+  getValue() {
+    return this.state.value;
+  }
+
+  setValue(value) {
+    this.setState({value: value});
+  }
+
+  renderUserInput() {
+    const {type, placeholder, className, value} = this.props;
+    if (type == "text") {
+      return (
+        <input value={this.state.value} onChange={this.handleChange}
+            type={type}
+            placeholder={placeholder}
+            className={className}
+        />
+      );
+    } else {
+      return (
+        <input value={value} onChange={this.handleChange}
+            type={type}
+            placeholder={placeholder}
+            className={className}
+        />
+      );
+    }
+  }
   render() {
     return (
-      <input value={this.state.value} onChange={this.handleChange}/>
+      this.renderUserInput()
     )
   }
 }
+
+Input.propTypes = {
+  type: React.PropTypes.string.isRequired,
+  placeholder: React.PropTypes.string,
+  className: React.PropTypes.string,
+  value: React.PropTypes.string
+};
