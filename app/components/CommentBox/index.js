@@ -9,13 +9,17 @@ const arr = [
 ];
 
 function nextIndex(arr) {
-
     let id;
-    if (!arr.length) {return 0; }
-    else { const id_arr = arr.map((x) => {return x.id});
-      id = Math.max(...id_arr) }
-    return id+1;
-  }
+    if (!arr.length) {
+        return 0;
+    } else {
+        const id_arr = arr.map((x) => {
+            return x.id
+        });
+        id = Math.max(...id_arr)
+    }
+    return id + 1;
+}
 
 class CommentBox extends Component {
 
@@ -60,7 +64,7 @@ class CommentBox extends Component {
 
   onUpdateComment(el)
   {
-      var id = el._targetInst._hostParent._hostNode.id;
+	  const id = el.currentTarget.dataset.id;
       var mas;
       if (id)
       {
