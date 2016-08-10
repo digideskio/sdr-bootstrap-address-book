@@ -15,9 +15,8 @@ class CommentForm extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.edit['id'] !== 0) {
-      this.setState({author: nextProps.edit['author']});
-      this.setState({text: nextProps.edit['text']});
+    if (nextProps.edit.id !== 0) {
+      this.setState({author: nextProps.edit['author'], text: nextProps.edit.text});
     }
   }
 
