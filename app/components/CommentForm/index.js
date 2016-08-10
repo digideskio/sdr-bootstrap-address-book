@@ -1,65 +1,78 @@
 import React, {Component} from 'react';
 
-class CommentForm extends Component {
+export default class CommentForm extends Component {
+
   constructor(props) {
     super(props);
     this.state = {
       author: '',
-      text: '',
-      edit: 0
+      text: ''
     };
-
-    this.handleAuthorChange = this.handleAuthorChange.bind(this);
-    this.handleTextChange = this.handleTextChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.edit['id'] !== 0) {
-      this.setState({author: nextProps.edit['author']});
-      this.setState({text: nextProps.edit['text']});
+<<<<<<< HEAD
+    if (nextProps.edit.id !== 0) {
+      this.setState({author: nextProps.edit['author'], text: nextProps.edit.text});
+=======
+    if (nextProps.editableComment.id !== 0) {
+      this.setState({author: nextProps.editableComment.author,
+                     text: nextProps.editableComment.text});
+>>>>>>> 7dca4cf163b9052de278bc838a5a44ec5bfdcfb2
     }
   }
 
-  handleAuthorChange(e) {
+  handleAuthorChange = (e) => {
     this.setState({author: e.target.value});
   }
 
-  handleTextChange(e) {
+  handleTextChange = (e) => {
     this.setState({text: e.target.value});
   }
 
-  handleSubmit(e) {
+  handleSubmit = (e) => {
     e.preventDefault();
-    var author = this.state.author.trim();
-    var text = this.state.text.trim();
+    const author = this.state.author.trim();
+    const text = this.state.text.trim();
     if (!text || !author) {
       return;
     }
-    this.props.onUpdate(author,text,this.props.edit['id']);
-    this.setState({author: '', text: '', edit: {author:'',text:'',edit:0}});
+
+    this.props.onUpdate(author, text, this.props.editableComment.id);
+    this.setState({author: '', text: ''});
   }
 
   render() {
-      return (
-          <form className="form-inline" onSubmit={this.handleSubmit}>
-            <input className="form-control"
-                type="text"
-                placeholder="Your name"
-                value={this.state.author}
-                onChange={this.handleAuthorChange}
-            />
-            <input className="form-control"
-                type="text"
-                placeholder="Say something..."
-                value={this.state.text}
-                onChange={this.handleTextChange}
-            />
-            <input className="btn btn-primary" type="submit" value="Post"/>
-          </form>
-      );
+    const styleSpan = {
+      backgroundColor:'#4d394b',
+      color:'#fcfcfc',
+      borderColor:'#4d394b'
+    }
+    const {author, text} = this.state;
+    return (
+      <form className="commentForm" onSubmit={this.handleSubmit} >
+        <div className="input-group">
+          <input
+              className="form-control"
+              type="text"
+              placeholder="Your name"
+              value={author}
+              onChange={this.handleAuthorChange}
+          />
+          <span className="input-group-addon" style={styleSpan}>&</span>
+          <input
+              className="form-control"
+              type="text"
+              placeholder="Say something..."
+              value={text}
+              onChange={this.handleTextChange}
+          />
+          <span className="input-group-addon" style={styleSpan}>
+            <input type="submit" value="Post"/>
+          </span>
+        </div>
+      </form>
+    );
   }
 
 }
-
-export default CommentForm;

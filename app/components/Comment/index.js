@@ -1,27 +1,70 @@
 import React, {Component} from 'react';
 var Remarkable = require('remarkable');
 
-class Comment extends Component {
+export default class Comment extends Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      hovered: false
+    }
+  }
 
   rawMarkup() {
-
-    var md = new Remarkable();
-    var rawMarkup = md.render(this.props.children.toString());
+    let md = new Remarkable();
+    let rawMarkup = md.render(this.props.children.toString());
     return { __html: rawMarkup};
+  }
 
+  handleMouseOver = () => {
+    this.setState({hovered: true});
+  }
+
+  handleMouseOut = () => {
+    this.setState({hovered: false});
+  }
+
+  hoverStyle() {
+    if (this.state.hovered) {
+      return {backgroundColor: '#ecf0f1'}
+    } else {
+      return {backgroundColor: 'white'}
+    }
   }
 
   render() {
+<<<<<<< HEAD
+      const {id, fun, author} = this.props;
     return(
-      <div id={this.props.id} className="comment"  onClick={this.props.fun} >
-        <h3 className="commentAuthor">
-          {this.props.author}
-        </h3>
+      <div id={id} data-id={id} className="comment" onClick={fun}>
+        <h2 className="commentAuthor">
+          {author}
+        </h2>
         <span dangerouslySetInnerHTML={this.rawMarkup()} />
-          <hr/>
+=======
+    const commentStyle = {
+      fontStile: '1.5rem',
+      lineHeight: '1.5rem'
+    }
+    const headCommentStyle = {
+      fontWeight:'bold'
+    }
+    const {id, author, onGetEditable} = this.props;
+    return(
+      <div id={id} data-id={id}
+                              className="comment"
+                              onClick={onGetEditable}
+                              onMouseOver={this.handleMouseOver}
+                              onMouseOut={this.handleMouseOut}
+                              style={this.hoverStyle()}>
+        <h4 className="commentAuthor" style={headCommentStyle}>
+          {author}
+        </h4>
+        <span style={commentStyle}
+              dangerouslySetInnerHTML={this.rawMarkup()} />
+>>>>>>> 7dca4cf163b9052de278bc838a5a44ec5bfdcfb2
       </div>
     );
   }
-}
 
-export default Comment;
+}
