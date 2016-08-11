@@ -3,11 +3,6 @@ import CommentList from 'components/CommentList';
 import CommentForm from 'components/CommentForm';
 
 
-let arr = [
-  {id: 1, author: 'Pete Hunt', text: 'This is one comment'},
-  {id: 5, author: 'Jordan Walke', text: 'This is *another* comment'}
-];
-
 export default class CommentBox extends Component {
   constructor(props) {
     super(props);
@@ -15,51 +10,52 @@ export default class CommentBox extends Component {
     this.state = {
       data: props.chatMessages,
       editableComment: {author:'', text:'', id:0},
-      id_n: arr[arr.length-1].id + 1
+      id_n: props.chatMessages[this.props.chatMessages.length -1].id + 1
     };
   }
 
-  onAddorUpdateComment = (author,text, id) => {
-    if (id == 0) {
-      const newComment = {
-        id: this.state.id_n,
-        author: author,
-        text: text
-      };
+    onAddorUpdateComment = (author, text, id) => {
+        if (id == 0) {
+            const newComment = {
+                id: this.state.id_n,
+                author: author,
+                text: text
+            };
 
-      let comments = Object.assign({}, this.state);
+            let comments = Object.assign({}, this.state);
 
-      comments.data.push(newComment);
-      const newData = comments.data;
+            comments.data.push(newComment);
+            const newData = comments.data;
 
-      this.setState({
-        data: newData,
-        editableComment: {author: '', text: '', id: 0},
-        id_n: this.state.id_n + 1
-      });
+            this.setState({
+                data: newData,
+                editableComment: {author: '', text: '', id: 0},
+                id_n: this.state.id_n + 1
+            });
 
-    } else {
-      const newData = this.state.data.map((comment) => {
-        if (comment.id == id) {
-          comment.author = author;
-          comment.text = text;
+        } else {
+            const newData = this.state.data.map((comment) => {
+                if (comment.id == id) {
+                    comment.author = author;
+                    comment.text = text;
+                }
+                return comment;
+            });
+
+            this.setState({
+                data: newData,
+                editableComment: {author: '', text: '', id: 0}
+            });
         }
-        return comment;
-      });
-
-      this.setState({
-        data: newData,
-        editableComment: {author: '', text: '', id: 0}
-      });
     }
-  }
 
 
     componentWillReceiveProps(nextProps) {
         if (nextProps.chatMessages !== this.state.data) {
             this.setState({
-              data: nextProps.chatMessages,
-              editableComment: {author: '', text: '', id: 0}
+                data: nextProps.chatMessages,
+                editableComment: {author: '', text: '', id: 0},
+                id_n: nextProps.chatMessages[nextProps.chatMessages.length - 1].id + 1
             });
         }
     }
@@ -78,37 +74,37 @@ export default class CommentBox extends Component {
     this.setState({editableComment: editableComment});
   }
 
-  render() {
-    const chatBoxStyle = {
-      height: 400,
-      overflow: 'auto',
-      border: '1px solid #ccc',
-      marginBottom: '20px'
-    };
-    const headerStyle = {
-      backgroundColor:'#4d394b',
-      color:'#fcfcfc',
-      marginBottom:'0px'
-    };
-    const {data, editableComment} = this.state;
-    const {chatName} = this.props;
-    return (
-              <div>
+    render() {
+        const chatBoxStyle = {
+            height: 400,
+            overflow: 'auto',
+            border: '1px solid #ccc',
+            marginBottom: '20px'
+        };
+        const headerStyle = {
+            backgroundColor: '#4d394b',
+            color: '#fcfcfc',
+            marginBottom: '0px'
+        };
+        const {data, editableComment} = this.state;
+        const {chatName} = this.props;
+        return (
+            <div>
                 <h2 className="text-center text-uppercase"
                     style={headerStyle}>
-                  {chatName}
+                    {chatName}
                 </h2>
                 <div style={chatBoxStyle} className="pre-scrollable">
-                  <CommentList onGetEditableComment={this.onGetEditableComment}
-                      data={data}
-                  />
+                    <CommentList onGetEditableComment={this.onGetEditableComment}
+                                 data={data}
+                    />
                 </div>
                 <CommentForm onUpdate={this.onAddorUpdateComment}
-                    data={data}
-                    editableComment={editableComment}
+                             data={data}
+                             editableComment={editableComment}
                 />
-              </div>
-    );
-  }
+            </div>
+        );
+    }
 
 }
