@@ -1,40 +1,26 @@
 import React, {Component} from 'react';
+import Input from 'components/Input';
 
 export default class CommentForm extends Component {
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      author: '',
-      text: ''
-    };
-  }
-
   componentWillReceiveProps(nextProps) {
     if (nextProps.editableComment.id !== 0) {
-      this.setState({author: nextProps.editableComment.author,
-                     text: nextProps.editableComment.text});
+      this.refs['inputForAuthor'].setValue(nextProps.editableComment.author);
+      this.refs['inputForText'].setValue(nextProps.editableComment.text);
     }
-  }
-
-  handleAuthorChange = (e) => {
-    this.setState({author: e.target.value});
-  }
-
-  handleTextChange = (e) => {
-    this.setState({text: e.target.value});
   }
 
   handleSubmit = (e) => {
     e.preventDefault();
-    const author = this.state.author.trim();
-    const text = this.state.text.trim();
+    const author = this.refs['inputForAuthor'].getValue().trim();
+    const text = this.refs['inputForText'].getValue().trim();
     if (!text || !author) {
       return;
     }
 
     this.props.onUpdate(author, text, this.props.editableComment.id);
-    this.setState({author: '', text: ''});
+    this.refs['inputForAuthor'].setValue('');
+    this.refs['inputForText'].setValue('');
   }
 
   render() {
@@ -43,27 +29,14 @@ export default class CommentForm extends Component {
       color:'#fcfcfc',
       borderColor:'#4d394b'
     }
-    const {author, text} = this.state;
     return (
       <form className="commentForm" onSubmit={this.handleSubmit} >
         <div className="input-group">
-          <input
-              className="form-control"
-              type="text"
-              placeholder="Your name"
-              value={author}
-              onChange={this.handleAuthorChange}
-          />
+          <Input ref="inputForAuthor" placeholder="Yor name" type="text" className="form-control" />
           <span className="input-group-addon" style={styleSpan}>&</span>
-          <input
-              className="form-control"
-              type="text"
-              placeholder="Say something..."
-              value={text}
-              onChange={this.handleTextChange}
-          />
+          <Input ref="inputForText" placeholder="Say something..." type="text" className="form-control" />
           <span className="input-group-addon" style={styleSpan}>
-            <input type="submit" value="Post"/>
+            <Input type="submit" value="Post" />
           </span>
         </div>
       </form>
