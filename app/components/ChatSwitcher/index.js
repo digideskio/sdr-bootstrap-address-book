@@ -8,7 +8,6 @@ export default class ChatSwitcher extends React.Component {
 
     render() {
         const {currentChat, chatList, onChatSwitch} = this.props;
-
         const chats = chatList.map((chat) => {
             return (
                 <option key={chat.chatId}>

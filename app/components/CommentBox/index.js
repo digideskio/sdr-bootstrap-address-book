@@ -37,6 +37,7 @@ export default class CommentBox extends Component {
         editableComment: {author: '', text: '', id: 0},
         id_n: this.state.id_n + 1
       });
+      this.props.onCommentSubmit(newData);
 
     } else {
       const newData = this.state.data.map((comment) => {
@@ -51,6 +52,8 @@ export default class CommentBox extends Component {
         data: newData,
         editableComment: {author: '', text: '', id: 0}
       });
+
+      this.props.onCommentSubmit(newData);
     }
   }
 
