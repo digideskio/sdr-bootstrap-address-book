@@ -52,16 +52,22 @@ class Chat extends React.Component {
 
     }
 
-    onChatSwitch() {
-
+    onChatSwitch(el) {
+        const element = this.state.data.find((chat) => {
+                return (chat.name == el.target.value);
+            }
+        );
+        this.setState({currentChat: element.chatId});
     }
 
     render() {
         return (
             <div>
                 <h2 style={{textAlign: "center"}}> CHAT </h2>
-                <ChatSwitcher />
-                <CommentBox data={this.state.data[this.state.currentChat].messages}/>
+                <div className="form-inline">
+                    <ChatSwitcher currentChat={this.state.currentChat} chatList={this.state.data} onChatSwitch={this.onChatSwitch}/>
+                    <CommentBox data={this.state.data[this.state.currentChat].messages}/>
+                </div>
             </div>
         );
     }
