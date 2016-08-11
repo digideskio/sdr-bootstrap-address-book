@@ -3,19 +3,14 @@ import CommentList from 'components/CommentList';
 import CommentForm from 'components/CommentForm';
 
 
-let arr = [
-  {id: 1, author: 'Pete Hunt', text: 'This is one comment'},
-  {id: 5, author: 'Jordan Walke', text: 'This is *another* comment'}
-];
-
 export default class CommentBox extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      data: props.chatMessages,
+      data: this.props.chatMessages,
       editableComment: {author:'', text:'', id:0},
-      id_n: arr[arr.length-1].id + 1
+      id_n: this.props.chatMessages[this.props.chatMessages.length-1].id + 1
     };
   }
 
@@ -59,7 +54,8 @@ export default class CommentBox extends Component {
         if (nextProps.chatMessages !== this.state.data) {
             this.setState({
               data: nextProps.chatMessages,
-              editableComment: {author: '', text: '', id: 0}
+              editableComment: {author: '', text: '', id: 0},
+              id_n: nextProps.chatMessages[nextProps.chatMessages.length-1].id + 1
             });
         }
     }
@@ -76,6 +72,10 @@ export default class CommentBox extends Component {
       editableComment = {author:'', text:'', id:0};
     }
     this.setState({editableComment: editableComment});
+  }
+
+  getUpdatedData() {
+    return this.state.data;
   }
 
   render() {

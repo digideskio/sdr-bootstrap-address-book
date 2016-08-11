@@ -54,7 +54,12 @@ export default class Chat extends React.Component {
                 return (chat.name == el.target.value);
             }
         );
-        this.setState({currentChat: element.chatId});
+        chats[this.state.currentChat].messages = this.refs['commentBox'].getUpdatedData();
+        //console.log(this.state.data[this.state.currentChat].messages)
+        this.setState({
+          data: chats,
+          currentChat: element.chatId
+        });
         //console.log(this.state.currentChat);
     }
 
@@ -74,6 +79,8 @@ export default class Chat extends React.Component {
                 <div className="col-sm-9">
                   <CommentBox chatMessages={data[currentChat].messages}
                               chatName={data[currentChat].name}
+                              ref="commentBox"
+                              onPostOrEditMessage={this.onPostOrEditMessage}
                   />
                 </div>
             </div>
