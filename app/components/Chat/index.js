@@ -39,7 +39,7 @@ const chats = [
     }
 ];
 
-class Chat extends React.Component {
+export default class Chat extends React.Component {
 
     constructor(props) {
         super(props);
@@ -47,33 +47,38 @@ class Chat extends React.Component {
             currentChat: 0,
             data: chats
         };
-        this.onChatSwitch = this.onChatSwitch.bind(this);
-
-
     }
 
-    onChatSwitch(el) {
+    onChatSwitch = (el) => {
         const element = this.state.data.find((chat) => {
                 return (chat.name == el.target.value);
             }
         );
         this.setState({currentChat: element.chatId});
-        console.log(this.state.currentChat);
+        //console.log(this.state.currentChat);
     }
 
     render() {
-        return (
-            <div>
-                <h2 style={{textAlign: "center"}}> CHAT </h2>
-                <div className="form-inline">
-                    <ChatSwitcher currentChat={this.state.currentChat}
-                                  chatList={this.state.data.map((x)=> {return ({chatId: x.chatId, name: x.name})})}
-                                  onChatSwitch={this.onChatSwitch} />
-                    <CommentBox data={this.state.data[this.state.currentChat].messages} />
+      const {currentChat, data} = this.state;
+      return (
+        <div className="container">
+          <div className="row">
+              <div className="col-sm-3">
+                <ChatSwitcher currentChat={currentChat}
+                              chatList={data.map((chat) => {
+                                          return {chatId: chat.chatId, name: chat.name}
+                                        })}
+                              onChatSwitch={this.onChatSwitch}
+                />
+                </div>
+                <div className="col-sm-9">
+                  <CommentBox data={data[currentChat].messages}
+                              chatName={data[currentChat].name}
+                  />
                 </div>
             </div>
+          </div>
         );
     }
-}
 
-export default Chat;
+}

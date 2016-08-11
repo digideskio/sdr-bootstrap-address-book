@@ -4,13 +4,15 @@
 
 import React from 'react';
 
-class ChatSwitcher extends React.Component {
+export default class ChatSwitcher extends React.Component {
 
     render() {
         const {currentChat, chatList, onChatSwitch} = this.props;
+
         const chats = chatList.map((chat) => {
             return (
-                <option key={chat.chatId}>{chat.name}
+                <option key={chat.chatId}>
+                  {chat.name}
                 </option>
             );
         });
@@ -21,17 +23,30 @@ class ChatSwitcher extends React.Component {
             }
         });
 
+        const headerStyle = {
+          backgroundColor:'#4d394b',
+          color:'#fcfcfc',
+          marginBottom:'0px'
+        };
+        const selectStyle = {
+          borderRadius: '0px'
+        };
         return (
             <div className="form-group">
                 <div>
-                    <h3>Select chanel</h3>
-                    <select defaultValue={value.name} className="form-control" onChange={onChatSwitch}>
+                    <h2 className="text-center text-uppercase"
+                        style={headerStyle}>
+                      Select chanel
+                    </h2>
+                    <select defaultValue={value.name}
+                            className="form-control"
+                            onChange={onChatSwitch}
+                            style={selectStyle}>
                         {chats}
                     </select>
                 </div>
             </div>
         );
     }
+    
 }
-
-export default ChatSwitcher;
