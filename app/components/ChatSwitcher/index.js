@@ -16,8 +16,7 @@ class ChatSwitcher extends React.Component {
         });
 
         const value = chatList.find((chat) => {
-            if (currentChat == chat.chatId)
-            {
+            if (currentChat == chat.chatId) {
                 return chat.name;
             }
         });
@@ -25,7 +24,7 @@ class ChatSwitcher extends React.Component {
         return (
             <div className="form-group">
                 <div>
-                    <h3>I am a Switcher :) </h3>
+                    <h3>Select chanel</h3>
                     <select defaultValue={value.name} className="form-control" onChange={onChatSwitch}>
                         {chats}
                     </select>

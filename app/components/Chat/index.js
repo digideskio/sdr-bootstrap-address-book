@@ -54,16 +54,13 @@ class Chat extends React.Component {
 
     onChatSwitch(el) {
         const element = this.state.data.find((chat) => {
-            console.log(chat.name.concat('-').concat(el.target.value));
                 return (chat.name == el.target.value);
             }
         );
-        console.log(element.chatId);
         this.setState({currentChat: element.chatId});
     }
 
     render() {
-        console.log(this.state);
         return (
             <div>
                 <h2 style={{textAlign: "center"}}> CHAT </h2>
