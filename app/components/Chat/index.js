@@ -71,7 +71,7 @@ export default class Chat extends React.Component {
                 />
                 </div>
                 <div className="col-sm-9">
-                  <CommentBox data={data[currentChat].messages}
+                  <CommentBox chatMessages={data[currentChat].messages}
                               chatName={data[currentChat].name}
                   />
                 </div>
