@@ -58,7 +58,7 @@ class Chat extends React.Component {
             }
         );
         this.setState({currentChat: element.chatId});
-        console.log(this.state.currentChat);
+
     }
 
     render() {
