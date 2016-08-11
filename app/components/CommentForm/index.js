@@ -4,10 +4,8 @@ import Input from 'components/Input';
 export default class CommentForm extends Component {
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.editableComment.id !== 0) {
       this.refs['inputForAuthor'].setValue(nextProps.editableComment.author);
       this.refs['inputForText'].setValue(nextProps.editableComment.text);
-    }
   }
 
   handleSubmit = (e) => {
