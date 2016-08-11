@@ -23,14 +23,14 @@ export default class CommentForm extends Component {
 
   render() {
     const styleSpan = {
-      backgroundColor:'#4d394b',
-      color:'#fcfcfc',
-      borderColor:'#4d394b'
+      backgroundColor:'#2e6da4',
+      color:'white',
+      borderColor:'white'
     }
     return (
       <form className="commentForm" onSubmit={this.handleSubmit} >
         <div className="input-group">
-          <Input ref="inputForAuthor" placeholder="Yor name" type="text" className="form-control" />
+          <Input ref="inputForAuthor" placeholder="Your name" type="text" className="form-control" />
           <span className="input-group-addon" style={styleSpan}>&</span>
           <Input ref="inputForText" placeholder="Say something..." type="text" className="form-control" />
           <span className="input-group-addon" style={styleSpan}>

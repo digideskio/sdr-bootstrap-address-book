@@ -89,21 +89,24 @@ export default class CommentBox extends Component {
         const {data, editableComment} = this.state;
         const {chatName} = this.props;
         return (
-            <div>
-                <h2 className="text-center text-uppercase"
-                    style={headerStyle}>
-                    {chatName}
-                </h2>
-                <div style={chatBoxStyle} className="pre-scrollable">
-                    <CommentList onGetEditableComment={this.onGetEditableComment}
+            <div className="panel panel-primary">
+                <div className="panel-heading">
+                    <h3 className="panel-title">{chatName}</h3>
+                </div>
+                <div className="panel-body">
+                    <div style={chatBoxStyle} className="pre-scrollable">
+                        <CommentList onGetEditableComment={this.onGetEditableComment}
+                                     data={data}
+                        />
+                    </div>
+                    <CommentForm onUpdate={this.onAddorUpdateComment}
                                  data={data}
+                                 editableComment={editableComment}
                     />
                 </div>
-                <CommentForm onUpdate={this.onAddorUpdateComment}
-                             data={data}
-                             editableComment={editableComment}
-                />
             </div>
+                 
+           
         );
     }
 

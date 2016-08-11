@@ -49,16 +49,12 @@ export default class Chat extends React.Component {
         };
     }
 
-    onChatSwitch = (el) => {
-        const element = this.state.data.find((chat) => {
-                return (chat.name == el.target.value);
-            }
-        );
+    onChatSwitch = (newChatId) => {
 
         const newData = this.refs.CommentBox.state.data;
 
         this.setState({
-            currentChat: element.chatId,
+            currentChat: newChatId,
             data: this.state.data.map((x)=> {
                         if (x.chatId == this.state.currentChat) {
                             return {chatId: x.chatId, name: x.name, messages: newData}
@@ -76,7 +72,8 @@ export default class Chat extends React.Component {
       return (
         <div className="container">
           <div className="row">
-              <div className="col-sm-3">
+
+              <div className="col-lg-12">
                 <ChatSwitcher currentChat={currentChat}
                               chatList={data.map((chat) => {
                                           return {chatId: chat.chatId, name: chat.name}
@@ -84,13 +81,13 @@ export default class Chat extends React.Component {
                               onChatSwitch={this.onChatSwitch}
                 />
                 </div>
-                <div className="col-sm-9">
+                <div className="col-lg-12">
                   <CommentBox chatMessages={data[currentChat].messages}
                               chatName={data[currentChat].name}
                               ref="CommentBox"
                   />
                 </div>
-            </div>
+          </div>
           </div>
         );
     }
