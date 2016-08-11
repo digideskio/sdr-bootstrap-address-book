@@ -70,24 +70,30 @@ export default class Chat extends React.Component {
     render() {
       const {currentChat, data} = this.state;
       return (
-        <div className="container">
-          <div className="row">
-
-              <div className="col-lg-12">
-                <ChatSwitcher currentChat={currentChat}
-                              chatList={data.map((chat) => {
+          <div className="container">
+              <div className="row">
+                  <div className="col-lg-2 col-md-2"></div>
+                  <div className="col-lg-8 col-md-8">
+                      <ChatSwitcher currentChat={currentChat}
+                                    chatList={data.map((chat) => {
                                           return {chatId: chat.chatId, name: chat.name}
                                         })}
-                              onChatSwitch={this.onChatSwitch}
-                />
-                </div>
-                <div className="col-lg-12">
-                  <CommentBox chatMessages={data[currentChat].messages}
-                              chatName={data[currentChat].name}
-                              ref="CommentBox"
-                  />
-                </div>
-          </div>
+                                    onChatSwitch={this.onChatSwitch}
+                      />
+                      <div className="col-lg-2 col-md-2"></div>
+                  </div>
+              </div>
+              <div className="row">
+                  <div className="col-lg-2 col-md-2"></div>
+                  <div className="col-lg-8 col-md-8">
+                      <CommentBox chatMessages={data[currentChat].messages}
+                                  chatName={data[currentChat].name}
+                                  ref="CommentBox"
+                      />
+                  </div>
+                  <div className="col-lg-2 col-md-2"></div>
+              </div>
+
           </div>
         );
     }
