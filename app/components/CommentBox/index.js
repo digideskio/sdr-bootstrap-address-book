@@ -81,19 +81,21 @@ export default class CommentBox extends Component {
     };
     const {data, editableComment} = this.state;
     return (
-      <div className="container">
-        <div className="row">
-          <div className="col-sm-8 col-sm-offset-2">
-            <h1 className="text-center" style={headerStyle}>
-              CHAT
-            </h1>
-            <div style={chatBoxStyle} className="pre-scrollable">
-              <CommentList onGetEditableComment={this.onGetEditableComment} data={data} />
+        <div className="form-group">
+          <div className="container">
+            <div className="row">
+              <div className="col-sm-8">
+                <h1 className="text-center" style={headerStyle}>
+                  CHAT
+                </h1>
+                <div style={chatBoxStyle} className="pre-scrollable">
+                  <CommentList onGetEditableComment={this.onGetEditableComment} data={data}/>
+                </div>
+                <CommentForm onUpdate={this.onAddorUpdateComment} data={data} editableComment={editableComment}/>
+              </div>
             </div>
-            <CommentForm onUpdate={this.onAddorUpdateComment} data={data} editableComment={editableComment} />
           </div>
         </div>
-      </div>
     );
   }
 
