@@ -47,7 +47,6 @@ export default class Chat extends React.Component {
             currentChat: 0,
             data: chats
         };
-        this.handleCommentSubmit = this.handleCommentSubmit.bind(this);
     }
 
     onChatSwitch = (el) => {
@@ -56,22 +55,18 @@ export default class Chat extends React.Component {
             }
         );
         this.setState({currentChat: element.chatId});
-        //console.log(this.state.currentChat);
-    }
-
-    handleCommentSubmit (newMessages)
-    {
+        console.log(this.refs.chatSwitcher.state);
+        const newMessages = this.refs.chatSwitcher.state.data;
         const {currentChat, data} = this.state;
-
-        const newData = data.map((chat) => {
-            if (chat.chatId == currentChat) {
-                return (
-                {chatId: currentChat, name: chat.name, messages: newMessages}
-                );
-            } else
-                return chat;
-        });
-        this.setState({data: newData});
+            const newData = data.map((chat) => {
+                if (chat.chatId == currentChat) {
+                    return (
+                    {chatId: currentChat, name: chat.name, messages: newMessages}
+                    );
+                } else
+                    return chat;
+            });
+            this.setState({data: newData});
     }
 
     render() {
@@ -90,8 +85,7 @@ export default class Chat extends React.Component {
                 <div className="col-sm-9">
                   <CommentBox chatMessages={data[currentChat].messages}
                               chatName={data[currentChat].name}
-                              currentChat={currentChat}
-                              onCommentSubmit={this.handleCommentSubmit}
+                              ref = "chatSwitcher"
                   />
                 </div>
             </div>
