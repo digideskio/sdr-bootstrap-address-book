@@ -55,7 +55,6 @@ export default class Chat extends React.Component {
             }
         );
         this.setState({currentChat: element.chatId});
-        console.log(this.refs.chatSwitcher.state);
         const newMessages = this.refs.chatSwitcher.state.data;
         const {currentChat, data} = this.state;
             const newData = data.map((chat) => {
