@@ -54,7 +54,21 @@ export default class Chat extends React.Component {
                 return (chat.name == el.target.value);
             }
         );
-        this.setState({currentChat: element.chatId});
+
+        const newData = this.refs.CommentBox.state.data;
+
+        this.setState({
+            currentChat: element.chatId,
+            data: this.state.data.map((x)=> {
+                        if (x.chatId == this.state.currentChat) {
+                            return {chatId: x.chatId, name: x.name, messages: newData}
+                        }
+                        else {
+                            return x
+                        }
+                    }
+            )
+        });
     }
 
     render() {
@@ -73,6 +87,7 @@ export default class Chat extends React.Component {
                 <div className="col-sm-9">
                   <CommentBox chatMessages={data[currentChat].messages}
                               chatName={data[currentChat].name}
+                              ref="CommentBox"
                   />
                 </div>
             </div>
