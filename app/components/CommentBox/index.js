@@ -13,7 +13,7 @@ export default class CommentBox extends Component {
     super(props);
 
     this.state = {
-      data: this.props.data,
+      data: props.data,
       editableComment: {author:'', text:'', id:0},
       id_n: arr[arr.length-1].id + 1
     };
@@ -53,6 +53,14 @@ export default class CommentBox extends Component {
       });
     }
   }
+
+
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.data !== this.state.data) {
+            this.setState({data: nextProps.data});
+        }
+    }
+
 
   onGetEditableComment = (el) => {
     const id = el.currentTarget.dataset.id;

@@ -58,6 +58,7 @@ class Chat extends React.Component {
             }
         );
         this.setState({currentChat: element.chatId});
+        console.log(this.state.currentChat);
     }
 
     render() {
@@ -65,8 +66,10 @@ class Chat extends React.Component {
             <div>
                 <h2 style={{textAlign: "center"}}> CHAT </h2>
                 <div className="form-inline">
-                    <ChatSwitcher currentChat={this.state.currentChat} chatList={this.state.data} onChatSwitch={this.onChatSwitch}/>
-                    <CommentBox data={this.state.data[this.state.currentChat].messages}/>
+                    <ChatSwitcher currentChat={this.state.currentChat}
+                                  chatList={this.state.data.map((x)=> {return ({chatId: x.chatId, name: x.name})})}
+                                  onChatSwitch={this.onChatSwitch} />
+                    <CommentBox data={this.state.data[this.state.currentChat].messages} />
                 </div>
             </div>
         );
