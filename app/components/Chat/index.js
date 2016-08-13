@@ -57,7 +57,7 @@ export default class Chat extends React.Component {
 
     onChatSwitch = (el) => {
         let test = chats[el.currentTarget.dataset.chatName];
-        console.log(test);
+        //console.log(test);
         this.setState({currentChat: chats[el.currentTarget.dataset.chatName], currentComment: createEmptyComment()});
     };
 
@@ -77,18 +77,27 @@ export default class Chat extends React.Component {
 
     onSelectComment = (id) => {
         let currentChat = this.state.currentChat;
-        let currentComment = currentChat.messages.find(c => c.id = parseInt(id));
+        let currentComment = currentChat.messages.find(c => c.id == id);
         this.setState({currentComment});
     };
+    
     onAddNewChanel = (channel) =>{
-        chats[channel] = {
-            name: channel,
-            messages: []
+        if (this.onNewChatNameValidation(channel)) {
+            chats[channel] = {
+                name: channel,
+                messages: []
+            };
+            this.setState({currentChat: chats[channel]});
+            return true;
         }
-        this.setState(
-        {currentChat: chats[channel]}
-        )
-    }
+        else {
+            return false;
+        }
+    };
+    
+    onNewChatNameValidation(name) {
+        return !((name.length == 0) || (Object.keys(chats).map((x) => { return chats[x].name }).indexOf(name) >= 0));
+    };
 
     render() {
       const {currentChat, currentComment} = this.state;
@@ -99,7 +108,8 @@ export default class Chat extends React.Component {
                 <ChatSwitcher currentChat={currentChat}
                               chatList={chats}
                               onChatSwitch={this.onChatSwitch}
-                              onAddNewChanel={this.onAddNewChanel} />
+                              onAddNewChanel={this.onAddNewChanel}
+                              onNewChatNameValidation={this.onNewChatNameValidation} />
                 </div>
                 <div className="col-sm-8" style={{padding:0}}>
                   <CommentBox chatMessages={currentChat.messages}
