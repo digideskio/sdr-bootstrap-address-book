@@ -4,12 +4,15 @@ import Comment from 'components/Comment';
 export default class CommentList extends Component {
 
   render() {
-    let onGetEditable = this.props.onGetEditableComment;
+    console.log(JSON.stringify(this.props.data));
+    const {onSelectComment, data} = this.props;
 
-    const commentNodes = this.props.data.map((comment) => {
+    const commentNodes = data.map((comment) => {
       return (
-        <Comment author={comment.author} key={comment.id} id={comment.id}
-                 onGetEditable={onGetEditable}>
+        <Comment author={comment.author}
+                 key={comment.id}
+                 id={comment.id}
+                 onSelect={onSelectComment}>
           {comment.text}
         </Comment>
       );
@@ -17,9 +20,11 @@ export default class CommentList extends Component {
 
     const styleCommentList = {
       padding: '10px'
-    }
+    };
+
     return (
-      <div className="CommentList" style={styleCommentList}>
+      <div className="CommentList"
+           style={styleCommentList}>
         {commentNodes}
       </div>
     );

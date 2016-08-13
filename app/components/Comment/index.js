@@ -24,30 +24,25 @@ export default class Comment extends Component {
     this.setState({hovered: false});
   }
 
-  hoverStyle() {
-    if (this.state.hovered) {
-      return {backgroundColor: '#ecf0f1'}
-    } else {
-      return {backgroundColor: 'white'}
-    }
-  }
-
   render() {
     const commentStyle = {
       fontStile: '1.5rem',
       lineHeight: '1.5rem'
-    }
+    };
     const headCommentStyle = {
-      fontWeight:'bold'
-    }
-    const {id, author, onGetEditable} = this.props;
+      fontWeight: 'bold'
+    };
+    const hoverStyle = {
+      backgroundColor: this.state.hovered ? '#ecf0f1' : 'white'
+    };
+    const {id, author, onSelect} = this.props;
     return(
       <div id={id} data-id={id}
                               className="comment"
-                              onClick={onGetEditable}
+                              onClick={onSelect}
                               onMouseOver={this.handleMouseOver}
                               onMouseOut={this.handleMouseOut}
-                              style={this.hoverStyle()}>
+                              style={hoverStyle}>
         <h4 className="commentAuthor" style={headCommentStyle}>
           {author}
         </h4>
