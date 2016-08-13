@@ -22,7 +22,7 @@ const arr3 = [
     {id: uniqueId(), author: "Pete Hunt", text: "This is one comment"},
 ];
 
-const chats = {
+let chats = {
     chat1: {
         name: 'Chat #1',
         messages: arr
@@ -80,6 +80,15 @@ export default class Chat extends React.Component {
         let currentComment = currentChat.messages.find(c => c.id == id);
         this.setState({currentComment});
     };
+    onAddNewChanel = (channel) =>{
+        chats[channel] = {
+            name: channel,
+            messages: []
+        }
+        this.setState(
+        {currentChat: chats[channel]}
+        )
+    }
 
     render() {
       const {currentChat, currentComment} = this.state;
@@ -89,7 +98,8 @@ export default class Chat extends React.Component {
               <div className="col-sm-3" style={{padding:0}}>
                 <ChatSwitcher currentChat={currentChat}
                               chatList={chats}
-                              onChatSwitch={this.onChatSwitch} />
+                              onChatSwitch={this.onChatSwitch}
+                              onAddNewChanel={this.onAddNewChanel} />
                 </div>
                 <div className="col-sm-8" style={{padding:0}}>
                   <CommentBox chatMessages={currentChat.messages}
