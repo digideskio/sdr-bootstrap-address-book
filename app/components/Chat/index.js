@@ -54,11 +54,20 @@ export default class Chat extends React.Component {
                 return (chat.name == el.target.value);
             }
         );
-        chats[this.state.currentChat].messages = this.refs.CommentBox.getUpdatedData();
+
+        const newData = this.refs.CommentBox.state.data;
 
         this.setState({
-          data: chats,
-          currentChat: element.chatId
+            currentChat: element.chatId,
+            data: this.state.data.map((x)=> {
+                        if (x.chatId == this.state.currentChat) {
+                            return {chatId: x.chatId, name: x.name, messages: newData}
+                        }
+                        else {
+                            return x
+                        }
+                    }
+            )
         });
     }
 

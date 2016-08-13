@@ -36,7 +36,7 @@ export default class ChatSwitcher extends React.Component {
                 <div>
                     <h2 className="text-center text-uppercase"
                         style={headerStyle}>
-                      Select chanel
+                      Select channel
                     </h2>
                     <select defaultValue={value.name}
                             className="form-control"
