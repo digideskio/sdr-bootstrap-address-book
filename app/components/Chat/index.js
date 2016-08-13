@@ -77,7 +77,7 @@ export default class Chat extends React.Component {
 
     onSelectComment = (id) => {
         let currentChat = this.state.currentChat;
-        let currentComment = currentChat.messages.find(c => c.id = parseInt(id));
+        let currentComment = currentChat.messages.find(c => c.id == id);
         this.setState({currentComment});
     };
 
