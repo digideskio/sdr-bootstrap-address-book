@@ -24,10 +24,11 @@ export default class ChatSwitcher extends Component {
         });
 
         const headerStyle = {
-          backgroundColor:'#4d394b',
-          color:'#fcfcfc',
-          marginBottom:'0px'
-        };
+    			backgroundColor: '#4d394b',
+    			color: '#fcfcfc',
+    			marginBottom: '0px',
+          marginTop: '0px'
+    		};
         const listStyle = {
           listStyleType: 'none',
           margin: 0,
@@ -36,17 +37,15 @@ export default class ChatSwitcher extends Component {
           backgroundColor: '#f1f1f1'
         };
         return (
-            <div className="form-group">
-                <div>
-                    <h2 className="text-center text-uppercase"
-                        style={headerStyle}>
-                      Select channel
-                    </h2>
-                    <ul style={listStyle}>
-                        {chats}
-                    </ul>
-                </div>
-            </div>
+          <div>
+            <h2 className="text-center text-uppercase"
+                style={headerStyle}>
+                Select channel
+            </h2>
+            <ul style={listStyle}>
+              {chats}
+            </ul>
+          </div>
         );
     }
 

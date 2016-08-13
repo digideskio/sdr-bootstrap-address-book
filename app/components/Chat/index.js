@@ -84,14 +84,14 @@ export default class Chat extends React.Component {
     render() {
       const {currentChat, currentComment} = this.state;
       return (
-        <div className="container">
-          <div className="row">
-              <div className="col-sm-3">
+
+          <div className="row-fluid">
+              <div className="col-sm-3" style={{padding:0}}>
                 <ChatSwitcher currentChat={currentChat}
                               chatList={chats}
                               onChatSwitch={this.onChatSwitch} />
                 </div>
-                <div className="col-sm-9">
+                <div className="col-sm-8" style={{padding:0}}>
                   <CommentBox chatMessages={currentChat.messages}
                               chatName={currentChat.name}
                               onSelectComment={this.onSelectComment}
@@ -99,7 +99,7 @@ export default class Chat extends React.Component {
                               currentComment={currentComment} />
                 </div>
             </div>
-          </div>
+
         );
     }
 
