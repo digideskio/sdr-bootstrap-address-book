@@ -10,16 +10,12 @@ export default class ChatSwitcherElement extends Component {
   }
 
   handleMouseOver = () => {
-    this.setState({
-      hovered: true
-    });
-  }
+    this.setState({hovered: true});
+  };
 
   handleMouseOut = () => {
-    this.setState({
-      hovered: false
-    });
-  }
+    this.setState({hovered: false});
+  };
 
   render() {
     const hoveredStyle = {

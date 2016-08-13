@@ -22,7 +22,7 @@ const arr3 = [
     {id: uniqueId(), author: "Pete Hunt", text: "This is one comment"},
 ];
 
-const chats = {
+let chats = {
     chat1: {
         name: 'Chat #1',
         messages: arr
@@ -57,7 +57,7 @@ export default class Chat extends React.Component {
 
     onChatSwitch = (el) => {
         let test = chats[el.currentTarget.dataset.chatName];
-        console.log(test);
+        //console.log(test);
         this.setState({currentChat: chats[el.currentTarget.dataset.chatName], currentComment: createEmptyComment()});
     };
 
@@ -77,8 +77,26 @@ export default class Chat extends React.Component {
 
     onSelectComment = (id) => {
         let currentChat = this.state.currentChat;
-        let currentComment = currentChat.messages.find(c => c.id == parseInt(id));
+        let currentComment = currentChat.messages.find(c => c.id == id);
         this.setState({currentComment});
+    };
+
+    onAddNewChanel = (channel) =>{
+        if (this.onNewChatNameValidation(channel)) {
+            chats[channel] = {
+                name: channel,
+                messages: []
+            };
+            this.setState({currentChat: chats[channel]});
+            return true;
+        }
+        else {
+            return false;
+        }
+    };
+
+    onNewChatNameValidation(name) {
+        return !((name.length == 0) || (Object.keys(chats).map((x) => { return chats[x].name }).indexOf(name) >= 0));
     };
 
     render() {
@@ -109,7 +127,9 @@ export default class Chat extends React.Component {
               <div className="col-sm-3" style={styleForCol}>
                 <ChatSwitcher currentChat={currentChat}
                               chatList={chats}
-                              onChatSwitch={this.onChatSwitch} />
+                              onChatSwitch={this.onChatSwitch}
+                              onAddNewChanel={this.onAddNewChanel}
+                              onNewChatNameValidation={this.onNewChatNameValidation} />
                 </div>
                 <div className="col-sm-9" style={styleForCol}>
                   <CommentBox chatMessages={currentChat.messages}

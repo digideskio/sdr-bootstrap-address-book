@@ -4,7 +4,7 @@ import Comment from 'components/Comment';
 export default class CommentList extends Component {
 
   render() {
-    console.log(JSON.stringify(this.props.data));
+    //console.log(JSON.stringify(this.props.data));
     const {onSelectComment, data} = this.props;
 
     const commentNodes = data.map((comment, index) => {
