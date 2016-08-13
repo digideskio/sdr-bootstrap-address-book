@@ -21,13 +21,15 @@ export default class CommentBox extends Component {
 		const chatBoxStyle = {
 			height: 400,
 			overflow: 'auto',
-			border: '1px solid #ccc',
+			border: '1px solid #4d394b',
+      borderTop:'none',
 			marginBottom: '20px'
 		};
 		const headerStyle = {
 			backgroundColor: '#4d394b',
 			color: '#fcfcfc',
-			marginBottom: '0px'
+			marginBottom: '0px',
+      marginTop: '0px'
 		};
 		const {chatName, currentComment, chatMessages} = this.props;
 		return (
