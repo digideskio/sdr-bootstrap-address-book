@@ -27,7 +27,7 @@ export default class CommentForm extends Component {
     return (
       <form className="commentForm"
             onSubmit={this.handleSubmit} >
-        <div className="input-group">
+        <div className="input-group" style={{margin: '0 20px 0 20px'}}>
           <Input ref={me => this.inputForAuthor = me}
                  placeholder="Yor name"
                  type="text"
@@ -40,7 +40,7 @@ export default class CommentForm extends Component {
                  value={editableComment.text}
                  className="form-control" />
           <span className="input-group-addon" style={styleSpan}>
-            <Input type="submit" value="Post" />
+            <Input type="submit" value="Post"/>
           </span>
         </div>
       </form>

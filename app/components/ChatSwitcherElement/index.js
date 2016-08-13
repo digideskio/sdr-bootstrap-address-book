@@ -10,30 +10,39 @@ export default class ChatSwitcherElement extends Component {
   }
 
   handleMouseOver = () => {
-    this.setState({hovered: true});
+    this.setState({
+      hovered: true
+    });
   }
 
   handleMouseOut = () => {
-    this.setState({hovered: false});
+    this.setState({
+      hovered: false
+    });
   }
 
   render() {
-
-    const listItemeStyle = {
-      display: 'block',
-      color: '#000',
+    const hoveredStyle = {
       padding: '8px 16px',
-      backgroundColor: (this.state.hovered) ? '#ecf0f1' : 'white'
-
+      display: 'block',
+      backgroundColor: this.state.hovered ? '#3D303B' : '#4d394b',
+      color: '#a494a2'
     };
+    const activeStyle = {
+      padding: '8px 16px',
+      display: 'block',
+      backgroundColor: '#4c9689',
+      color: '#f6f5f6'
+    };
+    const {onChatSwitch, chatKey, children, currentChat} = this.props;
 
     return (
-      <li style={listItemeStyle}
+      <li style={(children == currentChat.name) ? activeStyle : hoveredStyle}
           onMouseOver={this.handleMouseOver}
           onMouseOut={this.handleMouseOut}
           onClick={this.props.onChatSwitch}
-          data-chat-name={this.props.chatKey}>
-          {this.props.children}
+          data-chat-name={chatKey}>
+          {children}
       </li>
     )
   }

@@ -19,17 +19,14 @@ export default class CommentBox extends Component {
 
 	render() {
 		const chatBoxStyle = {
-			height: 400,
-			overflow: 'auto',
-			border: '1px solid #4d394b',
-      borderTop:'none',
-			marginBottom: '20px'
+			height: '80vh'
 		};
 		const headerStyle = {
-			backgroundColor: '#4d394b',
-			color: '#fcfcfc',
+			color: '#4d394b',
 			marginBottom: '0px',
-      marginTop: '0px'
+      marginTop: '0px',
+      height: '10vh',
+      borderBottom: '1px solid #ccc'
 		};
 		const {chatName, currentComment, chatMessages} = this.props;
 		return (
@@ -38,13 +35,16 @@ export default class CommentBox extends Component {
 					style={headerStyle}>
 					{chatName}
 				</h2>
-				<div style={chatBoxStyle} className="pre-scrollable">
+				<div style={chatBoxStyle}>
 					<CommentList onSelectComment={this.onGetEditableComment}
 								 data={chatMessages}
 					/>
 				</div>
-				<CommentForm onSaveUpdate={this.onSaveUpdateComment}
-							 editableComment={currentComment} />
+        <div className="fixed-bottom">
+				    <CommentForm
+                  onSaveUpdate={this.onSaveUpdateComment}
+						      editableComment={currentComment} style={{height: '10vh'}}/>
+        </div>
 			</div>
 		);
 	}

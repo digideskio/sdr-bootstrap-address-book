@@ -17,7 +17,8 @@ export default class ChatSwitcher extends Component {
                 <ChatSwitcherElement
                     key={index}
                     onChatSwitch={onChatSwitch}
-                    chatKey={chatKey}>
+                    chatKey={chatKey}
+                    currentChat={currentChat}>
                     {chat.name}
                 </ChatSwitcherElement>
             );
@@ -27,20 +28,24 @@ export default class ChatSwitcher extends Component {
     			backgroundColor: '#4d394b',
     			color: '#fcfcfc',
     			marginBottom: '0px',
-          marginTop: '0px'
+          marginTop: '0px',
+          height: '10vh'
     		};
+
         const listStyle = {
           listStyleType: 'none',
           margin: 0,
           padding: 0,
           width: 'strech',
-          backgroundColor: '#f1f1f1'
+          backgroundColor: '#4d394b',
+          height: '90vh'
         };
+        
         return (
           <div>
             <h2 className="text-center text-uppercase"
                 style={headerStyle}>
-                Select channel
+                Select
             </h2>
             <ul style={listStyle}>
               {chats}

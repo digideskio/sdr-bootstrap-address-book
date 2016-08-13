@@ -77,21 +77,41 @@ export default class Chat extends React.Component {
 
     onSelectComment = (id) => {
         let currentChat = this.state.currentChat;
-        let currentComment = currentChat.messages.find(c => c.id = parseInt(id));
+        let currentComment = currentChat.messages.find(c => c.id == parseInt(id));
         this.setState({currentComment});
     };
 
     render() {
       const {currentChat, currentComment} = this.state;
-      return (
 
-          <div className="row-fluid">
-              <div className="col-sm-3" style={{padding:0}}>
+      const styleForContainer = {
+        display: 'table',
+        width: '100%',
+        height: '100%',
+        padding: 0,
+        boxSizing: 'border-box'
+      };
+
+      const styleForRow = {
+        height: '100vh',
+        display: 'table-row',
+      };
+
+      const styleForCol = {
+        float: 'none',
+        display: 'table-cell',
+        padding: 0
+      };
+
+      return (
+        <div className="container" style={styleForContainer}>
+          <div className="row" style={styleForRow}>
+              <div className="col-sm-3" style={styleForCol}>
                 <ChatSwitcher currentChat={currentChat}
                               chatList={chats}
                               onChatSwitch={this.onChatSwitch} />
                 </div>
-                <div className="col-sm-8" style={{padding:0}}>
+                <div className="col-sm-9" style={styleForCol}>
                   <CommentBox chatMessages={currentChat.messages}
                               chatName={currentChat.name}
                               onSelectComment={this.onSelectComment}
@@ -99,6 +119,7 @@ export default class Chat extends React.Component {
                               currentComment={currentComment} />
                 </div>
             </div>
+          </div>
 
         );
     }
