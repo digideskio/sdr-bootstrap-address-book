@@ -2,24 +2,20 @@
  * Created by DMedzatiy on 10-Aug-16.
  */
 
-import React from 'react';
+import React, {PropTypes, Component} from 'react';
 
-export default class ChatSwitcher extends React.Component {
+export default class ChatSwitcher extends Component {
 
     render() {
         const {currentChat, chatList, onChatSwitch} = this.props;
-        const chats = chatList.map((chat) => {
+        let chat;
+        const chats = Object.keys(chatList).map((chatKey, index) => {
+            chat = chatList[chatKey];
             return (
-                <option key={chat.chatId}>
-                  {chat.name}
+                <option key={index} value={chatKey}>
+                    {chat.name}
                 </option>
             );
-        });
-
-        const value = chatList.find((chat) => {
-            if (currentChat == chat.chatId) {
-                return chat.name;
-            }
         });
 
         const headerStyle = {
@@ -35,9 +31,9 @@ export default class ChatSwitcher extends React.Component {
                 <div>
                     <h2 className="text-center text-uppercase"
                         style={headerStyle}>
-                      Select chanel
+                      Select channel
                     </h2>
-                    <select defaultValue={value.name}
+                    <select value={currentChat.name}
                             className="form-control"
                             onChange={onChatSwitch}
                             style={selectStyle}>
@@ -47,5 +43,11 @@ export default class ChatSwitcher extends React.Component {
             </div>
         );
     }
-    
+
 }
+
+ChatSwitcher.propTypes = {
+    currentChat: PropTypes.object.isRequired,
+    chatList: PropTypes.object.isRequired,
+    onChatSwitch: PropTypes.func.isRequired
+};
