@@ -88,5 +88,6 @@ export default class ChatSwitcher extends Component {
 ChatSwitcher.propTypes = {
     currentChat: PropTypes.object.isRequired,
     chatList: PropTypes.object.isRequired,
-    onChatSwitch: PropTypes.func.isRequired
+    onChatSwitch: PropTypes.func.isRequired,
+    onAddNewChanel: PropTypes.func.isRequired
 };
