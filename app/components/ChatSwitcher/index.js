@@ -3,44 +3,49 @@
  */
 
 import React, {PropTypes, Component} from 'react';
+import ChatSwitcherElement from 'components/ChatSwitcherElement';
 
 export default class ChatSwitcher extends Component {
 
     render() {
         const {currentChat, chatList, onChatSwitch} = this.props;
+
         let chat;
         const chats = Object.keys(chatList).map((chatKey, index) => {
             chat = chatList[chatKey];
             return (
-                <option key={index} value={chatKey}>
+                <ChatSwitcherElement
+                    key={index}
+                    onChatSwitch={onChatSwitch}
+                    chatKey={chatKey}>
                     {chat.name}
-                </option>
+                </ChatSwitcherElement>
             );
         });
 
         const headerStyle = {
-          backgroundColor:'#4d394b',
-          color:'#fcfcfc',
-          marginBottom:'0px'
-        };
-        const selectStyle = {
-          borderRadius: '0px'
+    			backgroundColor: '#4d394b',
+    			color: '#fcfcfc',
+    			marginBottom: '0px',
+          marginTop: '0px'
+    		};
+        const listStyle = {
+          listStyleType: 'none',
+          margin: 0,
+          padding: 0,
+          width: 'strech',
+          backgroundColor: '#f1f1f1'
         };
         return (
-            <div className="form-group">
-                <div>
-                    <h2 className="text-center text-uppercase"
-                        style={headerStyle}>
-                      Select channel
-                    </h2>
-                    <select value={currentChat.name}
-                            className="form-control"
-                            onChange={onChatSwitch}
-                            style={selectStyle}>
-                        {chats}
-                    </select>
-                </div>
-            </div>
+          <div>
+            <h2 className="text-center text-uppercase"
+                style={headerStyle}>
+                Select channel
+            </h2>
+            <ul style={listStyle}>
+              {chats}
+            </ul>
+          </div>
         );
     }
 
