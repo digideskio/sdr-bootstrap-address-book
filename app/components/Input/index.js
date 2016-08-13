@@ -5,7 +5,8 @@ export default class Input extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      value: this.props.value
+      value: this.props.value,
+      valid: true
     }
   }
 
@@ -14,7 +15,10 @@ export default class Input extends Component {
   }
 
   handleChange = (e) => {
-    this.setState({value: e.target.value});
+      const value = e.target.value;
+      const valid = this.props.validation ? this.props.isValid(value): true;
+      this.setState({value: value,
+                     valid: valid});
   };
 
   getValue() {
@@ -22,13 +26,20 @@ export default class Input extends Component {
   }
 
   render() {
-    const {type, placeholder, className} = this.props;
+    const {type, placeholder, className, validation } = this.props;
+
+    const style = {
+        color: (!validation)? "": ((this.state.valid) ? "green" : "red")
+    };
+
     return (
         <input value={this.state.value}
                onChange={this.handleChange}
                type={type}
                placeholder={placeholder}
                className={className}
+               style={style}
+
         />
     )
   }
@@ -38,5 +49,11 @@ Input.propTypes = {
   type: React.PropTypes.string.isRequired,
   placeholder: React.PropTypes.string,
   className: React.PropTypes.string,
-  value: React.PropTypes.string
+  value: React.PropTypes.string,
+  validation: React.PropTypes.bool,
+  isValid: React.PropTypes.func
+};
+
+Input.defaultProps = {
+    validation: false
 };
