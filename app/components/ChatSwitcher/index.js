@@ -3,18 +3,23 @@
  */
 
 import React, {PropTypes, Component} from 'react';
+import ChatSwitcherElement from 'components/ChatSwitcherElement';
 
 export default class ChatSwitcher extends Component {
 
     render() {
         const {currentChat, chatList, onChatSwitch} = this.props;
+
         let chat;
         const chats = Object.keys(chatList).map((chatKey, index) => {
             chat = chatList[chatKey];
             return (
-                <option key={index} value={chatKey}>
+                <ChatSwitcherElement
+                    key={index}
+                    onChatSwitch={onChatSwitch}
+                    chatKey={chatKey}>
                     {chat.name}
-                </option>
+                </ChatSwitcherElement>
             );
         });
 
@@ -23,8 +28,12 @@ export default class ChatSwitcher extends Component {
           color:'#fcfcfc',
           marginBottom:'0px'
         };
-        const selectStyle = {
-          borderRadius: '0px'
+        const listStyle = {
+          listStyleType: 'none',
+          margin: 0,
+          padding: 0,
+          width: 'strech',
+          backgroundColor: '#f1f1f1'
         };
         return (
             <div className="form-group">
@@ -33,12 +42,9 @@ export default class ChatSwitcher extends Component {
                         style={headerStyle}>
                       Select channel
                     </h2>
-                    <select value={currentChat.name}
-                            className="form-control"
-                            onChange={onChatSwitch}
-                            style={selectStyle}>
+                    <ul style={listStyle}>
                         {chats}
-                    </select>
+                    </ul>
                 </div>
             </div>
         );

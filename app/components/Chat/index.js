@@ -56,8 +56,9 @@ export default class Chat extends React.Component {
     }
 
     onChatSwitch = (el) => {
-        let test = chats[el.target.value];
-        this.setState({currentChat: chats[el.target.value], currentComment: createEmptyComment()});
+        let test = chats[el.currentTarget.dataset.chatName];
+        console.log(test);
+        this.setState({currentChat: chats[el.currentTarget.dataset.chatName], currentComment: createEmptyComment()});
     };
 
     onSaveUpdateComment = (comment) => {
