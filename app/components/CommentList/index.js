@@ -7,10 +7,10 @@ export default class CommentList extends Component {
     console.log(JSON.stringify(this.props.data));
     const {onSelectComment, data} = this.props;
 
-    const commentNodes = data.map((comment) => {
+    const commentNodes = data.map((comment, index) => {
       return (
         <Comment author={comment.author}
-                 key={comment.id}
+                 key={index}
                  id={comment.id}
                  onSelect={onSelectComment}>
           {comment.text}
