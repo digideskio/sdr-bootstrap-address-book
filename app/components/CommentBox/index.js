@@ -19,7 +19,8 @@ export default class CommentBox extends Component {
 
 	render() {
 		const chatBoxStyle = {
-			height: '80vh'
+			height: '80vh',
+      overflow: 'auto',
 		};
 		const headerStyle = {
 			color: '#4d394b',
@@ -28,6 +29,10 @@ export default class CommentBox extends Component {
       height: '10vh',
       borderBottom: '1px solid #ccc'
 		};
+
+    const commentFormStyle ={
+      height: '10vh'
+    }
 		const {chatName, currentComment, chatMessages} = this.props;
 		return (
 			<div>
@@ -40,10 +45,11 @@ export default class CommentBox extends Component {
 								 data={chatMessages}
 					/>
 				</div>
-        <div className="fixed-bottom">
+        <div>
 				    <CommentForm
                   onSaveUpdate={this.onSaveUpdateComment}
-						      editableComment={currentComment} style={{height: '10vh'}}/>
+						      editableComment={currentComment}
+                  style={commentFormStyle}/>
         </div>
 			</div>
 		);

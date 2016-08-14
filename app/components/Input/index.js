@@ -26,10 +26,11 @@ export default class Input extends Component {
   }
 
   render() {
-    const {type, placeholder, className, validation } = this.props;
+    const {type, placeholder, className, validation, borderRadius } = this.props;
 
     const style = {
-        color: (!validation)? "": ((this.state.valid) ? "green" : "red")
+        borderRadius: borderRadius,
+        color: (!validation)? "": ((this.state.valid) ? '#4c9689' : "red")
     };
 
     return (

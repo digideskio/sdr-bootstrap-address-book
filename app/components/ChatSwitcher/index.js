@@ -33,7 +33,7 @@ export default class ChatSwitcher extends Component {
 
 
     render() {
-        const { chatList, onChatSwitch } = this.props;
+        const { chatList, onChatSwitch, currentChat } = this.props;
 
         let chat;
         const chats = Object.keys(chatList).map((chatKey, index) => {
@@ -63,32 +63,40 @@ export default class ChatSwitcher extends Component {
           padding: 0,
           width: 'strech',
           backgroundColor: '#4d394b',
-          height: '90vh'
+          height: '70vh'
         };
 
         const styleSpan = {
-            backgroundColor:'#4d394b',
-            color:'#fcfcfc',
-            borderColor:'#4d394b'
+            backgroundColor:'#4c9689',
+            color:'#f6f5f6',
+            borderColor:'#4c9689',
+            borderRadius: 0
         };
+
+        const styleAddNewChanel = {
+          padding: '8px 16px',
+          height: '10vh',
+          color: '#fcfcfc'
+        }
 
 
         const css = {
             transform: this.state.showAddChatForm ? "translate(0%)" : "translate(-100%)",
-            transition: "transform 500ms ease-in-out"
+            transition: "transform 500ms ease-in-out",
+            height: '10vh'
         };
 
         return (
-            <div>
+            <div style={{backgroundColor: '#4d394b'}}>
                 <h2 className="text-center text-uppercase"
                     style={headerStyle}>
-                    Select channel
+                    Select
                 </h2>
 
                 <ul style={listStyle}>
                     {chats}
                 </ul>
-                <div style={{padding: '8px 16px'}}
+                <div style={styleAddNewChanel}
                      onClick={this.onAddChatClick}>
                     <span>Add new channel...</span>
                 </div>
@@ -103,10 +111,11 @@ export default class ChatSwitcher extends Component {
                                value={""}
                                className="form-control"
                                validation={true}
-                               isValid={this.props.onNewChatNameValidation}/>
-                  <span className="input-group-addon" style={styleSpan}>
-                       <Input type="submit" value="Add"/>
-                  </span>
+                               isValid={this.props.onNewChatNameValidation}
+                               borderRadius="0px"/>
+                        <span className="input-group-addon" style={styleSpan}>
+                          <Input type="submit" value="Add"/>
+                        </span>
                     </div>
                 </form>
             </div>
