@@ -57,7 +57,6 @@ export default class Chat extends React.Component {
 
     onChatSwitch = (el) => {
         let test = chats[el.currentTarget.dataset.chatName];
-        //console.log(test);
         this.setState({currentChat: chats[el.currentTarget.dataset.chatName], currentComment: createEmptyComment()});
     };
 
@@ -112,7 +111,7 @@ export default class Chat extends React.Component {
 
       const styleForRow = {
         height: '100vh',
-        display: 'table-row',
+        display: 'table-row'
       };
 
       const styleForCol = {

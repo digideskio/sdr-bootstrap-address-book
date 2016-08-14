@@ -50,40 +50,42 @@ export default class ChatSwitcher extends Component {
         });
 
         const headerStyle = {
-    			backgroundColor: '#4d394b',
-    			color: '#fcfcfc',
-    			marginBottom: '0px',
-          marginTop: '0px',
-          height: '10vh'
-    		};
+            backgroundColor: '#4d394b',
+            color: '#fcfcfc',
+            marginBottom: '0px',
+            marginTop: '0px',
+            height: '10vh'
+        };
 
         const listStyle = {
-          listStyleType: 'none',
-          margin: 0,
-          padding: 0,
-          width: 'strech',
-          backgroundColor: '#4d394b',
-          height: '70vh'
+            listStyleType: 'none',
+            margin: 0,
+            padding: 0,
+            width: 'strech',
+            backgroundColor: '#4d394b',
+            height: '70vh'
         };
 
         const styleSpan = {
-            backgroundColor:'#4c9689',
-            color:'#f6f5f6',
-            borderColor:'#4c9689',
+            backgroundColor: '#4c9689',
+            color: '#f6f5f6',
+            borderColor: '#4c9689',
             borderRadius: 0
         };
 
         const styleAddNewChanel = {
-          padding: '8px 16px',
-          height: '10vh',
-          color: '#fcfcfc'
-        }
+            padding: '8px 16px',
+            height: '10vh',
+            color: '#fcfcfc'
+        };
 
 
-        const css = {
+        const styleAddChannelTransform = {
             transform: this.state.showAddChatForm ? "translate(0%)" : "translate(-100%)",
             transition: "transform 500ms ease-in-out",
-            height: '10vh'
+            height: '10vh',
+            position: "relative",
+            top: '-10vh'
         };
 
         return (
@@ -103,7 +105,7 @@ export default class ChatSwitcher extends Component {
 
                 <form className="commentForm"
                       onSubmit={this.handleSubmit}
-                      style={css}>
+                      style={styleAddChannelTransform}>
                     <div className="input-group">
                         <Input ref={me => this.inputForTitle = me}
                                placeholder="Title of channel"
