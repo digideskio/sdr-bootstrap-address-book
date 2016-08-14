@@ -40,6 +40,7 @@ export default class Input extends Component {
                placeholder={placeholder}
                className={className}
                style={style}
+               onClick={this.props.onClick}
 
         />
     )
@@ -52,6 +53,7 @@ Input.propTypes = {
   className: React.PropTypes.string,
   value: React.PropTypes.string,
   validation: React.PropTypes.bool,
+  onClick: React.PropTypes.func,  
   isValid: React.PropTypes.func
 };
 

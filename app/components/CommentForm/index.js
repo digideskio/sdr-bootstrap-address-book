@@ -39,7 +39,7 @@ export default class CommentForm extends Component {
                    value={editableComment.text}
                    className="form-control"/>
           <span className="input-group-addon" style={styleSpan}>
-            <Input type="submit" value="Post"/>
+             <Input type="submit" value="Post"/>
           </span>
           </div>
         </form>

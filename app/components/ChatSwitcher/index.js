@@ -3,6 +3,7 @@
  */
 
 import React, {PropTypes, Component} from 'react';
+import ReactDOM from 'react-dom';
 import ChatSwitcherElement from 'components/ChatSwitcherElement';
 import Input from 'components/Input';
 
@@ -11,12 +12,16 @@ export default class ChatSwitcher extends Component {
         super(props);
         this.state = { showAddChatForm: false};
         this.onAddChatClick = this.onAddChatClick.bind(this);
-
+        this.onCancel = this.onCancel.bind(this);
     }
 
+    onCancel(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        this.setState({showAddChatForm: false});
+    }
 
     handleSubmit = (e) => {
-
         e.preventDefault();
         e.stopPropagation();
         const title = this.inputForTitle.getValue().trim();
@@ -29,6 +34,7 @@ export default class ChatSwitcher extends Component {
 
     onAddChatClick() {
         this.setState({showAddChatForm:!this.state.showAddChatForm});
+        ReactDOM.findDOMNode(this.inputForTitle).focus();
     }
 
 
@@ -69,11 +75,12 @@ export default class ChatSwitcher extends Component {
         const styleSpan = {
             backgroundColor: '#4c9689',
             color: '#f6f5f6',
-            borderColor: '#4c9689',
+            borderColor: '#666566',
             borderRadius: 0
         };
 
         const styleAddNewChanel = {
+            textAlign: "center",
             padding: '8px 16px',
             height: '10vh',
             color: '#fcfcfc'
@@ -105,25 +112,26 @@ export default class ChatSwitcher extends Component {
 
                 <form className="commentForm"
                       onSubmit={this.handleSubmit}
-                      style={styleAddChannelTransform}>
-                    <div className="input-group">
+                      style={styleAddChannelTransform} >
+                    <div className="input-group" >
                         <Input ref={me => this.inputForTitle = me}
                                placeholder="Title of channel"
                                type="text"
                                value={""}
                                className="form-control"
                                validation={true}
-                               isValid={this.props.onNewChatNameValidation}
-                               borderRadius="0px"/>
+                               isValid={this.props.onNewChatNameValidation} />
                         <span className="input-group-addon" style={styleSpan}>
-                          <Input type="submit" value="Add"/>
+                          <Input type="submit" value="Add" />
+                        </span>
+                        <span className="input-group-addon" style={styleSpan} >
+                          <Input type="submit" value="Cancel" onClick={this.onCancel} />
                         </span>
                     </div>
                 </form>
             </div>
         );
     }
-
 }
 
 ChatSwitcher.propTypes = {
