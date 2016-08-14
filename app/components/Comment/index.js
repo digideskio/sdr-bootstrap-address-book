@@ -33,7 +33,7 @@ export default class Comment extends Component {
       fontWeight: 'bold'
     };
     const hoverStyle = {
-      backgroundColor: this.state.hovered ? '#ecf0f1' : 'white'
+      backgroundColor: this.state.hovered ? '#F8F8F8' : 'white'
     };
     const {id, author, onSelect} = this.props;
     return(

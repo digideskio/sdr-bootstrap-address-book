@@ -19,7 +19,7 @@ export default class CommentList extends Component {
     });
 
     const styleCommentList = {
-      padding: '10px'
+      paddingLeft: '20px'
     };
 
     return (

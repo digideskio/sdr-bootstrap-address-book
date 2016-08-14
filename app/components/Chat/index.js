@@ -80,7 +80,7 @@ export default class Chat extends React.Component {
         let currentComment = currentChat.messages.find(c => c.id == id);
         this.setState({currentComment});
     };
-    
+
     onAddNewChanel = (channel) =>{
         if (this.onNewChatNameValidation(channel)) {
             chats[channel] = {
@@ -94,24 +94,44 @@ export default class Chat extends React.Component {
             return false;
         }
     };
-    
+
     onNewChatNameValidation(name) {
         return !((name.length == 0) || (Object.keys(chats).map((x) => { return chats[x].name }).indexOf(name) >= 0));
     };
 
     render() {
       const {currentChat, currentComment} = this.state;
-      return (
 
-          <div className="row-fluid">
-              <div className="col-sm-3" style={{padding:0}}>
+      const styleForContainer = {
+        display: 'table',
+        width: '100%',
+        height: '100%',
+        padding: 0,
+        boxSizing: 'border-box'
+      };
+
+      const styleForRow = {
+        height: '100vh',
+        display: 'table-row',
+      };
+
+      const styleForCol = {
+        float: 'none',
+        display: 'table-cell',
+        padding: 0
+      };
+
+      return (
+        <div className="container" style={styleForContainer}>
+          <div className="row" style={styleForRow}>
+              <div className="col-sm-3" style={styleForCol}>
                 <ChatSwitcher currentChat={currentChat}
                               chatList={chats}
                               onChatSwitch={this.onChatSwitch}
                               onAddNewChanel={this.onAddNewChanel}
                               onNewChatNameValidation={this.onNewChatNameValidation} />
                 </div>
-                <div className="col-sm-8" style={{padding:0}}>
+                <div className="col-sm-9" style={styleForCol}>
                   <CommentBox chatMessages={currentChat.messages}
                               chatName={currentChat.name}
                               onSelectComment={this.onSelectComment}
@@ -119,6 +139,7 @@ export default class Chat extends React.Component {
                               currentComment={currentComment} />
                 </div>
             </div>
+          </div>
 
         );
     }
