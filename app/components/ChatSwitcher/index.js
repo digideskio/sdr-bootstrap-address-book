@@ -3,6 +3,7 @@
  */
 
 import React, {PropTypes, Component} from 'react';
+import ReactDOM from 'react-dom';
 import ChatSwitcherElement from 'components/ChatSwitcherElement';
 import Input from 'components/Input';
 
@@ -11,9 +12,12 @@ export default class ChatSwitcher extends Component {
         super(props);
         this.state = { showAddChatForm: false};
         this.onAddChatClick = this.onAddChatClick.bind(this);
-
+        this.onBlur = this.onBlur.bind(this);
     }
 
+    onBlur(e) {
+        this.setState({showAddChatForm: false});
+    }
 
     handleSubmit = (e) => {
 
@@ -29,6 +33,7 @@ export default class ChatSwitcher extends Component {
 
     onAddChatClick() {
         this.setState({showAddChatForm:!this.state.showAddChatForm});
+        ReactDOM.findDOMNode(this.inputForTitle).focus();
     }
 
 
@@ -105,8 +110,9 @@ export default class ChatSwitcher extends Component {
 
                 <form className="commentForm"
                       onSubmit={this.handleSubmit}
-                      style={styleAddChannelTransform}>
-                    <div className="input-group">
+                      onBlur={this.onBlur}
+                      style={styleAddChannelTransform} >
+                    <div className="input-group" >
                         <Input ref={me => this.inputForTitle = me}
                                placeholder="Title of channel"
                                type="text"
@@ -123,7 +129,6 @@ export default class ChatSwitcher extends Component {
             </div>
         );
     }
-
 }
 
 ChatSwitcher.propTypes = {
