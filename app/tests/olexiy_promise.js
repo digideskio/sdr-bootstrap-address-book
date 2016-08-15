@@ -18,16 +18,16 @@ function factorial(n) {
         }
     });
 }
-function fibonachi(n) {
+function fibonacci(n) {
     if (n == 1 || n == 2) return 1;
-    let res = fibonachi(n-1)+fibonachi(n-2);
+    let res = fibonacci(n-1)+fibonacci(n-2);
     return res;
 }
 let f = factorial(4)
     .then(
         result => {
             console.log("Factorial =",result);
-            result = fibonachi(result);
+            result = fibonacci(result);
             return result;
         },
         error => {
@@ -36,6 +36,6 @@ let f = factorial(4)
         }
     )
     .then(
-        result => console.log("Number Fibonachi =",result),
+        result => console.log("Number Fibonacci =",result),
         error => console.log("Error ",error)
     );
