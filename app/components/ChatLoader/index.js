@@ -19,11 +19,18 @@ class ChatLoader extends Component {
     componentDidMount() {
         //Remove setTimeout before production :)
         setTimeout(()=> {fetch('/init').then(
-            res => {this.setState({progress: 80});return res.json(); }
-        ).then (
-            res => {chats = res; this.setState({progress: 100, loaded: true})}
-        );},500);
-
+            response => {
+                this.setState({progress: 80});
+                return response.json();
+            },
+            error => error
+            ).then (
+                res => {chats = res;
+                        this.setState({progress: 100,
+                                       loaded: true});
+                    }
+            );
+        }, 500);
     }
     
     render() {
@@ -44,8 +51,13 @@ class ChatLoader extends Component {
                 <div>
                     <h1>Loading...</h1>
                     <div className="progress">
-                        <div className="progress-bar" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style={styleProgress}>
-                            <span className="sr-only">60% Complete</span>
+                        <div className="progress-bar"
+                             role="progressbar"
+                             aria-valuenow="0"
+                             aria-valuemin="0"
+                             aria-valuemax="100"
+                             style={styleProgress}>
+                            <span className="sr-only"></span>
                         </div>
                     </div>
                 </div>
