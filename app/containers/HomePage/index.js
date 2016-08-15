@@ -10,8 +10,6 @@
  */
 
 import React from 'react';
-import Chat from 'components/Chat';
-import GitHubJSON from 'components/GitHubJSON';
 import ChatLoader from 'components/ChatLoader';
 
 export default class HomePage extends React.Component { // eslint-disable-line react/prefer-stateless-function
