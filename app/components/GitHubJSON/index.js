@@ -3,6 +3,8 @@
  */
 
 import React, { Component } from 'react';
+import { readData } from './serverAPI';
+
 
 class GitHubJSON extends Component {
 
@@ -10,7 +12,7 @@ class GitHubJSON extends Component {
         super(props);
         this.state = {
             userName: "",
-            GitHubData: {}
+            GitHubData: ''
         };
         this.onUserSubmit = this.onUserSubmit.bind(this);
     }
@@ -19,54 +21,55 @@ class GitHubJSON extends Component {
         e.preventDefault();
         e.stopPropagation();
         const UserName = this.inputGitHubUserName.value.trim();
-        const URL = "https://api.github.com/users/" + UserName;
-        this.setState({userName: UserName});
+        if (UserName.length==0) {
+            return;
+        } else {
+            this.setState({userName: UserName});
+            let ResData = new Promise((resolve) => {
+                let dat = readData(UserName);
+                resolve(dat);
+            });
 
-        fetch(URL, { method: 'get',
-                                  headers: {'Accept': 'application/vnd.github.v3+json',
-                                            'User-Agent': 'request'}
-                                  }
-        ).then (
-            response => {
-                console.log(response);
-                if (response.status == 200) {
-                    return response.json();
-                } else {
-                    if (response.status == 404 ) {
-                        return {Error: "Wrong user name..."}
-                    } else {
-                        const error = new Error(response.statusText);
-                        error.response = response;
-                        throw error;
-                    }
-                }
-            },
-            error => {return error}
-        ).then(
-            result => {this.setState({GitHubData: result})},
-            error => console.log(error)
-        );
-
+            ResData.then(
+                res => this.setState({GitHubData: res})
+            );
+        }
     }
 
     render() {
 
+        const styleComp={
+            padding:"2em"
+        };
+        const styleInput = {
+            height: "33px",
+            paddingLeft: "5px",
+            border: "solid #337ab7 1px",
+            borderRadius: "4px",
+            marginRight: "5px"
+        };
+
         return (
-            <div>
+            <div style={styleComp}>
                 <pre>
                     <div>
                         <label>User Name :</label>
                         {this.state.userName}
                     </div>
                     <div>
-                        <label>GitHub Responce :</label>
+                        <label>GitHub Response :</label>
                         {JSON.stringify(this.state.GitHubData, null, 2)}
                     </div>
                 </pre>
-                <input type="text"
-                       placeholder="Enter GitHub user Name"
-                       ref={me => this.inputGitHubUserName = me} />
-                <button onClick={this.onUserSubmit}>Get data</button>
+                <div style={{textAlign:"center"}}>
+                    <input type="text"
+                           placeholder="Enter GitHub user Name"
+                           ref={me => this.inputGitHubUserName = me}
+                           style={styleInput}
+                    />
+                    <button className="btn btn-primary" onClick={this.onUserSubmit}>Get data</button>
+                </div>
+
             </div>
         )
     }
