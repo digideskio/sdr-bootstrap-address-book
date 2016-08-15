@@ -7,35 +7,7 @@ import CommentBox from 'components/CommentBox';
 import ChatSwitcher from 'components/ChatSwitcher';
 import uniqueId from 'lodash/uniqueId';
 
-const arr = [
-    {id: uniqueId(), author: "Pete Hunt", text: "This is one comment"},
-    {id: uniqueId(), author: "Jordan Walke", text: "This is *another* comment"},
-    {id: uniqueId(), author: "Samuel Jackson", text: "Hello another one comment"}
-];
-
-const arr2 = [
-    {id: uniqueId(), author: "Hunt", text: "This is one comment"},
-    {id: uniqueId(), author: "Jordan Walke", text: "This is *another* comment"}
-];
-
-const arr3 = [
-    {id: uniqueId(), author: "Pete Hunt", text: "This is one comment"},
-];
-
-let chats = {
-    chat1: {
-        name: 'Chat #1',
-        messages: arr
-    },
-    chat2: {
-        name: 'Chat #2',
-        messages: arr2
-    },
-    chat3: {
-        name: 'Chat #3',
-        messages: arr3
-    }
-};
+let chats = {};
 
 export const createNewComment = (author, text) => {
     return {author, text, id: uniqueId()};
@@ -50,9 +22,14 @@ export default class Chat extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            currentChat: chats.chat1,
+            currentChat: {},
             currentComment: createEmptyComment()
         };
+    }
+
+    componentWillMount() {
+        chats = this.props.chats;
+        this.setState({currentChat: chats.chat1});
     }
 
     onChatSwitch = (el) => {
