@@ -3,41 +3,6 @@
  */
 
 import React, { Component } from 'react';
-import uniqueId from 'lodash/uniqueId';
-import Input from 'components/Input';
-import ReactDOM from 'react-dom';
-
-const arr = [
-    {id: uniqueId(), author: "Pete Hunt", text: "This is one comment"},
-    {id: uniqueId(), author: "Jordan Walke", text: "This is *another* comment"},
-    {id: uniqueId(), author: "Samuel Jackson", text: "Hello another one comment"}
-];
-
-const arr2 = [
-    {id: uniqueId(), author: "Hunt", text: "This is one comment"},
-    {id: uniqueId(), author: "Jordan Walke", text: "This is *another* comment"}
-];
-
-const arr3 = [
-    {id: uniqueId(), author: "Pete Hunt", text: "This is one comment"},
-];
-
-let chats = {
-    chat1: {
-        name: 'Chat #1',
-        messages: arr
-    },
-    chat2: {
-        name: 'Chat #2',
-        messages: arr2
-    },
-    chat3: {
-        name: 'Chat #3',
-        messages: arr3
-    }
-};
-
-
 
 class GitHubJSON extends Component {
 
@@ -50,25 +15,42 @@ class GitHubJSON extends Component {
         this.onUserSubmit = this.onUserSubmit.bind(this);
     }
 
-    componentDidMount() {
-        const UserName = "ipselon";
-        const URL = "https://api.github.com/users/" + UserName;
-        this.serverRequest = ReactDOM.findDOMNode().get(URL, function (result) {
-            this.setState({userName: UserName,
-                GitHubData: result});
-
-        });
-    }
-
-
     onUserSubmit (e) {
         e.preventDefault();
         e.stopPropagation();
+        const UserName = this.inputGitHubUserName.value.trim();
+        const URL = "https://api.github.com/users/" + UserName;
+        this.setState({userName: UserName});
+
+        fetch(URL, { method: 'get',
+                                  headers: {'Accept': 'application/vnd.github.v3+json',
+                                            'User-Agent': 'request'}
+                                  }
+        ).then (
+            response => {
+                console.log(response);
+                if (response.status == 200) {
+                    return response.json();
+                } else {
+                    if (response.status == 404 ) {
+                        return {Error: "Wrong user name..."}
+                    } else {
+                        const error = new Error(response.statusText);
+                        error.response = response;
+                        throw error;
+                    }
+                }
+            },
+            error => {return error}
+        ).then(
+            result => {this.setState({GitHubData: result})},
+            error => console.log(error)
+        );
 
     }
 
     render() {
-        const jsonObj = chats;
+
         return (
             <div>
                 <pre>
@@ -78,7 +60,7 @@ class GitHubJSON extends Component {
                     </div>
                     <div>
                         <label>GitHub Responce :</label>
-                        {this.state.GitHubData}
+                        {JSON.stringify(this.state.GitHubData, null, 2)}
                     </div>
                 </pre>
                 <input type="text"
