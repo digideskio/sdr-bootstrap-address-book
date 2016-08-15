@@ -44,16 +44,15 @@ class GitHubJSON extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            userName: ""
-
+            userName: "",
+            GitHubData: {}
         };
         this.onUserSubmit = this.onUserSubmit.bind(this);
     }
 
     componentDidMount() {
-        const UserName = this.inputGitHubUserName.value;
+        const UserName = "ipselon";
         const URL = "https://api.github.com/users/" + UserName;
-
         this.serverRequest = ReactDOM.findDOMNode().get(URL, function (result) {
             this.setState({userName: UserName,
                 GitHubData: result});
