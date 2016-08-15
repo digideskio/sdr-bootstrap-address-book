@@ -41,3 +41,9 @@ app.listen(port, (err) => {
     logger.appStarted(port);
   }
 });
+
+let initialData = require('./src/chats');
+
+app.get('/initials',function(req,res){
+   res.setHeaders
+});
