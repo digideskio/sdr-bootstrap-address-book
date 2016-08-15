@@ -10,14 +10,14 @@
  */
 
 import React from 'react';
-import Chat from 'components/Chat';
+import ChatLoader from 'components/ChatLoader';
 
 export default class HomePage extends React.Component { // eslint-disable-line react/prefer-stateless-function
 
   render() {
     return (
         <div>
-          <Chat />
+          <ChatLoader />
         </div>
     );
   }
