@@ -11,13 +11,14 @@
 
 import React from 'react';
 import ChatLoader from 'components/ChatLoader';
+import TodoApp from 'containers/TodoApp';
 
 export default class HomePage extends React.Component { // eslint-disable-line react/prefer-stateless-function
 
   render() {
     return (
         <div>
-          <ChatLoader />
+          <TodoApp />
         </div>
     );
   }
