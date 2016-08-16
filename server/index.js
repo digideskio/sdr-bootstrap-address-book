@@ -13,11 +13,20 @@ const app = express();
 // If you need a backend, e.g. an API, add your custom backend-specific middleware here
 // app.use('/api', myApi);
 
+let initialData = require('./src/chats');
+
+app.get('/init', function(req,res){
+    res.setHeader('Content-Type', 'application/json');
+    res.json(initialData.chats);
+});
 // In production we need to pass these values in instead of relying on webpack
 setup(app, {
   outputPath: resolve(process.cwd(), 'build'),
   publicPath: '/',
 });
+
+
+
 
 // get the intended port number, use port 3000 if not provided
 const port = argv.port || process.env.PORT || 3000;
@@ -41,3 +50,7 @@ app.listen(port, (err) => {
     logger.appStarted(port);
   }
 });
+
+
+
+
