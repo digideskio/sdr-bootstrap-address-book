@@ -4,10 +4,9 @@
 
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-//import { newUserName, onIncrement } from './actions';
 import * as actionCreators from './actions'
-
-
+//import OlexiyComponent from 'containers/OlexiyComponent';
+//import SerhiiComponent from 'containers/SerhiiComponent';
 class TodoApp extends Component {
     componentDidMount() {
 
@@ -15,18 +14,50 @@ class TodoApp extends Component {
 
     render() {
         console.log(this.props);
+        const rowStyle = {
+            textAlign: "center",
+            border: "solid 2px black",
+            borderRadius: "5px",
+            backgroundColor: "#e2e2e2",
+            margin: "1em"
+        };
+
+        const componentsDiv = {
+            border: "solid 1px grey",
+            borderRadius: "2px",
+            backgroundColor: "#f2f2f2"
+
+        };
+
         return(
-            <div>
-                <h3>Global state userName:  {this.props.userName}</h3>
-                        <input
-                            id="username"
-                            type="text"
-                            placeholder="username"
-                            onChange={this.props.newUserName}
-                        />
-                <p>Counter = {this.props.counter}</p>
-                <input type="button" className="btn btn-primary" onClick={this.props.onIncrement} defaultValue='+'/>
-                <input type="button" className="btn btn-primary" onClick={this.props.onDecrement} defaultValue='-'/>
+            <div className="conteiner">
+                <div className="row" style={rowStyle}>
+                    <h3>TodoApp Todos</h3>
+                    <div className="col-lg-4">
+                        <h2>Serhii todos</h2>
+                    </div>
+                    <div className="col-lg-4">
+                        <h2>Olexiy todos</h2>
+                    </div>
+                    <div className="col-lg-4">
+                        <h2>Dima todos</h2>
+                    </div>
+                </div>
+                <div className="row" style={rowStyle}>
+                    <h3> Separated Todos Components</h3>
+                    <div className="col-lg-4" style={componentsDiv}>
+                        <h2>Serhii todos</h2>
+                        <h4>Place yours component here</h4>
+                    </div>
+                    <div className="col-lg-4" style={componentsDiv}>
+                        <h2>Olexiy todos</h2>
+                        <h4>Place yours component here</h4>
+                    </div>
+                    <div className="col-lg-4" style={componentsDiv}>
+                        <h2>Dima todos</h2>
+                        <h4>Place yours component here</h4>
+                    </div>
+                </div>
             </div>
         )
     }
@@ -66,4 +97,5 @@ const mapStateToProps = (state) => {
 };
 
 export default connect(mapStateToProps, actionCreators)(TodoApp);
+
 
