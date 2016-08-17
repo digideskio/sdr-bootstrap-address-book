@@ -3,28 +3,59 @@
  */
 
 const initialState = {
-    userName:'',
-    counter: 0,
-    olexiyCounter: 0
+    counters: [
+        {
+            name: "Olexiy",
+            value: 0
+        },
+        {
+            name: "Serhii",
+            value: 0
+        },
+        {
+            name: "Dima",
+            value: 0
+        }
+    ]
 };
 
-function TodoAppReducer (state=initialState, action) {
+function todoAppReducer (state=initialState, action) {
     switch (action.type) {
-        case "CHANGE_USERNAME":
-            return {...state, ...{userName: action.userName}};
-        case "INCREMENT": {
-            switch (action.index) {
-                case 'olexiy':
-                    return {...state,...{olexiyCounter: state.olexiyCounter + 1}};
-                default:
-                    return state;
-            }
-        }
-        case "DECREMENT":
-            return {...state, ...{counter: state.counter - 1}};
+        case "INCREMENT_COUNTER_VALUE": {
+            return Object.assign({},
+                state,
+                {counters: state.counters.map((x)=>{
+                    if (x.name==action.name) {
+                        return {
+                            name: x.name,
+                            value: x.value + 1
+                        }
+                    }
+                    else {
+                        return x;
+                    }
+                    })
+                }
+            )}
+        case "DECREMENT_COUNTER_VALUE":
+            return Object.assign({},
+                state,
+                {counters: state.counters.map((x)=> {
+                    if (x.name==action.name) {
+                        return {
+                            name: x.name,
+                            value: x.value-1
+                        }
+                    }
+                })}
+            );
+        case "ADD_COUNTER":
+            return state;
+        case "DELETE_COUNTER":
+            return state;
         default:
             return state;
     }
 }
 
-export default TodoAppReducer;
+export default todoAppReducer;
