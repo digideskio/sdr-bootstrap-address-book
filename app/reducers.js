@@ -7,8 +7,7 @@ import { combineReducers } from 'redux-immutable';
 import { fromJS } from 'immutable';
 import { LOCATION_CHANGE } from 'react-router-redux';
 import languageProviderReducer from 'containers/LanguageProvider/reducer';
-import TodoAppReducer from 'containers/TodoApp/reducer';
-import addToDoReducer from 'containers/SerhiiToDos/reducer';
+import todoAppReducer from 'containers/TodoApp/reducer';
 
 /*
  * routeReducer
@@ -45,8 +44,7 @@ export default function createReducer(asyncReducers) {
   return combineReducers({
     route: routeReducer,
     language: languageProviderReducer,
-    userName: TodoAppReducer,
-    addTodo: addToDoReducer,
+    counters: todoAppReducer,
     ...asyncReducers,
   });
 }

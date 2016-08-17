@@ -5,15 +5,19 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actionCreators from './actions'
+import { createStructuredSelector } from 'reselect';
+import { getCounters } from './selectors';
+//import { onIncrementCounter } from './actions';
 
 
 class TodoApp extends Component {
+
     componentDidMount() {
 
     }
 
     render() {
-        console.log(this.props);
+
         const rowStyle = {
             textAlign: "center",
             border: "solid 2px black",
@@ -28,59 +32,48 @@ class TodoApp extends Component {
             backgroundColor: "#f2f2f2"
 
         };
+        const counter = (counters, name) => {
+            const counter = counters.filter((counter)=>{
+                return counter.name===name})[0];
+            return counter.value;
 
+        };
+        //console.log(this.props.onIncrementCounter("Serhii"));
         return(
+
             <div className="conteiner">
                 <div className="row" style={rowStyle}>
                     <div className="col-lg-4">
                         <h2>Serhii todos</h2>
-                        <h2>Counter value: </h2>
+                        <h2>Counter value: {counter(this.props.counters,"Serhii")}</h2>
                     </div>
                     <div className="col-lg-4">
                         <h2>Olexiy todos</h2>
-                        <h2>Counter value: </h2>
+                        <h2>Counter value: {counter(this.props.counters,"Olexiy")}</h2>
                     </div>
                     <div className="col-lg-4">
                         <h2>Dima todos</h2>
-                        <h2>Counter value: </h2>
+                        <h2>Counter value: {counter(this.props.counters,"Dima")}</h2>
                     </div>
                 </div>
             </div>
         )
     }
 }
-/*
+
 TodoApp.propTypes = {
-    children: PropTypes.node.isRequired,
-    userName: React.PropTypes.object,
-    onChange: React.PropTypes.func
+    counters: React.PropTypes.array
 };
 
-TodoApp.defaultProps = {
-    userName: 'user',
-    counter: 0
-};*/
-/*
-function mapDispatchToProps(dispatch) {
-    return {
-        onChange: (e) => {
-            e.preventDefault();
-            dispatch(newUserName(e.target.value));
-        },
-        dispatch,
-        onIncrement:(e) =>
-        {
-            e.preventDefault();
-            dispatch(onIncrement());
-        }
-    }
-}*/
 
-const mapStateToProps = (state) => {
-    return {
-        userName: state.get('userName').userName,
-        counter: state.get('userName').counter
-    }
-};
+
+
+
+
+
+const mapStateToProps = createStructuredSelector({
+    counters: getCounters(),
+
+});
 
 export default connect(mapStateToProps)(TodoApp);

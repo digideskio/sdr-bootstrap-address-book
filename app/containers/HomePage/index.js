@@ -15,6 +15,7 @@ import TodoApp from 'containers/TodoApp';
 import SerhiiToDos from 'containers/SerhiiToDos'
 //import OlexiyComponent from 'containers/OlexiyComponent';
 //import SerhiiComponent from 'containers/SerhiiComponent';
+//import DimaComponent from 'containers/DimaComponent';
 
 export default class HomePage extends React.Component { // eslint-disable-line react/prefer-stateless-function
 
