@@ -8,6 +8,15 @@ export function onIncrementCounter(name) {
         name: name,
     };
 }
+
+export function onNewTodos(value, name) {
+    return {
+        type: "NEW_TODOS_NUMBER",
+        value: value,
+        name: name
+    };
+}
+
 export function onIncrement() {
     return {
         type: "INCREMENT"

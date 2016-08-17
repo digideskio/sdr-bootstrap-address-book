@@ -49,6 +49,23 @@ function todoAppReducer (state=initialState, action) {
                     }
                 })}
             );
+        case "NEW_TODOS_NUMBER": {
+            return Object.assign({},
+            state,
+                {
+                    counters: state.counters.map((x)=>{
+                        if (x.name==action.name) {
+                            return {
+                                name: x.name,
+                                value: action.value
+                            }
+                        }
+                        else {
+                            return x;
+                        }
+                    })
+                })
+        }
         case "ADD_COUNTER":
             return state;
         case "DELETE_COUNTER":
