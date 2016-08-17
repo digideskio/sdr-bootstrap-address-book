@@ -5,8 +5,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actionCreators from './actions'
-
-
+//import OlexiyComponent from 'containers/OlexiyComponent';
+//import SerhiiComponent from 'containers/SerhiiComponent';
 class TodoApp extends Component {
     componentDidMount() {
 
@@ -47,12 +47,15 @@ class TodoApp extends Component {
                     <h3> Separated Todos Components</h3>
                     <div className="col-lg-4" style={componentsDiv}>
                         <h2>Serhii todos</h2>
+                        <h4>Place yours component here</h4>
                     </div>
                     <div className="col-lg-4" style={componentsDiv}>
                         <h2>Olexiy todos</h2>
+                        <h4>Place yours component here</h4>
                     </div>
                     <div className="col-lg-4" style={componentsDiv}>
                         <h2>Dima todos</h2>
+                        <h4>Place yours component here</h4>
                     </div>
                 </div>
             </div>
