@@ -18,7 +18,7 @@ class ChatLoader extends Component {
 
     componentDidMount() {
         //Remove setTimeout before production :)
-        setTimeout(()=> {fetch('/init').then(
+        fetch('/init').then(
             response => {
                 this.setState({progress: 80});
                 return response.json();
@@ -29,8 +29,7 @@ class ChatLoader extends Component {
                         this.setState({progress: 100,
                                        loaded: true});
                     }
-            );
-        }, 500);
+        );
     }
     
     render() {

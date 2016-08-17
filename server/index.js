@@ -16,9 +16,10 @@ const app = express();
 var initialData = require('./src/chats');
 
 app.get('/init', function(req,res){
-    res.setHeader('Content-Type', 'application/json');
-    res.json(initialData.chats);
+  res.setHeader('Content-Type', 'application/json');
+  res.json(initialData.chats);
 });
+
 // In production we need to pass these values in instead of relying on webpack
 setup(app, {
   outputPath: resolve(process.cwd(), 'build'),
