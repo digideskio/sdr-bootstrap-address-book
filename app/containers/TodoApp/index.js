@@ -4,20 +4,18 @@
 
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import * as actionCreators from './actions'
+import * as actionCreators from './actions';
 import { createStructuredSelector } from 'reselect';
 import { getCounters } from './selectors';
-//import { onIncrementCounter } from './actions';
+import { getDimaTodos } from '../../containers/DimaComponent/selectors';
+
+
 
 
 class TodoApp extends Component {
-
-    componentDidMount() {
-
-    }
-
+    
     render() {
-
+        console.log(this.props);
         const rowStyle = {
             textAlign: "center",
             border: "solid 2px black",
@@ -36,9 +34,8 @@ class TodoApp extends Component {
             const counter = counters.filter((counter)=>{
                 return counter.name===name})[0];
             return counter.value;
-
         };
-        //console.log(this.props.onIncrementCounter("Serhii"));
+
         return(
 
             <div className="conteiner">
@@ -62,20 +59,21 @@ class TodoApp extends Component {
 }
 
 TodoApp.propTypes = {
-    counters: React.PropTypes.array
+    counters: React.PropTypes.array,
+    dimaTodos: React.PropTypes.array,
+    onIncrementCounter: React.PropTypes.func
 };
 
-
-
-
-
-
+TodoApp.defaultProps = {
+    dimaTodos: []
+};
 
 const mapStateToProps = createStructuredSelector({
     counters: getCounters(),
+    dimaTodos: getDimaTodos()
 
 });
 
-export default connect(mapStateToProps, actionCreators)(TodoApp);
+export default connect(mapStateToProps, {...actionCreators})(TodoApp);
 
 
