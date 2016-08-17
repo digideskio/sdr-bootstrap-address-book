@@ -12,7 +12,7 @@
 import React from 'react';
 import ChatLoader from 'components/ChatLoader';
 import TodoApp from 'containers/TodoApp';
-import SerhiiToDos from 'containers/SerhiiToDos'
+import SerhiiComponent from 'containers/SerhiiContainer'
 //import OlexiyComponent from 'containers/OlexiyComponent';
 //import SerhiiComponent from 'containers/SerhiiComponent';
 //import DimaComponent from 'containers/DimaComponent';
@@ -45,7 +45,7 @@ export default class HomePage extends React.Component { // eslint-disable-line r
                 <h3> Separated Todos Components</h3>
                 <div className="col-lg-4" style={componentsDiv}>
                     <h2>Serhii todos</h2>
-                    <SerhiiToDos />
+                    <SerhiiComponent />
                 </div>
                 <div className="col-lg-4" style={componentsDiv}>
                     <h2>Olexiy todos</h2>

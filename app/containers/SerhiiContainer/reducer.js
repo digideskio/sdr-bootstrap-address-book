@@ -3,11 +3,11 @@ import { fromJS } from 'immutable';
 const initialState = fromJS({
   countOfTodo: 0,
   listOfTodo: []
-})
+});
 
-let list = []
+let list = [];
 
-function addToDoReducer(state = initialState, action) {
+function addTodoSerhii(state = initialState, action) {
   switch (action.type) {
     case "ADD_TODO":
       list.push(action.text)
@@ -19,4 +19,4 @@ function addToDoReducer(state = initialState, action) {
   }
 }
 
-export default addToDoReducer
+export default addTodoSerhii;
