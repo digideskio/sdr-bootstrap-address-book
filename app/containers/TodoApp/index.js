@@ -83,6 +83,4 @@ const mapStateToProps = (state) => {
     }
 };
 
-export default connect(mapStateToProps, actionCreators)(TodoApp);
-
-
+export default connect(mapStateToProps)(TodoApp);
