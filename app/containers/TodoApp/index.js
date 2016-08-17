@@ -47,7 +47,6 @@ class TodoApp extends Component {
                     <div className="col-lg-4">
                         <h2>Olexiy todos</h2>
                         <h2>Counter value: {counter(this.props.counters,"Olexiy")}</h2>
-                        <button onClick={this.onClick}>Click</button>
                     </div>
                     <div className="col-lg-4">
                         <h2>Dima todos</h2>
