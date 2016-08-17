@@ -46,6 +46,7 @@ export default function createReducer(asyncReducers) {
     route: routeReducer,
     language: languageProviderReducer,
     counters: todoAppReducer,
+    olexiyTodo: OlexiyTodo,
     ...asyncReducers,
   });
 }

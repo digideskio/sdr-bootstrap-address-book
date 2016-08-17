@@ -7,8 +7,10 @@
 
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import * as actionCreators from './actions'
+import * as actionCreators from './actions';
 import * as actionTodoApp from '../TodoApp/actions';
+import { createStructuredSelector } from 'reselect';
+import { getCounters, getListTodo, getOlexiyCounter } from './selectors';
 
 
 class OlexiyToDo extends Component {
@@ -17,12 +19,19 @@ class OlexiyToDo extends Component {
     }
 
     render() {
-        //console.log(this.props);
+        const counter = (counters, name) => {
+            const counter = counters.filter((counter)=>{
+                return counter.name===name})[0];
+            return counter.value;
+
+        };
+        const myCount = counter(this.props.counters,'Olexiy');
+
         let todoList;
         if (this.props.listTodo != null) {
             todoList = this.props.listTodo.map((el, index) => {
                 return (
-                    <div>
+                    <div key={index}>
                     <li key={index} style={{float: 'left'}}>
                         {el}
                     </li>
@@ -32,6 +41,14 @@ class OlexiyToDo extends Component {
             });
         }
         else todoList = null;
+        let style;
+        if (myCount === this.props.olexiyCounter)
+        {
+            style = {background: 'green'}
+        }
+        else {
+            style = {background: 'red'}
+        }
 
         let input;
         return(
@@ -43,7 +60,7 @@ class OlexiyToDo extends Component {
                     }
                     {
                         this.props.newItemToList(input.value);
-                        this.props.onIncrement('olexiy');
+                        this.props.onIncrementCounter('Olexiy');
                     }
                     input.value = ''
                 }}
@@ -51,6 +68,7 @@ class OlexiyToDo extends Component {
                     <input type="text"
                            placeholder="Enter todo"
                            className="form-control"
+                           style={style}
                            ref={node => {
                                input = node
                            }}/>
@@ -70,13 +88,12 @@ class OlexiyToDo extends Component {
     }
 }
 
-const mapStateToProps = (state) => {
-    return {
-        listTodo: state.get('olexiyTodo').listTodo,
-        counter: state.get('olexiyTodo').counter,
-        olexiyCounter: state.get('userName').olexiyCounter
-    }
-};
+const mapStateToProps = createStructuredSelector({
+    counters: getCounters(),
+    listTodo: getListTodo(),
+    olexiyCounter: getOlexiyCounter()
+})
+
 
 export default connect(mapStateToProps, {...actionCreators, ...actionTodoApp})(OlexiyToDo);
 

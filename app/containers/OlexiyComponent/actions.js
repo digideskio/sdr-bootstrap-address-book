@@ -5,6 +5,6 @@
 export function newItemToList(item) {
     return {
         type: "CHANGE_LIST",
-        userName: item,
+        newItem: item,
     };
 }
