@@ -8,10 +8,9 @@ export function onIncrementCounter(name) {
         name: name,
     };
 }
-export function onIncrement(index) {
+export function onIncrement() {
     return {
-        type: "INCREMENT",
-        index,
+        type: "INCREMENT"
     };
 }
 export function onDecrement() {
