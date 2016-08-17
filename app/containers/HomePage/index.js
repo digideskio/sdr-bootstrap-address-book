@@ -12,7 +12,7 @@
 import React from 'react';
 import ChatLoader from 'components/ChatLoader';
 import TodoApp from 'containers/TodoApp';
-//import OlexiyComponent from 'containers/OlexiyComponent';
+import OlexiyComponent from 'containers/OlexiyComponent';
 //import SerhiiComponent from 'containers/SerhiiComponent';
 //import DimaComponent from 'containers/DimaComponent';
 
@@ -48,7 +48,7 @@ export default class HomePage extends React.Component { // eslint-disable-line r
                 </div>
                 <div className="col-lg-4" style={componentsDiv}>
                     <h2>Olexiy todos</h2>
-                    <h4>Place yours component here</h4>
+                    <OlexiyComponent />
                 </div>
                 <div className="col-lg-4" style={componentsDiv}>
                     <h2>Dima todos</h2>
