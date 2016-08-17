@@ -45,11 +45,11 @@ module.exports = {
     message: 'Do you want i18n messages (i.e. will this component use text)?',
   }],
   actions: data => {
-    // Generate index.js and index.test.js
+    // Generate store.js and index.test.js
     const actions = [{
       type: 'add',
-      path: '../../app/containers/{{properCase name}}/index.js',
-      templateFile: './container/index.js.hbs',
+      path: '../../app/containers/{{properCase name}}/store.js',
+      templateFile: './container/store.js.hbs',
       abortOnFail: true,
     }, {
       type: 'add',
@@ -79,7 +79,7 @@ module.exports = {
     }
 
     // If they want actions and a reducer, generate actions.js, constants.js,
-    // reducer.js and the corresponding tests for actions and the reducer
+    // reducers.js and the corresponding tests for actions and the reducer
     if (data.wantActionsAndReducer) {
       // Actions
       actions.push({
@@ -120,8 +120,8 @@ module.exports = {
       // Reducer
       actions.push({
         type: 'add',
-        path: '../../app/containers/{{properCase name}}/reducer.js',
-        templateFile: './container/reducer.js.hbs',
+        path: '../../app/containers/{{properCase name}}/reducers.js',
+        templateFile: './container/reducers.js.hbs',
         abortOnFail: true,
       });
       actions.push({

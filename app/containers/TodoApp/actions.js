@@ -5,6 +5,16 @@
 export function newUserName(userName) {
     return {
         type: "CHANGE_USERNAME",
-        userName,
+        userName: userName.target.value,
+    };
+}
+export function onIncrement() {
+    return {
+        type: "INCREMENT"
+    };
+}
+export function onDecrement() {
+    return {
+        type: "DECREMENT"
     };
 }
