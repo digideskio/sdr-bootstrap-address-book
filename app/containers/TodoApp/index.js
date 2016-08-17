@@ -38,7 +38,7 @@ class TodoApp extends Component {
                     </div>
                     <div className="col-lg-4">
                         <h2>Olexiy todos</h2>
-                        <h2>Counter value: </h2>
+                        <h2>Counter value: {this.props.olexiyCounter}</h2>
                     </div>
                     <div className="col-lg-4">
                         <h2>Dima todos</h2>
@@ -79,7 +79,7 @@ function mapDispatchToProps(dispatch) {
 const mapStateToProps = (state) => {
     return {
         userName: state.get('userName').userName,
-        counter: state.get('userName').counter
+        olexiyCounter: state.get('userName').olexiyCounter
     }
 };
 

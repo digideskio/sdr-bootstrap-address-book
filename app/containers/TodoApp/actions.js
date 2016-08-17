@@ -8,9 +8,10 @@ export function newUserName(userName) {
         userName: userName.target.value,
     };
 }
-export function onIncrement() {
+export function onIncrement(index) {
     return {
-        type: "INCREMENT"
+        type: "INCREMENT",
+        index,
     };
 }
 export function onDecrement() {
