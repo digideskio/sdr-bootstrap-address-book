@@ -3,13 +3,18 @@
  */
 
 const initialState = {
-    userName:''
+    userName:'',
+    counter: 0
 };
 
 function TodoAppReducer (state=initialState, action) {
     switch (action.type) {
         case "CHANGE_USERNAME":
-            return Object.assign({},state,{userName: action.userName});
+            return {...state, ...{userName: action.userName}};
+        case "INCREMENT":
+            return {...state, ...{counter: state.counter + 1}};
+        case "DECREMENT":
+            return {...state, ...{counter: state.counter - 1}};
         default:
             return state;
     }
