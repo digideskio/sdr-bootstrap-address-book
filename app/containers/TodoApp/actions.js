@@ -2,10 +2,10 @@
  * Created by DMedzatiy on 16-Aug-16.
  */
 
-export function newUserName(userName) {
+export function onIncrementCounter(name) {
     return {
-        type: "CHANGE_USERNAME",
-        userName: userName.target.value,
+        type: "INCREMENT_COUNTER_VALUE",
+        name: name,
     };
 }
 export function onIncrement() {
