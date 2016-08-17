@@ -13,7 +13,7 @@ const app = express();
 // If you need a backend, e.g. an API, add your custom backend-specific middleware here
 // app.use('/api', myApi);
 
-let initialData = require('./src/chats');
+var initialData = require('./src/chats');
 
 app.get('/init', function(req,res){
     res.setHeader('Content-Type', 'application/json');
@@ -50,7 +50,3 @@ app.listen(port, (err) => {
     logger.appStarted(port);
   }
 });
-
-
-
-
