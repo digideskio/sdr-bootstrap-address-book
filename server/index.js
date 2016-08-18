@@ -20,6 +20,19 @@ app.get('/init', function(req,res){
   res.json(initialData.chats);
 });
 
+var bodyParser = require('body-parser');
+app.use(bodyParser.json()); // support json encoded bodies
+app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
+
+app.post('/init', function(req, res) {
+    const id = req.body.id;
+    const author = req.body.author;
+    const text = req.body.text;
+    //console.log(req.body);
+    initialData.chats.chat1.messages.push(req.body);
+    res.send(id + ' ' + author + ' ' + text);
+});
+
 // In production we need to pass these values in instead of relying on webpack
 setup(app, {
   outputPath: resolve(process.cwd(), 'build'),

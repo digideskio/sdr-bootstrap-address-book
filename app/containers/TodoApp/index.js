@@ -15,7 +15,7 @@ import { getDimaTodos } from '../../containers/DimaComponent/selectors';
 class TodoApp extends Component {
 
     render() {
-        console.log(this.props);
+        //console.log(this.props);
         const rowStyle = {
             textAlign: "center",
             border: "solid 2px black",

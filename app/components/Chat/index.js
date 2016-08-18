@@ -46,6 +46,15 @@ export default class Chat extends React.Component {
             }
         } else {
             let newComment = createNewComment(comment.author, comment.text);
+            
+            fetch('/init', {
+                method: 'post',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                  },
+                  body: JSON.stringify(newComment)
+                });
             currentChat.messages.push(newComment);
         }
         this.setState({currentChat, currentComment: createEmptyComment()});
