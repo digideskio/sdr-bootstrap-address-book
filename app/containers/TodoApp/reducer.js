@@ -37,7 +37,7 @@ function todoAppReducer (state=initialState, action) {
                     })
                 }
             )}
-        case "DECREMENT_COUNTER_VALUE":
+        case "DECREMENT_COUNTER_VALUE":{
             return Object.assign({},
                 state,
                 {counters: state.counters.map((x)=> {
@@ -48,7 +48,7 @@ function todoAppReducer (state=initialState, action) {
                         }
                     }
                 })}
-            );
+            )}
         case "NEW_TODOS_NUMBER": {
             return Object.assign({},
             state,

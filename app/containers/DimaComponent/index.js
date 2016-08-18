@@ -28,7 +28,7 @@ class DimaComponent extends Component {
     }
     onClick() {
         this.props.onAddTodo(this.state.currentTodo);
-        this.props.onIncrementCounter("Dima");
+        //this.props.onIncrementCounter("Dima");
         this.setState({ currentTodo: ''});
     }
 

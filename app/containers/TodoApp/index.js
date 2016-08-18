@@ -15,8 +15,13 @@ import *as actionCreatorsDima from '../../containers/DimaComponent/actions';
 
 class TodoApp extends Component {
 
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.dimaTodos.length!=this.props.dimaTodos.length ) {
+            this.props.onNewTodos(nextProps.dimaTodos.length, "Dima");
+        }
+    }
     render() {
-        console.log(this.props);
+
         const rowStyle = {
             textAlign: "center",
             border: "solid 2px black",
@@ -54,7 +59,7 @@ class TodoApp extends Component {
                     </div>
                     <div className="col-lg-4">
                         <h2>Dima todos</h2>
-                        <h2>Counter value: {this.props.dimaTodos.length}</h2>
+                        <h2>Counter value: {counter(this.props.counters,"Dima")}</h2>
                     </div>
                 </div>
             </div>
