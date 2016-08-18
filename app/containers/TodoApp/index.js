@@ -13,7 +13,7 @@ import { getDimaTodos } from '../../containers/DimaComponent/selectors';
 
 
 class TodoApp extends Component {
-    
+
     render() {
         console.log(this.props);
         const rowStyle = {
@@ -75,5 +75,3 @@ const mapStateToProps = createStructuredSelector({
 });
 
 export default connect(mapStateToProps, {...actionCreators})(TodoApp);
-
-
