@@ -12,10 +12,10 @@
 import React from 'react';
 import ChatLoader from 'components/ChatLoader';
 import TodoApp from 'containers/TodoApp';
-import SerhiiComponent from 'containers/SerhiiContainer'
-//import OlexiyComponent from 'containers/OlexiyComponent';
+import OlexiyComponent from 'containers/OlexiyComponent';
 //import SerhiiComponent from 'containers/SerhiiComponent';
-//import DimaComponent from 'containers/DimaComponent';
+import DimaComponent from 'containers/DimaComponent';
+import SerhiiComponent from 'containers/SerhiiContainer';
 
 export default class HomePage extends React.Component { // eslint-disable-line react/prefer-stateless-function
 
@@ -31,7 +31,8 @@ export default class HomePage extends React.Component { // eslint-disable-line r
       const componentsDiv = {
           border: "solid 1px grey",
           borderRadius: "2px",
-          backgroundColor: "#f2f2f2"
+          backgroundColor: "#f2f2f2",
+          padding: "0.5em"
 
       };
 
@@ -49,11 +50,11 @@ export default class HomePage extends React.Component { // eslint-disable-line r
                 </div>
                 <div className="col-lg-4" style={componentsDiv}>
                     <h2>Olexiy todos</h2>
-                    <h4>Place yours component here</h4>
+                    <OlexiyComponent />
                 </div>
                 <div className="col-lg-4" style={componentsDiv}>
                     <h2>Dima todos</h2>
-                    <h4>Place yours component here</h4>
+                    <DimaComponent />
                 </div>
             </div>
         </div>
