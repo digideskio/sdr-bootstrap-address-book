@@ -10,6 +10,7 @@ import languageProviderReducer from 'containers/LanguageProvider/reducer';
 import todoAppReducer from 'containers/TodoApp/reducer';
 import dimaComponentReducer from 'containers/DimaComponent/reducer';
 import OlexiyTodo from 'containers/OlexiyComponent/reducer';
+import addTodoSerhii from 'containers/SerhiiContainer/reducer'
 
 /*
  * routeReducer
@@ -49,6 +50,7 @@ export default function createReducer(asyncReducers) {
     counters: todoAppReducer,
     dimaTodos: dimaComponentReducer,
     olexiyTodo: OlexiyTodo,
+    addSerhii: addTodoSerhii,
     ...asyncReducers,
   });
 }

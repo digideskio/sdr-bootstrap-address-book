@@ -78,6 +78,6 @@ const mapStateToProps = createStructuredSelector({
 
 });
 
-export default connect(mapStateToProps, {...actionCreators, ...actionCreatorsDima})(TodoApp);
 
+export default connect(mapStateToProps, {...actionCreators, ...actionCreatorsDima})(TodoApp);
 

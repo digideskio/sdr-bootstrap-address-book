@@ -15,6 +15,7 @@ import TodoApp from 'containers/TodoApp';
 import OlexiyComponent from 'containers/OlexiyComponent';
 //import SerhiiComponent from 'containers/SerhiiComponent';
 import DimaComponent from 'containers/DimaComponent';
+import SerhiiComponent from 'containers/SerhiiContainer';
 
 export default class HomePage extends React.Component { // eslint-disable-line react/prefer-stateless-function
 
@@ -45,7 +46,7 @@ export default class HomePage extends React.Component { // eslint-disable-line r
                 <h3> Separated Todos Components</h3>
                 <div className="col-lg-4" style={componentsDiv}>
                     <h2>Serhii todos</h2>
-                    <h4>Place yours component here</h4>
+                    <SerhiiComponent />
                 </div>
                 <div className="col-lg-4" style={componentsDiv}>
                     <h2>Olexiy todos</h2>
