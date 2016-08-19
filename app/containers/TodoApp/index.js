@@ -8,14 +8,20 @@ import * as actionCreators from './actions';
 import { createStructuredSelector } from 'reselect';
 import { getCounters } from './selectors';
 import { getDimaTodos } from '../../containers/DimaComponent/selectors';
+import *as actionCreatorsDima from '../../containers/DimaComponent/actions';
 
 
 
 
 class TodoApp extends Component {
 
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.dimaTodos.length!=this.props.dimaTodos.length ) {
+            this.props.onNewTodos(nextProps.dimaTodos.length, "Dima");
+        }
+    }
     render() {
-        //console.log(this.props);
+
         const rowStyle = {
             textAlign: "center",
             border: "solid 2px black",
@@ -36,10 +42,13 @@ class TodoApp extends Component {
             return counter.value;
         };
 
+
+
+
         return(
 
             <div className="conteiner">
-                <div className="row" style={rowStyle}>
+                <div className="row">
                     <div className="col-lg-4">
                         <h2>Serhii todos</h2>
                         <h2>Counter value: {counter(this.props.counters,"Serhii")}</h2>
@@ -74,4 +83,5 @@ const mapStateToProps = createStructuredSelector({
 
 });
 
-export default connect(mapStateToProps, {...actionCreators})(TodoApp);
+
+export default connect(mapStateToProps, {...actionCreators, ...actionCreatorsDima})(TodoApp);
