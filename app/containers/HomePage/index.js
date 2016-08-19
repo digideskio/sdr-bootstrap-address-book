@@ -16,6 +16,7 @@ import OlexiyComponent from 'containers/OlexiyComponent';
 //import SerhiiComponent from 'containers/SerhiiComponent';
 import DimaComponent from 'containers/DimaComponent';
 import SerhiiComponent from 'containers/SerhiiContainer';
+import GetAndPost from '../../components/GetAndPost';
 
 export default class HomePage extends React.Component { // eslint-disable-line react/prefer-stateless-function
 
@@ -38,25 +39,7 @@ export default class HomePage extends React.Component { // eslint-disable-line r
 
     return (
         <div className="conteiner">
-            <div className="row" style={rowStyle}>
-                <h3>TodoApp</h3>
-                <TodoApp />
-            </div>
-            <div className="row" style={rowStyle}>
-                <h3> Separated Todos Components</h3>
-                <div className="col-lg-4" style={componentsDiv}>
-                    <h2>Serhii todos</h2>
-                    <SerhiiComponent />
-                </div>
-                <div className="col-lg-4" style={componentsDiv}>
-                    <h2>Olexiy todos</h2>
-                    <OlexiyComponent />
-                </div>
-                <div className="col-lg-4" style={componentsDiv}>
-                    <h2>Dima todos</h2>
-                    <DimaComponent />
-                </div>
-            </div>
+            <GetAndPost />
         </div>
     );
   }
