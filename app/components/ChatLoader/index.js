@@ -31,7 +31,7 @@ class ChatLoader extends Component {
                     }
         );
     }
-    
+
     render() {
 
         const width = this.state.progress.toString()+"%";
