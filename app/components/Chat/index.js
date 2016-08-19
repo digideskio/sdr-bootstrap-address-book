@@ -112,15 +112,15 @@ export default class Chat extends React.Component {
       return (
         <div className="container" style={styleForContainer}>
           <div className="row" style={styleForRow}>
-              <div className="col-sm-3" style={styleForCol}>
+              {/* <div className="col-sm-3" style={styleForCol}>
                 <ChatSwitcher currentChat={currentChat}
                               chatList={chats}
                               onChatSwitch={this.onChatSwitch}
                               onAddNewChanel={this.onAddNewChanel}
                               onNewChatNameValidation={this.onNewChatNameValidation} />
-                </div>
+                </div> */}
                 <div className="col-sm-9" style={styleForCol}>
-                  <CommentBox chatMessages={currentChat.messages}
+                  <CommentBox chatMessages={currentChat}
                               chatName={currentChat.chatId}
                               onSelectComment={this.onSelectComment}
                               onSaveUpdateComment={this.onSaveUpdateComment}

@@ -8,9 +8,9 @@ import { createStructuredSelector } from 'reselect';
 import { getList } from './selectors';
 import CommentList from '../../components/CommentList';
 import styles from './styles.css';
+import Chat from 'containers/Chat';
 
 let messages = {};
-
 class ChatLoader extends Component {
 
     constructor(props) {
@@ -64,13 +64,14 @@ class ChatLoader extends Component {
         // let block = document.getElementById('messages');
         // block.scrollTop = block.scrollHeight;
         return (
-            <div id='messages' className={styles.chat} style={styleForContainer}>
-                <div className="row" style={styleForRow}>
-                    <div className="col-sm-9" style={styleForCol}>
-                        <CommentList data={this.props.messageList}/>
-                    </div>
-                </div>
-            </div>
+            // <div id='messages' className={styles.chat} style={styleForContainer}>
+            //     <div className="row" style={styleForRow}>
+            //         <div className="col-sm-9" style={styleForCol}>
+            //             <CommentList data={this.props.messageList}/>
+            //         </div>
+            //     </div>
+            // </div>
+            <Chat />
         )
     }
 }
