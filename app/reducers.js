@@ -9,7 +9,7 @@ import { LOCATION_CHANGE } from 'react-router-redux';
 import languageProviderReducer from 'containers/LanguageProvider/reducer';
 import todoAppReducer from 'containers/TodoApp/reducer';
 import dimaComponentReducer from 'containers/DimaComponent/reducer';
-import OlexiyTodo from 'containers/OlexiyComponent/reducer';
+import chatLoaderReducer from 'containers/ChatLoader/reducer';
 import addTodoSerhii from 'containers/SerhiiContainer/reducer'
 
 /*
@@ -47,10 +47,10 @@ export default function createReducer(asyncReducers) {
   return combineReducers({
     route: routeReducer,
     language: languageProviderReducer,
-    counters: todoAppReducer,
-    dimaTodos: dimaComponentReducer,
-    olexiyTodo: OlexiyTodo,
-    addSerhii: addTodoSerhii,
+    //counters: todoAppReducer,
+    //dimaTodos: dimaComponentReducer,
+    chatlist: chatLoaderReducer,
+    //addSerhii: addTodoSerhii,
     ...asyncReducers,
   });
 }
