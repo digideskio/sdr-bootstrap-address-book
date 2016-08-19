@@ -9,7 +9,11 @@ module.exports = {
         name: 'Chat #1',
         messages: [
             {   id: "1",
-                author: "UFO", 
+                author: "UFO",
+                text: "UFO was here and write this for you!"
+            },
+            {   id: "2",
+                author: "Alien",
                 text: "UFO was here and write this for you!"
             }
         ]

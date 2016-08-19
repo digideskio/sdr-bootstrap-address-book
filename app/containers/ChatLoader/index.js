@@ -4,82 +4,53 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actionCreators from './actions';
-import * as actionTodoApp from '../TodoApp/actions';
 import { createStructuredSelector } from 'reselect';
-import { getMesageList } from './selectors';
+import { getList } from './selectors';
+import CommentList from '../../components/CommentList';
 
 let chats = {};
 
-class OlexiyToDo extends Component {
+class ChatLoader extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {
-            loaded: false,
-            progress: 0
-        };
-
+        this.getData = this.getData.bind(this);
     }
 
-    componentDidMount() {
-        fetch('/init').then(
-            response => {
-                this.setState({progress: 80});
-                return response.json();
-            },
-            error => error
-        ).then (
-            res => {chats = res;
-                this.setState({progress: 100,
-                    loaded: true});
-            }
-        );
+    getData()
+    {
+        fetch('/init')
+            .then(
+                response => {
+                    return response.json();
+                },
+                error => error
+            )
+            .then(
+                res=> {
+                    chats = res.chat1;
+                    if (!_.isEqual(this.props.messageList,chats.messages))
+                    {
+                        this.props.newList(chats.messages);
+                    }
+                    else {
+                        return setTimeout(this.getData, 3000);
+                    }
+                }
+            );
     }
 
     render() {
-        let input;
-        return(
-            <div>
-                <form onSubmit={e => {
-                    e.preventDefault()
-                    if (!input.value.trim()) {
-                        return
-                    }
-                    {
-                        this.props.newItemToList(input.value);
-                        this.props.onIncrementCounter('Olexiy');
-                    }
-                    input.value = ''
-                }}
-                      className="form-inline">
-                    <input type="text"
-                           placeholder="Enter todo"
-                           className="form-control"
-                           style={style}
-                           ref={node => {
-                               input = node
-                           }}/>
-
-                    <input type="submit"
-                           className="btn btn-primary"
-                           defaultValue='Post'/>
-                </form>
-                <div>
-                    <h4>Todo List:</h4>
-                    <ol>
-                        {todoList}
-                    </ol>
-                </div>
-            </div>
+        setTimeout(this.getData, 1000);
+        console.log(this.props.messageList);
+        return (
+            <CommentList data={this.props.messageList}/>
         )
     }
 }
 
 const mapStateToProps = createStructuredSelector({
-    counters: getCounters(),
-    listTodo: getListTodo(),
-    olexiyCounter: getOlexiyCounter()
+    messageList: getList(),
 })
 
-
-export default connect(mapStateToProps, {...actionCreators, ...actionTodoApp})(OlexiyToDo);
+export default connect(mapStateToProps, {...actionCreators})(ChatLoader);
