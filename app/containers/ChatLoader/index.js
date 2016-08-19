@@ -45,7 +45,7 @@ class ChatLoader extends Component {
 
     render() {
         setTimeout(this.getData, 1000);
-        console.log(this.props.messageList);
+        //console.log(this.props.messageList);
         const styleForContainer = {
             padding: 0,
             boxSizing: 'border-box'
