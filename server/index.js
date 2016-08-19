@@ -22,39 +22,31 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(jsonParser);
 
 
-var Data={};
-
-app.get('/init', function(req,res){
+app.get('/init', function (req, res) {
 
     //GET to external server
 
-    var promise = new Promise(function(resolve,reject){
-        const optionsGet = {
-            'url': "https://pacific-harbor-20731.herokuapp.com/data",
-            'method': 'POST',
-            'headers': {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            }
-        };
-        
-        request.get(optionsGet, function(error,response,body){
-            resolve(JSON.parse(body));
-        });
-    });
-    promise.then(
-        result => {
-            res.setHeader('Content-Type', 'application/json');
-            res.json(result);
+    const optionsGet = {
+        'url': "https://pacific-harbor-20731.herokuapp.com/data",
+        'method': 'POST',
+        'headers': {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
         }
-    );
+    };
+
+    request.get(optionsGet, function (error, response, body) {
+        res.setHeader('Content-Type', 'application/json');
+        res.json(JSON.parse(body));
+
+
+    });
+
 
 });
 
 
-
-
-app.post('/post', function(req, res) {
+app.post('/post', function (req, res) {
 
     const author = req.body.author;
     const text = req.body.text;
@@ -74,7 +66,7 @@ app.post('/post', function(req, res) {
         'body': JSON.stringify(newComment)
     };
 
-    request.post(options,function(error,response,body){
+    request.post(options, function (error, response, body) {
 
     });
 
