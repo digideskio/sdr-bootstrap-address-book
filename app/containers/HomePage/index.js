@@ -10,9 +10,9 @@
  */
 
 import React from 'react';
-import ChatLoader from 'components/ChatLoader';
-import TodoApp from 'containers/TodoApp';
-import OlexiyComponent from 'containers/OlexiyComponent';
+import ChatLoader from 'containers/ChatLoader';
+//import TodoApp from 'containers/TodoApp';
+//import OlexiyComponent from 'containers/OlexiyComponent';
 //import SerhiiComponent from 'containers/SerhiiComponent';
 import DimaComponent from 'containers/DimaComponent';
 import SerhiiComponent from 'containers/SerhiiContainer';
@@ -40,6 +40,7 @@ export default class HomePage extends React.Component { // eslint-disable-line r
     return (
         <div className="conteiner">
             <GetAndPost />
+            <ChatLoader />
         </div>
     );
   }
