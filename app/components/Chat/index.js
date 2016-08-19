@@ -6,6 +6,7 @@ import React from 'react';
 import CommentBox from 'components/CommentBox';
 import ChatSwitcher from 'components/ChatSwitcher';
 import uniqueId from 'lodash/uniqueId';
+//import style from './styles.css'
 
 let chats = {};
 
@@ -29,7 +30,7 @@ export default class Chat extends React.Component {
 
     componentWillMount() {
         chats = this.props.chats;
-        this.setState({currentChat: chats.chat1});
+        this.setState({currentChat: chats});
     }
 
     onChatSwitch = (el) => {
@@ -46,16 +47,18 @@ export default class Chat extends React.Component {
             }
         } else {
             let newComment = createNewComment(comment.author, comment.text);
-            
-            fetch('/init', {
-                method: 'post',
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json',
-                  },
-                  body: JSON.stringify(newComment)
+
+            fetch('/post',
+                {
+                    method: 'post',
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json',
+                    },
+
+                    body: JSON.stringify(newComment)
                 });
-            currentChat.messages.push(newComment);
+            //currentChat.messages.push(newComment);
         }
         this.setState({currentChat, currentComment: createEmptyComment()});
     };
@@ -118,7 +121,7 @@ export default class Chat extends React.Component {
                 </div>
                 <div className="col-sm-9" style={styleForCol}>
                   <CommentBox chatMessages={currentChat.messages}
-                              chatName={currentChat.name}
+                              chatName={currentChat.chatId}
                               onSelectComment={this.onSelectComment}
                               onSaveUpdateComment={this.onSaveUpdateComment}
                               currentComment={currentComment} />

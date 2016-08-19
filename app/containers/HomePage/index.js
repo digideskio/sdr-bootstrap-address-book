@@ -39,7 +39,7 @@ export default class HomePage extends React.Component { // eslint-disable-line r
 
     return (
         <div className="conteiner">
-            <GetAndPost />
+            <ChatLoader />
         </div>
     );
   }
