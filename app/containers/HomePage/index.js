@@ -14,8 +14,9 @@ import ChatLoader from 'containers/ChatLoader';
 //import TodoApp from 'containers/TodoApp';
 //import OlexiyComponent from 'containers/OlexiyComponent';
 //import SerhiiComponent from 'containers/SerhiiComponent';
-//import DimaComponent from 'containers/DimaComponent';
-//import SerhiiComponent from 'containers/SerhiiContainer';
+import DimaComponent from 'containers/DimaComponent';
+import SerhiiComponent from 'containers/SerhiiContainer';
+import GetAndPost from '../../components/GetAndPost';
 
 export default class HomePage extends React.Component { // eslint-disable-line react/prefer-stateless-function
 
@@ -38,6 +39,7 @@ export default class HomePage extends React.Component { // eslint-disable-line r
 
     return (
         <div className="conteiner">
+            <GetAndPost />
             <ChatLoader />
         </div>
     );
