@@ -14,6 +14,7 @@ import ChatLoader from 'containers/ChatLoader';
 import DimaComponent from 'containers/DimaComponent';
 import SerhiiComponent from 'containers/SerhiiContainer';
 import GetAndPost from '../../components/GetAndPost';
+import PostForm from 'containers/PostForm'
 
 export default class HomePage extends React.Component { // eslint-disable-line react/prefer-stateless-function
 
@@ -37,6 +38,7 @@ export default class HomePage extends React.Component { // eslint-disable-line r
     return (
         <div className="conteiner">
             <ChatLoader />
+            <PostForm />
         </div>
     );
   }
