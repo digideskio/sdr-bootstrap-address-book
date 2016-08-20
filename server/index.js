@@ -28,7 +28,6 @@ app.get('/init', function (req, res) {
 
     const optionsGet = {
         'url': "https://pacific-harbor-20731.herokuapp.com/data",
-        'method': 'POST',
         'headers': {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
