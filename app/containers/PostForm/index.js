@@ -34,11 +34,11 @@ class PostForm extends Component {
 
             body: JSON.stringify(newComment)
         })
-        .then (
-            postComment(newComment)
-        )
+        .then ( () => {
+            postComment(newComment);
+            changeCurrentComment(createEmptyComment());
+        })
         .catch (error => console.log(error))
-        changeCurrentComment(createEmptyComment());
     }
 
     render() {
