@@ -6,7 +6,7 @@ const initialState = {
     chatList: []
 };
 
-function changeList (state=initialState, action) {
+function changeListReducer (state=initialState, action) {
     switch (action.type) {
         case "CHANGE_LIST":
             return {...state, ...{chatList: action.newList}};
@@ -15,4 +15,4 @@ function changeList (state=initialState, action) {
     }
 }
 
-export default changeList;
+export default changeListReducer;
