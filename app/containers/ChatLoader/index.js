@@ -32,14 +32,14 @@ class ChatLoader extends Component {
                     
                     if (!_.isEqual(this.props.messageList,messages))
                     {
-                        this.props.newList(messages);
+                        this.props.changeList(messages);
                     }
-                        return setTimeout(this.getData, 3000);
+                        return setTimeout(this.getData, 1000);
                 }
             )
             .catch(error => {
                 alert(error.message);
-                return setTimeout(this.getData, 3000);
+                return setTimeout(this.getData, 1000);
             });
     }
 
