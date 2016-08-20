@@ -53,7 +53,7 @@ Input.propTypes = {
   className: React.PropTypes.string,
   value: React.PropTypes.string,
   validation: React.PropTypes.bool,
-  onClick: React.PropTypes.func,  
+  onClick: React.PropTypes.func,
   isValid: React.PropTypes.func
 };
 
