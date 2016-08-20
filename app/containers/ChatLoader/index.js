@@ -8,7 +8,7 @@ import { createStructuredSelector } from 'reselect';
 import { getList } from './selectors';
 import CommentList from '../../components/CommentList';
 import styles from './styles.css';
-import Chat from 'containers/Chat';
+
 
 let messages = {};
 class ChatLoader extends Component {
