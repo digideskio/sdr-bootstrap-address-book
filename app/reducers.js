@@ -11,7 +11,7 @@ import todoAppReducer from 'containers/TodoApp/reducer';
 import dimaComponentReducer from 'containers/DimaComponent/reducer';
 import chatLoaderReducer from 'containers/ChatLoader/reducer';
 import addTodoSerhii from 'containers/SerhiiContainer/reducer';
-import postNewCommentReducer from 'containers/Chat/reducer';
+import postFormReducer from 'containers/PostForm/reducer';
 
 /*
  * routeReducer
@@ -51,7 +51,7 @@ export default function createReducer(asyncReducers) {
     //counters: todoAppReducer,
     //dimaTodos: dimaComponentReducer,
     chatlist: chatLoaderReducer,
-    postComment: postNewCommentReducer,
+    postForm: postFormReducer,
     //addSerhii: addTodoSerhii,
     ...asyncReducers,
   });

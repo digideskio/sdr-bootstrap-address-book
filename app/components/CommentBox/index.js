@@ -45,12 +45,12 @@ export default class CommentBox extends Component {
 								 data={chatMessages}
 					/>
 				</div>
-        <div>
+        	<div>
 				    <CommentForm
                   onSaveUpdate={this.onSaveUpdateComment}
 						      editableComment={currentComment}
                   style={commentFormStyle}/>
-        </div>
+        	</div>
 			</div>
 		);
 	}
