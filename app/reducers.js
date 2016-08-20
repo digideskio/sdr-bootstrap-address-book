@@ -50,7 +50,7 @@ export default function createReducer(asyncReducers) {
     language: languageProviderReducer,
     //counters: todoAppReducer,
     //dimaTodos: dimaComponentReducer,
-    chatlist: chatLoaderReducer,
+    chatLoader: chatLoaderReducer,
     postForm: postFormReducer,
     //addSerhii: addTodoSerhii,
     ...asyncReducers,
