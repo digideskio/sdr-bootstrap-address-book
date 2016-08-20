@@ -1,7 +1,23 @@
 .chat {
     height: 500px;
+    width: 700px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     overflow-y: auto;
     overflow-x: hidden;
-    scrollTop: 9999;
-    /*background: #DDDDFF;*/
+    padding: 0;
+    boxSizing: 'border-box';
+}
+
+.row {
+    height: 500px;
+    display: table-row;
+}
+
+.col {
+    float: none;
+    display: table-cell;
+    padding: 0;
+    width: 600px;
 }

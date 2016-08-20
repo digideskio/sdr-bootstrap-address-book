@@ -25,7 +25,6 @@ class ChatLoader extends Component {
                 response => {
                     return response.json();
                 },
-                error => error
             )
             .then(
                 res=> {
@@ -34,45 +33,35 @@ class ChatLoader extends Component {
                     if (!_.isEqual(this.props.messageList,messages))
                     {
                         this.props.newList(messages);
-                        return;
                     }
-                    else {
                         return setTimeout(this.getData, 3000);
-                    }
                 }
-            );
+            )
+            .catch(error => {
+                alert(error.message);
+                return setTimeout(this.getData, 3000);
+            });
     }
 
+    componentDidMount(){
+        this.getData();
+    }
+    componentDidUpdate( PreviousProps , PreviousState ){
+        this.chatList.scrollTop = this.chatList.scrollHeight;
+    }
 
     render() {
-        setTimeout(this.getData, 1000);
-        //console.log(this.props.messageList);
-        const styleForContainer = {
-            padding: 0,
-            boxSizing: 'border-box'
-        };
 
-        const styleForRow = {
-            height: '100vh',
-            display: 'table-row'
-        };
-
-        const styleForCol = {
-            float: 'none',
-            display: 'table-cell',
-            padding: 0
-        };
-        // let block = document.getElementById('messages');
-        // block.scrollTop = block.scrollHeight;
         return (
-            // <div id='messages' className={styles.chat} style={styleForContainer}>
-            //     <div className="row" style={styleForRow}>
-            //         <div className="col-sm-9" style={styleForCol}>
-            //             <CommentList data={this.props.messageList}/>
-            //         </div>
-            //     </div>
-            // </div>
-            <Chat />
+            <div id='messages'
+                 className={styles.chat}
+                 ref={me => this.chatList = me}>
+                <div className={styles.row}>
+                    <div className={styles.col}>
+                        <CommentList data={this.props.messageList}/>
+                    </div>
+                </div>
+            </div>
         )
     }
 }
