@@ -34,7 +34,7 @@ class PostForm extends Component {
 
             body: JSON.stringify(newComment)
         })
-        .then ( () => {
+        .then( () => {
             postComment(newComment);
             changeCurrentComment(createEmptyComment());
         })
