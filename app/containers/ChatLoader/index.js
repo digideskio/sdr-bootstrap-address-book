@@ -29,6 +29,7 @@ class ChatLoader extends Component {
             .then(
                 res=> {
                     messages = res.messages;
+                    
                     if (!_.isEqual(this.props.messageList,messages))
                     {
                         this.props.changeList(messages);
@@ -50,6 +51,7 @@ class ChatLoader extends Component {
     }
 
     render() {
+
         return (
             <div id='messages'
                  className={styles.chat}
