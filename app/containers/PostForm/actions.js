@@ -1,4 +1,4 @@
-import { fetchPost } from 'containers/App/RestApi';
+import { fetchPost } from 'api';
 
 export const changeCurrentComment = (currentComment) => {
     return {
@@ -8,7 +8,7 @@ export const changeCurrentComment = (currentComment) => {
 }
 
 export const sendPost = (post) => {
-    return (dispatch) => {
+    return (dispatch, getState) => {
         return fetchPost(post)
             .then( () => {
                 dispatch(changeCurrentComment({author: post.author, text: ''}));
