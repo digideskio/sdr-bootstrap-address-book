@@ -7,10 +7,7 @@ import { combineReducers } from 'redux-immutable';
 import { fromJS } from 'immutable';
 import { LOCATION_CHANGE } from 'react-router-redux';
 import languageProviderReducer from 'containers/LanguageProvider/reducer';
-import todoAppReducer from 'containers/TodoApp/reducer';
-import dimaComponentReducer from 'containers/DimaComponent/reducer';
 import chatLoaderReducer from 'containers/ChatLoader/reducer';
-import addTodoSerhii from 'containers/SerhiiContainer/reducer';
 import postFormReducer from 'containers/PostForm/reducer';
 
 /*
@@ -48,11 +45,8 @@ export default function createReducer(asyncReducers) {
   return combineReducers({
     route: routeReducer,
     language: languageProviderReducer,
-    //counters: todoAppReducer,
-    //dimaTodos: dimaComponentReducer,
     chatLoader: chatLoaderReducer,
     postForm: postFormReducer,
-    //addSerhii: addTodoSerhii,
     ...asyncReducers,
   });
 }
