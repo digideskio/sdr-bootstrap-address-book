@@ -6,12 +6,11 @@ import { createStructuredSelector } from 'reselect';
 import { getCurrentComment } from './selectors'
 import * as actions from './actions';
 
-import uniqueId from 'lodash/uniqueId';
-import CommentForm from 'components/CommentForm'
+import CommentForm from 'components/CommentForm';
 
 
 export const createNewComment = (author, text) => {
-    return {author, text, id: uniqueId()};
+    return {author, text};
 };
 
 export const createEmptyComment = () => {
@@ -22,23 +21,10 @@ class PostForm extends Component {
 
 
     onPostComment = (comment) => {
-        const { postComment, changeCurrentComment } = this.props;
+        const { changeCurrentComment } = this.props;
         const { author, text } = comment;
         let newComment = createNewComment(author, text);
-        fetch('/post', {
-            method: 'post',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-            },
-
-            body: JSON.stringify(newComment)
-        })
-        .then( () => {
-            postComment(newComment);
-            changeCurrentComment(createEmptyComment());
-        })
-        .catch (error => console.log(error))
+        this.props.sendPost(newComment);
     }
 
     render() {

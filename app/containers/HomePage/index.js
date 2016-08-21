@@ -11,8 +11,6 @@
 
 import React from 'react';
 import ChatLoader from 'containers/ChatLoader';
-import DimaComponent from 'containers/DimaComponent';
-import SerhiiComponent from 'containers/SerhiiContainer';
 import GetAndPost from '../../components/GetAndPost';
 import PostForm from 'containers/PostForm'
 import styles from './styles.css';
@@ -44,6 +42,7 @@ export default class HomePage extends React.Component { // eslint-disable-line r
             <div className="row">
                 <div className="col-md-8 col-md-offset-2">
                     <PostForm />
+                    <h1>{this.props.params.user}</h1>
                 </div>
             </div>
         </div>
