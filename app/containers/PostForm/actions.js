@@ -11,7 +11,7 @@ export const sendPost = (post) => {
     return (dispatch) => {
         return fetchPost(post)
             .then( () => {
-                dispatch(changeCurrentComment({authot: post.author, text: ''}));
+                dispatch(changeCurrentComment({author: post.author, text: ''}));
             })
             .catch(err => console.log(err));
     }
