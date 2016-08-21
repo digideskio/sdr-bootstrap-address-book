@@ -1,17 +1,22 @@
 import { fetchPost } from 'api';
 
-export const changeCurrentComment = (currentComment) => {
+export const changeCurrentPostAction = (author, text) => {
     return {
-        currentComment,
-        type: 'CHANGED_CURRENT_COMMENT',
+        type: 'CHANGED_CURRENT_POST',
+        currentPost: {
+            author,
+            text
+        }
     }
 }
 
-export const sendPost = (post) => {
+export const sendPostAction = () => {
     return (dispatch, getState) => {
-        return fetchPost(post)
+        let newPost = getState().get('postForm').currentPost;
+        return fetchPost(newPost)
             .then( () => {
-                dispatch(changeCurrentComment({author: post.author, text: ''}));
+                const { author } = newPost;
+                dispatch(changeCurrentPostAction(author, ' '));
             })
             .catch(err => console.log(err));
     }
