@@ -18,18 +18,7 @@ import classNames from 'classnames/bind';
 let homePageStyles = classNames.bind(styles);
 
 import ModalWindow from 'components/ModalWindow';
-
-export default class HomePage extends React.Component { // eslint-disable-line react/prefer-stateless-function
-
-  render() {
-      const rowStyle = {
-          textAlign: "center",
-          border: "solid 2px black",
-          borderRadius: "5px",
-          backgroundColor: "#e2e2e2",
-          margin: "1em"
-      };
-
+import NameSwitcher from 'containers/NameSwitcher';
 
 export default class HomePage extends React.Component { // eslint-disable-line react/prefer-stateless-function
 
@@ -51,6 +40,9 @@ export default class HomePage extends React.Component { // eslint-disable-line r
             <div className={containerStyle}>
                 <div className={rowStyle}>
                     <div className={columnStyle}>
+                    <div >
+                        <NameSwitcher />
+                    </div>
                         <div className={styles['chat-box']}>
                             <ChatLoader />
                         </div>
@@ -60,26 +52,6 @@ export default class HomePage extends React.Component { // eslint-disable-line r
                     {/* <h1>{this.props.params.user}</h1> */}
                 </div>
             </div>
-            <div className="row center">
-                <div style={{textAlign:"center"}}>
-                    <button
-                        className="btn btn-danger"
-                        onClick={() => {
-                            if (this.modalWindow.state.isOpen) {
-                                this.modalWindow.close()
-                            } else {
-                                this.modalWindow.open()
-                            }
-                        }}
-                    >
-                    Show modal window
-                    </button>
-                </div>
-            </div>
-            <ModalWindow
-                isOpen= { false }
-                ref={ me => this.modalWindow = me }
-            />
         </div>
     );
   }

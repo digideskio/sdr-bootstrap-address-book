@@ -9,6 +9,7 @@ import { LOCATION_CHANGE } from 'react-router-redux';
 import languageProviderReducer from 'containers/LanguageProvider/reducer';
 import chatLoaderReducer from 'containers/ChatLoader/reducer';
 import postFormReducer from 'containers/PostForm/reducer';
+import nicknamesReducer from 'containers/NameSwitcher/reducer';
 
 /*
  * routeReducer
@@ -47,6 +48,7 @@ export default function createReducer(asyncReducers) {
     language: languageProviderReducer,
     chatLoader: chatLoaderReducer,
     postForm: postFormReducer,
+    nicknames: nicknamesReducer,
     ...asyncReducers,
   });
 }
