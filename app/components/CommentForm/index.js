@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component, PropTypes } from 'react';
 import Input from 'components/Input';
 
 export default class CommentForm extends Component {
@@ -46,4 +46,9 @@ export default class CommentForm extends Component {
     );
   }
 
+}
+
+CommentForm.propTypes = {
+    editableComment: PropTypes.object.isRequired,
+    onSaveUpdate: PropTypes.func.isRequired
 }

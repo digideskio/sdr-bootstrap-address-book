@@ -1,8 +1,10 @@
 import { fetchPost } from 'api';
 
+export const CHANGED_CURRENT_POST = 'CHANGED_CURRENT_POST';
+
 export const changeCurrentPostAction = (author, text) => {
     return {
-        type: 'CHANGED_CURRENT_POST',
+        type: CHANGED_CURRENT_POST,
         currentPost: {
             author,
             text
@@ -12,7 +14,7 @@ export const changeCurrentPostAction = (author, text) => {
 
 export const sendPostAction = () => {
     return (dispatch, getState) => {
-        let newPost = getState().get('postForm').currentPost;
+        const newPost = getState().get('postForm').currentPost;
         return fetchPost(newPost)
             .then( () => {
                 const { author } = newPost;

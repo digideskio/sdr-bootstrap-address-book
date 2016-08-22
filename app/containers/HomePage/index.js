@@ -12,7 +12,7 @@
 import React from 'react';
 import ChatLoader from 'containers/ChatLoader';
 import GetAndPost from '../../components/GetAndPost';
-import PostForm from 'containers/PostForm'
+import PostForm from 'containers/PostForm';
 import styles from './styles.css';
 
 export default class HomePage extends React.Component { // eslint-disable-line react/prefer-stateless-function

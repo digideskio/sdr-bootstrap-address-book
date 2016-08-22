@@ -1,3 +1,4 @@
+import { CHANGED_CURRENT_POST } from './actions';
 
 const initialState = {
     currentPost: {
@@ -6,14 +7,15 @@ const initialState = {
     },
 };
 
-export default function postFormReducer(state = initialState, action) {
+const postFormReducer = (state = initialState, action) => {
     switch (action.type) {
-        case 'CHANGED_CURRENT_POST':
-            return Object.assign({}, state, {
-                currentPost: action.currentPost,
-            });
+        case CHANGED_CURRENT_POST:
+            const { currentPost } = action;
+            return Object.assign({}, state, { currentPost });
 
     default:
         return state;
   }
 }
+
+export default  postFormReducer;
