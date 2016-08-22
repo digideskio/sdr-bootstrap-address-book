@@ -14,6 +14,8 @@ import ChatLoader from 'containers/ChatLoader';
 import GetAndPost from '../../components/GetAndPost';
 import PostForm from 'containers/PostForm';
 import styles from './styles.css';
+import classNames from 'classnames/bind';
+let homePageStyles = classNames.bind(styles);
 
 import ModalWindow from 'components/ModalWindow';
 
@@ -28,23 +30,34 @@ export default class HomePage extends React.Component { // eslint-disable-line r
           margin: "1em"
       };
 
-      const componentsDiv = {
-          border: "solid 1px grey",
-          borderRadius: "2px",
-          backgroundColor: "#f2f2f2",
-          padding: "0.5em"
 
-      };
+export default class HomePage extends React.Component { // eslint-disable-line react/prefer-stateless-function
 
-    return (
-        <div className="conteiner">
-            <div className={styles.block}>
-                <ChatLoader />
-            </div>
-            <div className="row">
-                <div className="col-md-8 col-md-offset-2">
-                    <PostForm />
-                    <h1>{this.props.params.user}</h1>
+    render() {
+        const containerStyle = homePageStyles({
+            'container':true,
+            'container-table':true
+        });
+        const rowStyle = homePageStyles({
+            'row': true,
+            'row-table':true
+        });
+        const columnStyle = homePageStyles({
+            'col-md-8 col-md-offset-2': true,
+            'col-table':true
+        });
+
+        return (
+            <div className={containerStyle}>
+                <div className={rowStyle}>
+                    <div className={columnStyle}>
+                        <div className={styles['chat-box']}>
+                            <ChatLoader />
+                        </div>
+                        <div className={styles['post-box']}>
+                            <PostForm />
+                        </div>
+                    {/* <h1>{this.props.params.user}</h1> */}
                 </div>
             </div>
             <div className="row center">
