@@ -14,35 +14,37 @@ import ChatLoader from 'containers/ChatLoader';
 import GetAndPost from '../../components/GetAndPost';
 import PostForm from 'containers/PostForm';
 import styles from './styles.css';
+import classNames from 'classnames/bind';
+
+let homePageStyles = classNames.bind(styles);
 
 export default class HomePage extends React.Component { // eslint-disable-line react/prefer-stateless-function
 
-  render() {
-      const rowStyle = {
-          textAlign: "center",
-          border: "solid 2px black",
-          borderRadius: "5px",
-          backgroundColor: "#e2e2e2",
-          margin: "1em"
-      };
+    render() {
+        const containerStyle = homePageStyles({
+            'container':true,
+            'container-table':true
+        });
+        const rowStyle = homePageStyles({
+            'row': true,
+            'row-table':true
+        });
+        const columnStyle = homePageStyles({
+            'col-md-8 col-md-offset-2': true,
+            'col-table':true
+        });
 
-      const componentsDiv = {
-          border: "solid 1px grey",
-          borderRadius: "2px",
-          backgroundColor: "#f2f2f2",
-          padding: "0.5em"
-
-      };
-
-    return (
-        <div className="conteiner">
-            <div className={styles.block}>
-                <ChatLoader />
-            </div>
-            <div className="row">
-                <div className="col-md-8 col-md-offset-2">
-                    <PostForm />
-                    <h1>{this.props.params.user}</h1>
+        return (
+            <div className={containerStyle}>
+                <div className={rowStyle}>
+                    <div className={columnStyle}>
+                        <div className={styles['chat-box']}>
+                            <ChatLoader />
+                        </div>
+                        <div className={styles['post-box']}>
+                            <PostForm />
+                        </div>
+                    {/* <h1>{this.props.params.user}</h1> */}
                 </div>
             </div>
         </div>

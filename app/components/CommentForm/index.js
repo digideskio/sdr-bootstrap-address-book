@@ -4,7 +4,7 @@ import classNames from 'classnames/bind';
 import styles from './styles.css';
 
 
-let commentStyles = classNames.bind(styles);
+let commentFormStyles = classNames.bind(styles);
 
 export default class CommentForm extends Component {
 
@@ -17,13 +17,14 @@ export default class CommentForm extends Component {
         if (!text || !author) {
           return;
         }
-        const comment = Object.assign({}, this.props.editableComment, {author, text});
-        this.props.onSaveUpdate(comment);
+        const { editableComment, onSaveUpdate } = this.props;
+        const comment = Object.assign({}, editableComment, {author, text});
+        onSaveUpdate(comment);
     };
 
     render() {
         const {editableComment} = this.props;
-        const spanStyle = commentStyles({
+        const spanStyle = commentFormStyles({
             'span-colors':true,
             'input-group-addon':true
         });

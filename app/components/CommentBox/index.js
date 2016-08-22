@@ -5,6 +5,7 @@ import CommentForm from 'components/CommentForm';
 
 
 export default class CommentBox extends Component {
+
 	constructor(props) {
 		super(props);
 	}
@@ -20,19 +21,18 @@ export default class CommentBox extends Component {
 	render() {
 		const chatBoxStyle = {
 			height: '80vh',
-      overflow: 'auto',
+			overflow: 'auto',
 		};
 		const headerStyle = {
 			color: '#4d394b',
 			marginBottom: '0px',
-      marginTop: '0px',
-      height: '10vh',
-      borderBottom: '1px solid #ccc'
+			marginTop: '0px',
+			height: '10vh',
+			borderBottom: '1px solid #ccc'
 		};
-
-    const commentFormStyle ={
-      height: '10vh'
-    }
+    	const commentFormStyle = {
+      		height: '10vh'
+    	};
 		const {chatName, currentComment, chatMessages} = this.props;
 		return (
 			<div>
@@ -41,18 +41,19 @@ export default class CommentBox extends Component {
 					{chatName}
 				</h2>
 				<div style={chatBoxStyle}>
-					<CommentList onSelectComment={this.onGetEditableComment}
-								 data={chatMessages}
+					<CommentList
+						onSelectComment={this.onGetEditableComment}
+						data={chatMessages}
 					/>
 				</div>
-        	<div>
+				<div>
 				    <CommentForm
-                  onSaveUpdate={this.onSaveUpdateComment}
-						      editableComment={currentComment}
-                  style={commentFormStyle}/>
-        	</div>
+						onSaveUpdate={this.onSaveUpdateComment}
+						editableComment={currentComment}
+						style={commentFormStyle}
+					/>
+				</div>
 			</div>
 		);
 	}
-
 }

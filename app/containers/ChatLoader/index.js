@@ -46,22 +46,14 @@ class ChatLoader extends Component {
     componentDidMount(){
         this.getData();
     }
-    componentDidUpdate( PreviousProps , PreviousState ){
-        this.chatList.scrollTop = this.chatList.scrollHeight;
-    }
+    // componentDidUpdate( PreviousProps , PreviousState ){
+    //     this.chatList.scrollTop = this.chatList.scrollHeight;
+    // }
 
     render() {
 
         return (
-            <div id='messages'
-                 className={styles.chat}
-                 ref={me => this.chatList = me}>
-                <div className={styles.row}>
-                    <div className={styles.col}>
-                        <CommentList data={this.props.messageList}/>
-                    </div>
-                </div>
-            </div>
+            <CommentList data={this.props.messageList}/>
         )
     }
 }
