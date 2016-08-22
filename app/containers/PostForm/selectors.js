@@ -1,6 +1,7 @@
 
-const getCurrentComment = () => (state) => state.get('postForm').currentComment;
+const getCurrentPost = () => (state) => state.get('postForm').currentPost;
 
 export {
-    getCurrentComment,
+    getCurrentPost,
+    
 }

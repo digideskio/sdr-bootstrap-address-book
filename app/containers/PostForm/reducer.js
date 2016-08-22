@@ -1,16 +1,21 @@
+import { CHANGED_CURRENT_POST } from './actions';
 
 const initialState = {
-    currentComment: {author: '', text: ''}
+    currentPost: {
+        author: '',
+        text: ''
+    },
 };
 
-export default function postFormReducer(state = initialState, action) {
+const postFormReducer = (state = initialState, action) => {
     switch (action.type) {
-        case 'CHANGED_CURRENT_COMMENT':
-            return Object.assign({}, state, {
-                currentComment: action.currentComment,
-            });
+        case CHANGED_CURRENT_POST:
+            const { currentPost } = action;
+            return Object.assign({}, state, { currentPost });
 
     default:
         return state;
   }
 }
+
+export default  postFormReducer;
