@@ -15,3 +15,10 @@ export function delNickname (nicknameIndex) {
         nicknameIndex: nicknameIndex
     }
 }
+
+export function changeNick (nicknameIndex) {
+    return {
+        type: "CHANGE_CURRENT_NICK",
+        nicknameIndex: nicknameIndex
+    }
+}
