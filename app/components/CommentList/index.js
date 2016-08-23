@@ -12,6 +12,7 @@ export default class CommentList extends Component {
                     author={comment.author}
                     key={index}
                     id={comment.id}
+                    date={comment.date}
                     onSelect={onSelectComment}>
                     {comment.text}
                 </Comment>
