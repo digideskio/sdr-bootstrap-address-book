@@ -21,8 +21,8 @@ function nicknamesReducer(state=initialState, action) {
         case "CHANGE_CURRENT_NICK":
             return Object.assign(
                 {},
-                {...state},
-                {currentNickIndex: action.newCurrentIndex}
+                {...state },
+                {currentNickIndex: action.nicknameIndex}
             );
         default:
             return state;

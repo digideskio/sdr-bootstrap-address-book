@@ -21,8 +21,13 @@ class NameSwitcher extends Component {
     }
 
     getNewName(nick){
-        console.log("Received name: ", nick);
-        this.props.addNickname(nick);
+        const indexOfNick = this.props.nicknamesList.indexOf(nick);
+        if (indexOfNick >= 0) {
+            this.props.changeNick(indexOfNick);
+        }
+        else {
+            this.props.addNickname(nick);
+        }
     }
 
     onAddNick(){

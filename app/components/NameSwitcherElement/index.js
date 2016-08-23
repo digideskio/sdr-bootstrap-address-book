@@ -42,7 +42,10 @@ export default class NameSwitcherElement extends Component {
                 onMouseOut={this.handleMouseOut}
                 onClick={onNickSwitch}
                 data-nick-index={nickKey}>
-                {nicks}
+                <div>
+                    {nicks}
+                    <button style={{textAlign:"right"}}>Del</button>
+                </div>
             </li>
         )
     }
