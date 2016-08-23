@@ -24,10 +24,14 @@
 }
 
 .chat-box {
-    height: 90vh;
+    height: 80vh;
     overflow: auto;
 }
 
 .post-box {
     height: 10vh;
+}
+
+.time-box {
+    height: 5vh;
 }

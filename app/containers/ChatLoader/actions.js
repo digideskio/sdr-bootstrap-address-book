@@ -9,22 +9,24 @@ export function changeMassegeListAction(listOfMessages) {
     };
 }
 
-export const getMassegeListAction = (timeOfUpdate) => (dispatch, getState) => {
+export const getMassegeListAction = () => (dispatch, getState) => {
         const previousListOfMessages = getState().get('chatLoader').listOfMessages;
+        const timeOfUpdate = getState().get('timeSwitch').timeOfUpdate;
         return fetchGetPosts()
             .then( res => {
                 const { messages } = res;
                 if(!_.isEqual(previousListOfMessages, messages)) {
                     dispatch(changeMassegeListAction(messages));
                 }
+                //console.log(timeOfUpdate); 
                 setTimeout(() => {
-                    dispatch(getMassegeListAction(timeOfUpdate))
+                    dispatch(getMassegeListAction())
                 }, timeOfUpdate);
             })
             .catch(error => {
                 console.log(error);
                 setTimeout(() => {
-                    dispatch(getMassegeListAction(timeOfUpdate))
+                    dispatch(getMassegeListAction())
                 }, timeOfUpdate);
             });
         }
