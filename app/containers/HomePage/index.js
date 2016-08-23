@@ -44,24 +44,33 @@ export default class HomePage extends React.Component { // eslint-disable-line r
 
 
         return (
-            <div className={containerStyle} >
-                <div className={rowStyle}>
-                    <div className={columnStyleSwitcher} style={{paddingLeft:"2em"}}>
+            <div className="container" >
+                <div className="row">
+                    <div className="col-lg-4 col-md-4">
                         <NameSwitcher />
                     </div>
-                    <div className={columnStyle}>
+
+                    <div className="col-lg-8 col-md-8">
+                        <div className={styles["chatLoaderHeader"]}>
+                            <h4>Chat...</h4>
+                        </div>
+                        <div style={{border:"solid white 2px", padding:"0.5em 1em"}}>
+                    <div className={columnChatWindowStyle}>
                         <div className={styles['time-box']}>
                         <TimeSwitcher />
                         </div>
+                    </div>
                         <div className={styles['chat-box']}>
                             <ChatLoader />
                         </div>
+                         </div>
                         <div className={styles['post-box']}>
                             <PostForm />
                         </div>
                     </div>
                 </div>
             </div>
+
     );
   }
 }
