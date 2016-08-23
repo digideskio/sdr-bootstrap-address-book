@@ -7,61 +7,28 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actionCreators from './actions';
 import { createStructuredSelector } from 'reselect';
-import { getList } from './selectors';
+import { getListOfMessages } from './selectors';
 import CommentList from '../../components/CommentList';
-import styles from './styles.css';
 
+const TIME_OF_UDPATE = 1000;
 
-let messages = {};
 class ChatLoader extends Component {
 
-    constructor(props) {
-        super(props);
-        this.getData = this.getData.bind(this);
+    componentDidMount() {
+        const { getMassegeListAction } = this.props;
+        getMassegeListAction(TIME_OF_UDPATE);
     }
-
-    getData()
-    {
-        fetch('/init')
-            .then(
-                response => {
-                    return response.json();
-                },
-            )
-            .then(
-                res=> {
-                    messages = res.messages;
-
-                    if (!_.isEqual(this.props.messageList,messages))
-                    {
-                        this.props.changeList(messages);
-                    }
-                        return setTimeout(this.getData, 1000);
-                }
-            )
-            .catch(error => {
-                alert(error.message);
-                return setTimeout(this.getData, 1000);
-            });
-    }
-
-    componentDidMount(){
-        this.getData();
-    }
-    // componentDidUpdate( PreviousProps , PreviousState ){
-    //     this.chatList.scrollTop = this.chatList.scrollHeight;
-    // }
 
     render() {
-
+        const { listOfMessages } = this.props;
         return (
-            <CommentList data={this.props.messageList}/>
+            <CommentList listOfMessages={listOfMessages} />
         )
     }
 }
 
 const mapStateToProps = createStructuredSelector({
-    messageList: getList()
-});
+    listOfMessages: getListOfMessages(),
+})
 
 export default connect(mapStateToProps, {...actionCreators})(ChatLoader);
