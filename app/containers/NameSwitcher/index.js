@@ -4,18 +4,20 @@
 
 import React, { Component, PropTypes } from 'react';
 import { bindActionCreators } from 'redux';
-import ModalWindow from 'components/ModalWindow';
 import * as actions from './actions.js';
 import { createStructuredSelector } from 'reselect';
 import { getCurrentNickname, getNicknamesList } from './selectors';
 import { connect } from 'react-redux';
 
+import ModalWindow from 'components/ModalWindow';
+import NameSwitcherElement from 'components/NameSwitcherElement';
 
 class NameSwitcher extends Component {
     constructor(props){
         super(props);
         this.getNewName = this.getNewName.bind(this);
         this.onAddNick = this.onAddNick.bind(this);
+        this.onSwitchNick = this.onSwitchNick.bind(this);
     }
 
     getNewName(nick){
@@ -27,11 +29,22 @@ class NameSwitcher extends Component {
         this.modalAddName.open();
     }
 
+    onSwitchNick(e){
+        const index = Number(e.target.dataset.nickIndex);
+        this.props.changeNick(index);
+    }
+
     render(){
 
         const renderList = this.props.nicknamesList.map((nick,index)=>{
-            return(
-                <li key={index}>{nick}</li>
+            return (
+                <NameSwitcherElement
+                    key={index}
+                    nicks={nick}
+                    currentNick={this.props.currentNick}
+                    nickKey={index}
+                    onNickSwitch = { this.onSwitchNick }
+                />
             )
         });
 
