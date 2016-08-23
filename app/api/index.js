@@ -1,4 +1,4 @@
-export function fetchPost(newComment) {
+export function fetchSendPost(newComment) {
      return fetch('/post', {
          method: 'post',
          headers: {
@@ -9,4 +9,9 @@ export function fetchPost(newComment) {
          body: JSON.stringify(newComment)
      });
 
+}
+
+export function fetchGetPosts() {
+    return fetch('/init').then(
+        response => response.json());
 }
