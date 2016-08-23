@@ -8,6 +8,7 @@ import * as actions from './actions.js';
 import { createStructuredSelector } from 'reselect';
 import { getCurrentNickname, getNicknamesList } from './selectors';
 import { connect } from 'react-redux';
+import styles from './styles.css';
 
 import ModalWindow from 'components/ModalWindow';
 import NameSwitcherElement from 'components/NameSwitcherElement';
@@ -64,13 +65,22 @@ class NameSwitcher extends Component {
 
 
         return (
-            <div>
-                <ul>
+            <div className="container-fluid"
+                style={{border:"solid white 2px",
+                        paddingLeft:"0px",
+                        paddingRight:"0px",
+                        height:"90vh"}}>
+                <div className={styles["switcherHeader"]}>
+                    <h4>Choose Your Nickname</h4>
+                </div>
+                <ul style={{padding:"10px"}}>
                     {renderList}
                 </ul>
-                <button className="btn btn-primary"
+                <button
+                        style={{width:"100%", color: "#898989",height:"50px"}}
+
                         onClick={this.onAddNick}>
-                    Add new Nickname
+                    Add new Nickname...
                 </button>
                 <ModalWindow
                     isOpen= { true }
@@ -104,19 +114,6 @@ NameSwitcher.defaultProps = {
 };
 
 const mapDispatchToProps = dispatch => bindActionCreators({...actions}, dispatch);
-
-/*function mapDispatchToProps(dispatch) {
-    return {
-        onNewNickname: (evt) => dispatch(changeUsername(evt.target.value)),
-        changeRoute: (url) => dispatch(push(url)),
-        onSubmitForm: (evt) => {
-            if (evt !== undefined && evt.preventDefault) evt.preventDefault();
-            dispatch(loadRepos());
-        },
-
-        dispatch,
-    };
-}*/
 
 const mapStateToProps = createStructuredSelector({
     nicknamesList: getNicknamesList(),

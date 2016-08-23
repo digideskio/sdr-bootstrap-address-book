@@ -29,6 +29,6 @@ class ChatLoader extends Component {
 
 const mapStateToProps = createStructuredSelector({
     listOfMessages: getListOfMessages(),
-})
+});
 
 export default connect(mapStateToProps, {...actionCreators})(ChatLoader);

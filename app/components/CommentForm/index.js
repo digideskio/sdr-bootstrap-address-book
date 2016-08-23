@@ -26,7 +26,8 @@ export default class CommentForm extends Component {
         const {editableComment} = this.props;
         const spanStyle = commentFormStyles({
             'span-colors':true,
-            'input-group-addon':true
+            'input-group-addon':true,
+            'border': "solid white 1px"
         });
 
 
