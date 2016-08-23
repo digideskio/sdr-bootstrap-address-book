@@ -20,6 +20,8 @@ let homePageStyles = classNames.bind(styles);
 import ModalWindow from 'components/ModalWindow';
 import NameSwitcher from 'containers/NameSwitcher';
 
+import TimeSwitcher from 'containers/TimeSwitcher';
+
 export default class HomePage extends React.Component { // eslint-disable-line react/prefer-stateless-function
 
     render() {
@@ -31,7 +33,7 @@ export default class HomePage extends React.Component { // eslint-disable-line r
             'row': true,
             'row-table':true
         });
-        const columnStyle = homePageStyles({
+        const columnChatWindowStyle = homePageStyles({
             'col-md-8': true,
             'col-table':true
         });
@@ -47,11 +49,18 @@ export default class HomePage extends React.Component { // eslint-disable-line r
                     <div className="col-lg-4 col-md-4">
                         <NameSwitcher />
                     </div>
+
                     <div className="col-lg-8 col-md-8">
                         <div className={styles["chatLoaderHeader"]}>
                             <h4>Chat...</h4>
                         </div>
                         <div style={{border:"solid white 2px", padding:"0.5em 1em"}}>
+
+
+                    <div className={columnChatWindowStyle}>
+                        <div className={styles['time-box']}>
+                            <TimeSwitcher />
+                        </div>
 
                         <div className={styles['chat-box']}>
                             <ChatLoader />
@@ -63,6 +72,7 @@ export default class HomePage extends React.Component { // eslint-disable-line r
                     </div>
                 </div>
             </div>
+        </div>
     );
   }
 }

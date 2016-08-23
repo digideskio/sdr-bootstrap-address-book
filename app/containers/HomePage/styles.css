@@ -41,6 +41,7 @@ body {
     border: solid white 1px;
 }
 
+
 .chatLoaderHeader {
     text-align: center;
     color: white;
@@ -49,3 +50,8 @@ body {
     background-color: #054b4a;
 
 }
+
+.time-box {
+    height: 5vh;
+}
+
