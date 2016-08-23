@@ -1,6 +1,8 @@
 /**
  * Created by Olexiy Lyhun on 18.08.2016.
  */
+
+
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actionCreators from './actions';

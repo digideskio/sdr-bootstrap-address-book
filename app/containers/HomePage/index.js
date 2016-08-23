@@ -15,8 +15,10 @@ import GetAndPost from '../../components/GetAndPost';
 import PostForm from 'containers/PostForm';
 import styles from './styles.css';
 import classNames from 'classnames/bind';
-
 let homePageStyles = classNames.bind(styles);
+
+import ModalWindow from 'components/ModalWindow';
+import NameSwitcher from 'containers/NameSwitcher';
 
 export default class HomePage extends React.Component { // eslint-disable-line react/prefer-stateless-function
 
@@ -30,13 +32,21 @@ export default class HomePage extends React.Component { // eslint-disable-line r
             'row-table':true
         });
         const columnStyle = homePageStyles({
-            'col-md-8 col-md-offset-2': true,
+            'col-md-8': true,
+            'col-table':true
+        });
+        const columnStyleSwitcher = homePageStyles({
+            'col-md-4': true,
             'col-table':true
         });
 
+
         return (
-            <div className={containerStyle}>
+            <div className={containerStyle} >
                 <div className={rowStyle}>
+                    <div className={columnStyleSwitcher} style={{paddingLeft:"2em"}}>
+                        <NameSwitcher />
+                    </div>
                     <div className={columnStyle}>
                         <div className={styles['chat-box']}>
                             <ChatLoader />
@@ -45,9 +55,9 @@ export default class HomePage extends React.Component { // eslint-disable-line r
                             <PostForm />
                         </div>
                     {/* <h1>{this.props.params.user}</h1> */}
+                    </div>
                 </div>
             </div>
-        </div>
     );
   }
 }
