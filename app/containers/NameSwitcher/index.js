@@ -18,11 +18,17 @@ class NameSwitcher extends Component {
         this.getNewName = this.getNewName.bind(this);
         this.onAddNick = this.onAddNick.bind(this);
         this.onSwitchNick = this.onSwitchNick.bind(this);
+        this.onDeleteNick = this.onDeleteNick.bind(this);
     }
 
     getNewName(nick){
-        console.log("Received name: ", nick);
-        this.props.addNickname(nick);
+        const indexOfNick = this.props.nicknamesList.indexOf(nick);
+        if (indexOfNick >= 0) {
+            this.props.changeNick(indexOfNick);
+        }
+        else {
+            this.props.addNickname(nick);
+        }
     }
 
     onAddNick(){
@@ -34,6 +40,13 @@ class NameSwitcher extends Component {
         this.props.changeNick(index);
     }
 
+    onDeleteNick(e){
+        e.preventDefault();
+        e.stopPropagation();
+        const indexDelNick = Number(e.target.dataset.index);
+        this.props.delNickname(indexDelNick);
+    }
+
     render(){
 
         const renderList = this.props.nicknamesList.map((nick,index)=>{
@@ -43,7 +56,8 @@ class NameSwitcher extends Component {
                     nicks={nick}
                     currentNick={this.props.currentNick}
                     nickKey={index}
-                    onNickSwitch = { this.onSwitchNick }
+                    onNickSwitch = {this.onSwitchNick}
+                    onDeleteNick = {this.onDeleteNick}
                 />
             )
         });
