@@ -33,7 +33,7 @@ export default class HomePage extends React.Component { // eslint-disable-line r
             'row': true,
             'row-table':true
         });
-        const columnChatWindowStyle = homePageStyles({
+        const columnStyle = homePageStyles({
             'col-md-8': true,
             'col-table':true
         });
@@ -49,9 +49,9 @@ export default class HomePage extends React.Component { // eslint-disable-line r
                     <div className={columnStyleSwitcher} style={{paddingLeft:"2em"}}>
                         <NameSwitcher />
                     </div>
-                    <div className={columnChatWindowStyle}>
+                    <div className={columnStyle}>
                         <div className={styles['time-box']}>
-                            <TimeSwitcher />
+                        <TimeSwitcher />
                         </div>
                         <div className={styles['chat-box']}>
                             <ChatLoader />
@@ -59,7 +59,6 @@ export default class HomePage extends React.Component { // eslint-disable-line r
                         <div className={styles['post-box']}>
                             <PostForm />
                         </div>
-                    {/* <h1>{this.props.params.user}</h1> */}
                     </div>
                 </div>
             </div>
