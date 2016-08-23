@@ -5,11 +5,12 @@ const initialState = {
 const timeSwitcherReducer = (state = initialState, action) => {
     switch (action.type) {
         case 'CHANGE_TIME_OF_UPDATE':
+        {
             return {
                 ...state,
                 timeOfUpdate: action.timeOfUpdate
             }
-
+        }
         default:
             return state;
     }

@@ -29,4 +29,4 @@ export const getMassegeListAction = () => (dispatch, getState) => {
                     dispatch(getMassegeListAction())
                 }, timeOfUpdate);
             });
-        }
+        };
