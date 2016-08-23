@@ -29,7 +29,7 @@ body {
 }
 
 .chat-box {
-    height: 76vh;
+    height: 74vh;
     background-color:white;
     overflow: auto;
     padding: 1em;
@@ -52,6 +52,7 @@ body {
 }
 
 .time-box {
-    height: 5vh;
+    height: 3vh;
+    color: white;
 }
 
