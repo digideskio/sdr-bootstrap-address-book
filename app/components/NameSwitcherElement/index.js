@@ -42,10 +42,14 @@ export default class NameSwitcherElement extends Component {
                 onMouseOut={this.handleMouseOut}
                 onClick={onNickSwitch}
                 data-nick-index={nickKey}>
-                <div>
                     {nicks}
-                    <button style={{textAlign:"right"}}>Del</button>
-                </div>
+                <button
+                    type="button"
+                    className="close"
+                    aria-label="Close"
+                    onClick={this.props.onDeleteNick}>
+                    <span aria-hidden="true" data-index={nickKey}>&times;</span>
+                </button>
             </li>
         )
     }
@@ -55,5 +59,6 @@ NameSwitcherElement.propTypes = {
     nicks: PropTypes.string,                 //Current children
     currentNick: PropTypes.string,           //Current Nickname (active)
     onNickSwitch: PropTypes.func.isRequired,
+    onDeleteNick: PropTypes.func.isRequired,
     nickKey: PropTypes.number.isRequired     //Nicknames index
 };
