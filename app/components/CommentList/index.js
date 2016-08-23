@@ -1,13 +1,12 @@
-import React, {Component} from 'react';
+import React, { Component, PropTypes } from 'react';
 import Comment from 'components/Comment';
 
 export default class CommentList extends Component {
 
     render() {
-    //console.log(JSON.stringify(this.props.data));
-        const {onSelectComment, data} = this.props;
+        const {onSelectComment, listOfMessages} = this.props;
 
-        const commentNodes = data.map((comment, index) => {
+        const commentNodes = listOfMessages.map((comment, index) => {
             return (
                 <Comment
                     author={comment.author}
@@ -25,4 +24,9 @@ export default class CommentList extends Component {
             </div>
         );
     }
+}
+
+CommentList.propTypes = {
+    listOfMessages: PropTypes.array.isRequired,
+    onSelectComment: PropTypes.func
 }
