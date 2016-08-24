@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+import Timer from 'components/Timer';
 
 const FREQUENCY = [1000, 5000, 30000];
 
@@ -33,6 +34,7 @@ class TimeSwitcherPanel extends Component {
                     {timelist}
                     <li>Time to next Update: </li>
                     <li style={selectedStyle}>{totalSeconds}</li>
+                    <li><Timer startValue={selectedTime/1000} /></li>
                 </ul>
             </div>
         );

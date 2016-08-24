@@ -24,7 +24,7 @@ app.use(jsonParser);
 
 app.get('/init', function (req, res) {
 
-    //GET to external server
+    //GET to external server 'url': "https://pacific-harbor-20731.herokuapp.com/data",
 
     const optionsGet = {
         'url': "https://pacific-harbor-20731.herokuapp.com/data",
@@ -54,6 +54,8 @@ app.post('/post', function (req, res) {
         author: author,
         text: text
     };
+
+    //'url': "https://pacific-harbor-20731.herokuapp.com/postData",
 
     const options = {
         'url': "https://pacific-harbor-20731.herokuapp.com/postData",
