@@ -25,6 +25,13 @@ export default class Comment extends Component {
     }
 
     render() {
+        const {id, author, onSelect,date} = this.props;
+
+        const offset = new Date().getTimezoneOffset();
+
+        let dateLocal = new Date(date);
+        let dateLoc = new Date(dateLocal.getTime()- offset*60000).toLocaleString();
+
         const commentStyle = {
             fontStile: '1.5rem',
             lineHeight: '1.5rem'
@@ -33,9 +40,9 @@ export default class Comment extends Component {
             fontWeight: 'bold'
         };
         const hoverStyle = {
-            backgroundColor: this.state.hovered ? '#F8F8F8' : 'white'
+            backgroundColor: this.state.hovered ? '#E8E8E8' : 'white'
         };
-        const {id, author, onSelect} = this.props;
+
         return(
             <div id={id} data-id={id}
                 className="comment"
@@ -46,6 +53,7 @@ export default class Comment extends Component {
                 <h4 className="commentAuthor" style={headCommentStyle}>
                     {author}
                 </h4>
+                <h5>{dateLoc} wrote: </h5>
                 <span style={commentStyle}
                     dangerouslySetInnerHTML={this.rawMarkup()} />
             </div>

@@ -6,7 +6,10 @@ const getCurrentNickname = () => state => state.get('nicknames').nicknamesList[s
 
 const getNicknamesList = () => state => state.get('nicknames').nicknamesList;
 
+const getCurrentNickIndex = () => state => state.get('nicknames').currentNickIndex;
+
 export {
     getCurrentNickname,
-    getNicknamesList
+    getNicknamesList,
+    getCurrentNickIndex
 };

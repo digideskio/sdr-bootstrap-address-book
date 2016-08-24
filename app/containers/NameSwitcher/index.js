@@ -3,15 +3,21 @@
  */
 
 import React, { Component, PropTypes } from 'react';
+import { Link, Route, Router } from 'react-router';
+
 import { bindActionCreators } from 'redux';
-import * as actions from './actions.js';
-import { createStructuredSelector } from 'reselect';
-import { getCurrentNickname, getNicknamesList } from './selectors';
 import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
+
+import * as actions from './actions.js';
+import { getCurrentNickname, getNicknamesList, getCurrentNickIndex } from './selectors';
+import { getListOfMessages } from 'containers/ChatLoader/selectors';
+
 import styles from './styles.css';
 
 import ModalWindow from 'components/ModalWindow';
 import NameSwitcherElement from 'components/NameSwitcherElement';
+
 
 class NameSwitcher extends Component {
     constructor(props){
@@ -49,41 +55,51 @@ class NameSwitcher extends Component {
     }
 
     render(){
-
-        const renderList = this.props.nicknamesList.map((nick,index)=>{
+        const { currentNickIndex, nicknamesList, currentNick, messagesList } = this.props;
+        const renderList = nicknamesList.map((nick,index)=>{
             return (
                 <NameSwitcherElement
                     key={index}
                     nicks={nick}
-                    currentNick={this.props.currentNick}
+                    currentNick={currentNick}
                     nickKey={index}
                     onNickSwitch = {this.onSwitchNick}
                     onDeleteNick = {this.onDeleteNick}
                 />
             )
         });
+        const currentMessages = messagesList.filter((message)=> {if (message.author==currentNick) {return message}});
+        const messagesNumber = currentMessages.length > 0 ? currentMessages.length : 0;
+        const date = currentMessages[messagesNumber-1]!=undefined ? currentMessages[messagesNumber-1].date : null ;
 
+        const offset = new Date().getTimezoneOffset();
+        const dateLocal = new Date(date);
+        const dateLoc = new Date(dateLocal.getTime()- offset*60000);
+
+        const lastAtDate =(dateLoc.getMonth() + 1) + "-" + dateLoc.getDate() + "-" + dateLoc.getFullYear();
+        const lastAtTime = dateLoc.getHours() + ":" + dateLoc.getMinutes() + ":" + dateLoc.getSeconds();
+        const lastAt = lastAtDate+" at "+lastAtTime;
 
         return (
-            <div className="container-fluid"
-                style={{border:"solid white 2px",
-                        paddingLeft:"0px",
-                        paddingRight:"0px",
-                        height:"90vh"}}>
-                <div className={styles["switcherHeader"]}>
+            <div className={styles.nameSwitchContainer}>
+
+                <div className={styles.switcherHeader}>
                     <h4>Choose Your Nickname</h4>
                 </div>
                 <ul style={{padding:"10px"}}>
                     {renderList}
                 </ul>
                 <button
-                        style={{width:"100%", color: "#898989",height:"50px"}}
-
+                        style={{width:"100%",
+                        color: "#898989",height:"50px"}}
                         onClick={this.onAddNick}>
                     Add new Nickname...
                 </button>
+                <div style={{textAlign: "center",width:"100%"}}>
+                    <Link to={`/nick/${currentNick}/${messagesNumber}/${lastAt}`}>Nickname statistics...</Link>
+                </div>
                 <ModalWindow
-                    isOpen= { true }
+                    isOpen= { nicknamesList.length > 0 ? false : true }
                     headerText = "Welcome to our Chat!"
                     bodyText="Enter your nick-name, and join the chat!"
                     ref={ me => this.modalNewName = me }
@@ -105,19 +121,23 @@ class NameSwitcher extends Component {
 
 NameSwitcher.propTypes = {
     nicknamesList: PropTypes.array,
-    currentNick: PropTypes.string
+    currentNick: PropTypes.string,
+    currentNickIndex: PropTypes.number
 };
 
 NameSwitcher.defaultProps = {
     nicknamesList: [],
-    currentNick: ""
+    currentNick: "",
+    currentNickIndex: 0
 };
 
 const mapDispatchToProps = dispatch => bindActionCreators({...actions}, dispatch);
 
 const mapStateToProps = createStructuredSelector({
     nicknamesList: getNicknamesList(),
-    currentNick: getCurrentNickname()
+    currentNick: getCurrentNickname(),
+    currentNickIndex: getCurrentNickIndex(),
+    messagesList: getListOfMessages()
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(NameSwitcher);
