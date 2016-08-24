@@ -33,7 +33,7 @@ export default class HomePage extends React.Component { // eslint-disable-line r
             'row': true,
             'row-table':true
         });
-        const columnStyle = homePageStyles({
+        const columnChatWindowStyle = homePageStyles({
             'col-md-8': true,
             'col-table':true
         });
