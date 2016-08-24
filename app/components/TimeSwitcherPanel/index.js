@@ -22,7 +22,7 @@ class TimeSwitcherPanel extends Component {
                 style={FREQUENCY[index]==selectedTime ? selectedStyle : unselectedStyle}
                 key={index}
                 value={time}>
-                {`${time/1000}sec`}
+                    {`${time/1000}sec`}
                 </li>
             );
         });

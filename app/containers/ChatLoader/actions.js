@@ -1,5 +1,5 @@
 import { fetchGetPosts } from 'api';
-import { incrementSecondsAction, clearSecondsAction } from 'containers/TimeSwitcher/actions';
+import { clearSecondsAction } from 'containers/TimeSwitcher/actions';
 export const CHANGE_LIST_OF_MESSAGES = 'CHANGE_LIST_OF_MESSAGES';
 
 export function changeMassegeListAction(listOfMessages) {

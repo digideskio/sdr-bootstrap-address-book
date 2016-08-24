@@ -4,8 +4,7 @@ import { changeTimeOfUpdateAction, incrementSecondsAction } from './actions';
 import TimeSwitcherPanel from 'components/TimeSwitcherPanel';
 import { getTimeOfUpdate, getTotalSeconds } from './selectors'
 
-import { fetchGetPosts } from 'api';
-import { changeMassegeListAction } from 'containers/ChatLoader/actions';
+
 
 
 const mapDispatchToProps = (dispatch, ownProps) => {
@@ -17,7 +16,6 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         onTimer: () => {
             dispatch(incrementSecondsAction());
         }
-
     }
 };
 
