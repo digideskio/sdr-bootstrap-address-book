@@ -29,7 +29,7 @@ body {
 }
 
 .chat-box {
-    height: 74vh;
+    height: 72vh;
     background-color:white;
     overflow: auto;
     padding: 1em;
@@ -37,7 +37,7 @@ body {
 
 .post-box {
     height: 7vh;
-    padding: 1em;
+    padding: 1em 1em 0em 1em;
     border: solid white 1px;
 }
 

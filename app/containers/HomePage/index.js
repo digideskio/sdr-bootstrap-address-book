@@ -19,51 +19,31 @@ let homePageStyles = classNames.bind(styles);
 
 import ModalWindow from 'components/ModalWindow';
 import NameSwitcher from 'containers/NameSwitcher';
-
 import TimeSwitcher from 'containers/TimeSwitcher';
 
 export default class HomePage extends React.Component { // eslint-disable-line react/prefer-stateless-function
 
     render() {
-        const containerStyle = homePageStyles({
-            'container':true,
-            'container-table':true
-        });
-        const rowStyle = homePageStyles({
-            'row': true,
-            'row-table':true
-        });
-        const columnChatWindowStyle = homePageStyles({
-            'col-md-8': true,
-            'col-table':true
-        });
-        const columnStyleSwitcher = homePageStyles({
-            'col-md-4': true,
-            'col-table':true
-        });
-
 
         return (
-            <div className="container" >
+            <div className="container">
                 <div className="row">
-                    <div className="col-lg-4 col-md-4">
+                    <div className="col-lg-3 col-md-3 col-sm-4 col-xs-4">
                         <NameSwitcher />
                     </div>
 
-                    <div className="col-lg-8 col-md-8">
+                    <div className="col-lg-9 col-md-9 col-sm-8 col-xs-8">
                         <div className={styles["chatLoaderHeader"]}>
                             <h4>Chat...</h4>
                         </div>
                         <div style={{border:"solid white 2px", padding:"0.5em 1em"}}>
-                    <div className={columnChatWindowStyle}>
-                        <div className={styles['time-box']}>
-                            <TimeSwitcher />
+                            <div className={styles['time-box']}>
+                                <TimeSwitcher />
+                            </div>
+                            <div className={styles['chat-box']}>
+                                <ChatLoader />
+                            </div>
                         </div>
-                    </div>
-                        <div className={styles['chat-box']}>
-                            <ChatLoader />
-                        </div>
-                         </div>
                         <div className={styles['post-box']}>
                             <PostForm />
                         </div>

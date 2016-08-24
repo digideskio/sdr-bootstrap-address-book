@@ -30,4 +30,4 @@ export default class CommentList extends Component {
 CommentList.propTypes = {
     listOfMessages: PropTypes.array.isRequired,
     onSelectComment: PropTypes.func
-}
+};
