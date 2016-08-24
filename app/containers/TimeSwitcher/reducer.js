@@ -1,6 +1,6 @@
 const initialState = {
     timeOfUpdate: 1000,
-    totalSeconds: 1,
+    totalSeconds: 0,
 }
 
 const timeSwitcherReducer = (state = initialState, action) => {

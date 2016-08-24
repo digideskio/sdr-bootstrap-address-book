@@ -41,9 +41,9 @@ class TimeSwitcherPanel extends Component {
 
 TimeSwitcherPanel.propTypes = {
     onClick: PropTypes.func.isRequired,
+    onTimer: PropTypes.func.isRequired,
     selectedTime: PropTypes.number,
     totalSeconds: PropTypes.number,
-    onTimer: PropTypes.func.isRequired,
 };
 
 export default TimeSwitcherPanel;
