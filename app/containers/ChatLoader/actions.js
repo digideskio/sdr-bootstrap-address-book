@@ -1,5 +1,5 @@
 import { fetchGetPosts } from 'api';
-
+import { clearSecondsAction } from 'containers/TimeSwitcher/actions';
 export const CHANGE_LIST_OF_MESSAGES = 'CHANGE_LIST_OF_MESSAGES';
 
 export function changeMassegeListAction(listOfMessages) {
@@ -10,16 +10,17 @@ export function changeMassegeListAction(listOfMessages) {
 }
 
 export const getMassegeListAction = () => (dispatch, getState) => {
-        const previousListOfMessages = getState().get('chatLoader').listOfMessages;
-        const timeOfUpdate = getState().get('timeSwitch').timeOfUpdate;
+        const previousListOfMessages = getState().get('chatLoader').listOfMessages; //for compare
+        const timeOfUpdate = getState().get('timeSwitch').timeOfUpdate; //for refetch
+        dispatch(clearSecondsAction()); //reboot TimeSwitcher
         return fetchGetPosts()
             .then( res => {
                 const { messages } = res;
                 if(!_.isEqual(previousListOfMessages, messages)) {
                     dispatch(changeMassegeListAction(messages));
                 }
-                //console.log(timeOfUpdate); 
                 setTimeout(() => {
+                    console.log("i start");
                     dispatch(getMassegeListAction())
                 }, timeOfUpdate);
             })

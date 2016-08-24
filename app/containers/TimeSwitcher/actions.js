@@ -5,3 +5,16 @@ export const changeTimeOfUpdateAction = (timeOfUpdate) => {
         timeOfUpdate
     }
 }
+
+
+export const incrementSecondsAction = () => {
+    return {
+        type: 'INCREMENT_SECONDS',
+    }
+}
+
+export const clearSecondsAction = () => {
+    return {
+        type: 'CLEAR_SECONDS'
+    }
+}

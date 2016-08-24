@@ -57,7 +57,7 @@ export default class HomePage extends React.Component { // eslint-disable-line r
                         <div style={{border:"solid white 2px", padding:"0.5em 1em"}}>
                     <div className={columnChatWindowStyle}>
                         <div className={styles['time-box']}>
-                            <TimeSwitcher />
+                        <TimeSwitcher />
                         </div>
                     </div>
                         <div className={styles['chat-box']}>
