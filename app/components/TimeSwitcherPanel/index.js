@@ -13,10 +13,15 @@ class TimeSwitcherPanel extends Component {
     render() {
         const {onClick, selectedTime, totalSeconds} = this.props;
         const selectedStyle = {
-            border:"solid white 1px",
-            color: selectedTime/1000 === totalSeconds ? '#4c9689' : 'white'
+            border:"solid #347bb7 1px",
+            color: selectedTime/1000 === totalSeconds ? 'black' : '#347bb7'
         };
         const unselectedStyle = {border: "0px"};
+        const timeStyle = {
+            backgroundColor: '#549bd7',
+            color: 'white'
+        };
+
         const timelist = FREQUENCY.map((time, index) => {
             return (
                 <li onClick={onClick}
@@ -27,14 +32,21 @@ class TimeSwitcherPanel extends Component {
                 </li>
             );
         });
+
+        const timerStyle={
+            color: '#347bb7',
+
+        };
+
         return (
-            <div>
+            <div style={timerStyle}>
                 <ul className="list-inline">
-                    <li>Time Update:</li>
+                    <li>Update interval:</li>
                     {timelist}
-                    <li>Time to next Update: </li>
-                    <li style={selectedStyle}>{totalSeconds}</li>
-                    <li><Timer startValue={selectedTime/1000} /></li>
+                    <li>{'  '}</li>
+                    <li style={timeStyle}>{totalSeconds}</li>
+                    <li>{' '}sec to next Update: </li>
+
                 </ul>
             </div>
         );
