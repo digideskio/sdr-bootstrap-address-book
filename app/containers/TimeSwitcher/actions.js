@@ -15,6 +15,6 @@ export const incrementSecondsAction = () => {
 
 export const clearSecondsAction = () => {
     return {
-        type: 'CLEAR_SECONDS'
+        type: 'CLEAR_SECONDS',
     }
 }

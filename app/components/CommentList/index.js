@@ -4,9 +4,17 @@ import Comment from 'components/Comment';
 export default class CommentList extends Component {
 
     componentDidMount() {
-        const { getMassegeListAction } = this.props;
+        const { getMassegeListAction, startFetchingAction } = this.props;
+        //set isFetching to true
+        startFetchingAction();
         //Get list of messages from server
         getMassegeListAction();
+    }
+
+    componentWillUnmount() {
+        const { stopFetchingAction } = this.props;
+        //Stop fetching, isFetching to false
+        stopFetchingAction();
     }
 
     render() {
@@ -35,6 +43,8 @@ export default class CommentList extends Component {
 
 CommentList.propTypes = {
     listOfMessages: PropTypes.array.isRequired,
+    startFetchingAction: PropTypes.func.isRequired,
+    stopFetchingAction: PropTypes.func.isRequired,
     getMassegeListAction: PropTypes.func.isRequired,
     onSelectComment: PropTypes.func,
 };

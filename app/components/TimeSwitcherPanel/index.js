@@ -2,12 +2,19 @@ import React, { Component, PropTypes } from 'react';
 import Timer from 'components/Timer';
 
 const FREQUENCY = [1000, 5000, 30000];
+let updateInterval;
 
 class TimeSwitcherPanel extends Component {
 
     componentDidMount = () => {
         const { incrementSecondsAction } = this.props;
-        setInterval(incrementSecondsAction, 1000);
+        //start timer
+        updateInterval = setInterval(incrementSecondsAction, 1000);
+    }
+
+    componentWillUnmount = () => {
+        //stop timer
+        clearInterval(updateInterval);
     }
 
     onClick = (e) => {
@@ -34,7 +41,7 @@ class TimeSwitcherPanel extends Component {
                 </li>
             );
         });
-        
+
         return (
             <div>
                 <ul className="list-inline">
