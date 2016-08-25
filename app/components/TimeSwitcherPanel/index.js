@@ -34,7 +34,6 @@ class TimeSwitcherPanel extends Component {
                     style={FREQUENCY[index]==selectedTime ? selectedStyle : unselectedStyle}
                     key={index}
                     value={time}>
-
                     {`${time/1000}sec`}
                 </li>
             );
@@ -42,7 +41,6 @@ class TimeSwitcherPanel extends Component {
 
         const timerStyle={
             color: '#347bb7',
-
         };
 
         return (
@@ -50,8 +48,6 @@ class TimeSwitcherPanel extends Component {
                 <ul className="list-inline">
                     <li>Update interval:</li>
                     {timelist}
-                    <li>Time to next Update: </li>
-                    <li style={selectedStyle}>{totalSeconds}</li>
                     <li>{'  '}</li>
                     <li style={timeStyle}>{totalSeconds}</li>
                     <li>{' '}sec to next Update: </li>
