@@ -57,7 +57,7 @@ class TimeSwitcherPanel extends Component {
                     {timelist}
                     <li>{'  '}</li>
                     <li style={timeStyle}>{totalSeconds}</li>
-                    <li>{' '}sec to next Update: </li>
+                    <li>{' '}sec after update</li>
                 </ul>
             </div>
         );

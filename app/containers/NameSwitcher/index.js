@@ -85,15 +85,15 @@ class NameSwitcher extends Component {
 
         return (
             <div>
-                <div className="panel panel-primary">
-                    <div className="panel-heading">
+                <div className="panel" style={{boxShadow: '0px 2px 5px 0px'}}>
+                    <div className="panel-heading" style={{borderBottom: '1px solid black', backgroundColor: '#347bb7', color: 'white'}}>
                         <h3 className="panel-title">
                             Choose preferable Nick
                         </h3>
                     </div>
                     <div className="panel-body">
                         <ul style={{padding:"0",
-                                border:'solid #347bb7 1px',
+                                // border:'solid #347bb7 1px',
                                 borderRadius:"6px"}}>
                             {renderList}
                         </ul>

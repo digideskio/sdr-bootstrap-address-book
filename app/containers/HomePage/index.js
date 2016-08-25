@@ -8,13 +8,13 @@
  * reloading is not a neccessity for you then you can refactor it and remove
  * the linting exception.
  */
-
 import React from 'react';
 import ChatLoader from 'containers/ChatLoader';
 import GetAndPost from '../../components/GetAndPost';
 import PostForm from 'containers/PostForm';
 import styles from './styles.css';
 import classNames from 'classnames/bind';
+
 let homePageStyles = classNames.bind(styles);
 
 import ModalWindow from 'components/ModalWindow';
@@ -28,9 +28,9 @@ export default class HomePage extends React.Component { // eslint-disable-line r
             <div className="container">
                 <div className="row">
                     <div className="col-md-8 col-md-push-4">
-                        <div className="panel panel-primary">
-                            <div className="panel-heading">
-                                <h3 className="panel-title">Chat...</h3>
+                        <div className="panel" style={{boxShadow: '0px 2px 5px 0px'}}>
+                            <div className="panel-heading" style={{borderBottom: '1px solid black', backgroundColor: '#347bb7', color: 'white'}}>
+                                <h3 className="panel-title text-center" >Chat...</h3>
                             </div>
                             <div className="panel-body">
                                 <div className={styles['time-box']}>
@@ -38,14 +38,14 @@ export default class HomePage extends React.Component { // eslint-disable-line r
                                 </div>
 
 
-                                <div style={{border:"solid #347bb7 1px", padding:"0.5em 1em"}}>
-                                <div className={styles['chat-box']}>
-                                    <ChatLoader />
+                                <div style={{padding:0}}>
+                                    <div className={styles['chat-box']}>
+                                        <ChatLoader />
+                                    </div>
                                 </div>
-                            </div>
-                            <div className={styles['post-box']}>
-                                <PostForm />
-                            </div>
+                                <div className={styles['post-box']}>
+                                    <PostForm />
+                                </div>
                             </div>
                         </div>
                     </div>
