@@ -25,14 +25,15 @@ export default class NameSwitcherElement extends Component {
         const hoveredStyle = {
             padding: '8px 16px',
             display: 'block',
-            backgroundColor: this.state.hovered ? '#3D303B' : '#4d394b',
-            color: '#a494a2'
+            backgroundColor: this.state.hovered ? '#d9e4ed' : 'white',
+            color: 'black'
         };
         const activeStyle = {
             padding: '8px 16px',
             display: 'block',
-            backgroundColor: '#4c9689',
-            color: '#f6f5f6'
+            backgroundColor: '#347bb7',
+            color: 'white',
+            textStyle: 'bold'
         };
         const {onNickSwitch, nickKey, nicks, currentNick} = this.props;
 

@@ -13,8 +13,6 @@ import * as actions from './actions.js';
 import { getCurrentNickname, getNicknamesList, getCurrentNickIndex } from './selectors';
 import { getListOfMessages } from 'containers/ChatLoader/selectors';
 
-import styles from './styles.css';
-
 import ModalWindow from 'components/ModalWindow';
 import NameSwitcherElement from 'components/NameSwitcherElement';
 
@@ -68,9 +66,14 @@ class NameSwitcher extends Component {
                 />
             )
         });
-        const currentMessages = messagesList.filter((message)=> {if (message.author==currentNick) {return message}});
+        const currentMessages = messagesList.filter((message)=>
+            {if (message.author==currentNick) {
+                return message}
+            });
         const messagesNumber = currentMessages.length > 0 ? currentMessages.length : 0;
-        const date = currentMessages[messagesNumber-1]!=undefined ? currentMessages[messagesNumber-1].date : null ;
+        const date = (currentMessages[messagesNumber-1]!=undefined) ?
+            currentMessages[messagesNumber-1].date :
+            null;
 
         const offset = new Date().getTimezoneOffset();
         const dateLocal = new Date(date);
@@ -81,22 +84,32 @@ class NameSwitcher extends Component {
         const lastAt = lastAtDate+" at "+lastAtTime;
 
         return (
-            <div className={styles.nameSwitchContainer}>
-
-                <div className={styles.switcherHeader}>
-                    <h4>Choose Your Nickname</h4>
-                </div>
-                <ul style={{padding:"10px"}}>
-                    {renderList}
-                </ul>
-                <button
-                        style={{width:"100%",
-                        color: "#898989",height:"50px"}}
-                        onClick={this.onAddNick}>
-                    Add new Nickname...
-                </button>
-                <div style={{textAlign: "center",width:"100%"}}>
-                    <Link to={`/nick/${currentNick}/${messagesNumber}/${lastAt}`}>Nickname statistics...</Link>
+            <div>
+                <div className="panel panel-primary">
+                    <div className="panel-heading">
+                        <h3 className="panel-title">
+                            Choose preferable Nick
+                        </h3>
+                    </div>
+                    <div className="panel-body">
+                        <ul style={{padding:"0",
+                                border:'solid #347bb7 1px',
+                                borderRadius:"6px"}}>
+                            {renderList}
+                        </ul>
+                        <button
+                            style={{width:"100%",
+                                color: "black",
+                                padding:"10px"}}
+                            onClick={this.onAddNick}>
+                            Add new Nickname...
+                        </button>
+                        <div style={{
+                                textAlign: "center",
+                                padding:"10px"}}>
+                            <Link to={`/nick/${currentNick}/${messagesNumber}/${lastAt}`}>Nickname statistics...</Link>
+                        </div>
+                    </div>
                 </div>
                 <ModalWindow
                     isOpen= { nicknamesList.length > 0 ? false : true }
