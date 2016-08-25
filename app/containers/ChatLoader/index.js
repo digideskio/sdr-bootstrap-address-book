@@ -10,7 +10,7 @@ import CommentList from 'components/CommentList';
 const mapDispatchToProps = dispatch => bindActionCreators({...actions}, dispatch);
 
 const mapStateToProps = createStructuredSelector({
-    listOfMessages: getListOfMessages(),
+    listOfMessages: getListOfMessages()
 });
 
 const ChatLoader = connect(mapStateToProps, mapDispatchToProps)(CommentList);

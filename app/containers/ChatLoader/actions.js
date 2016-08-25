@@ -27,10 +27,10 @@ export const stopFetchingAction = () => {
 export const getMassegeListAction = () => (dispatch, getState) => {
 
     const isFetching = getState().get('chatLoader').isFetching;
-        if (!isFetching) {
-            console.log("UNMOUNT");
-            return;
-        }
+    if (!isFetching) {
+        dispatch(startFetchingAction());
+        return;
+    }
     //for compare with listOfMessages from server
     const previousListOfMessages = getState().get('chatLoader').listOfMessages;
     //get time of update list of messages

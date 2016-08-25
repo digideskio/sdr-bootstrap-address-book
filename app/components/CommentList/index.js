@@ -4,11 +4,10 @@ import Comment from 'components/Comment';
 export default class CommentList extends Component {
 
     componentDidMount() {
-        const { getMassegeListAction, startFetchingAction } = this.props;
-        //set isFetching to true
-        startFetchingAction();
-        //Get list of messages from server
+        const { getMassegeListAction } = this.props;
+        //start fetching
         getMassegeListAction();
+
     }
 
     componentWillUnmount() {
@@ -43,7 +42,6 @@ export default class CommentList extends Component {
 
 CommentList.propTypes = {
     listOfMessages: PropTypes.array.isRequired,
-    startFetchingAction: PropTypes.func.isRequired,
     stopFetchingAction: PropTypes.func.isRequired,
     getMassegeListAction: PropTypes.func.isRequired,
     onSelectComment: PropTypes.func,
