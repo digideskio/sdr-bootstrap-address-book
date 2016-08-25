@@ -1,6 +1,17 @@
 import React, {Component} from 'react';
 var Remarkable = require('remarkable');
 
+export const formatAMPM = (date) => {
+  let hours = date.getHours();
+  let minutes = date.getMinutes();
+  let ampm = hours >= 12 ? 'PM' : 'AM';
+  hours = hours % 12;
+  hours = hours ? hours : 12; // the hour '0' should be '12'
+  minutes = minutes < 10 ? '0'+minutes : minutes;
+  let strTime = hours + ':' + minutes + ' ' + ampm;
+  return strTime;
+}
+
 export default class Comment extends Component {
 
     constructor(props) {
@@ -25,22 +36,31 @@ export default class Comment extends Component {
     }
 
     render() {
-        const {id, author, onSelect,date} = this.props;
+        const {id, author, onSelect, date} = this.props;
 
         const offset = new Date().getTimezoneOffset();
 
         let dateLocal = new Date(date);
         let dateLoc = new Date(dateLocal.getTime()- offset*60000).toLocaleString();
 
+        const time = formatAMPM(dateLocal);
+        
         const commentStyle = {
             fontStile: '1.5rem',
             lineHeight: '1.5rem'
         };
         const headCommentStyle = {
-            fontWeight: 'bold'
+            fontWeight: 'bold',
+            fontSize: '16px'
+
         };
+        const timeStyle = {
+            fontSize: '14px',
+            color: '#ABABB1',
+            marginLeft: '10px'
+        }
         const hoverStyle = {
-            backgroundColor: this.state.hovered ? '#E8E8E8' : 'white'
+            backgroundColor: this.state.hovered ? '#F8F8F8' : 'white'
         };
 
         return(
@@ -50,10 +70,12 @@ export default class Comment extends Component {
                 onMouseOver={this.handleMouseOver}
                 onMouseOut={this.handleMouseOut}
                 style={hoverStyle}>
-                <h4 className="commentAuthor" style={headCommentStyle}>
+                <span style={headCommentStyle}> {author}</span>
+                <span style={timeStyle}>{time}</span>
+                {/* <h4 className="commentAuthor" style={headCommentStyle}>
                     {author}
-                </h4>
-                <h5>{dateLoc} wrote: </h5>
+                </h4> */}
+                {/* <h5>{dateLoc} wrote: </h5> */}
                 <span style={commentStyle}
                     dangerouslySetInnerHTML={this.rawMarkup()} />
             </div>

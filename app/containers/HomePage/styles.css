@@ -6,7 +6,7 @@
 
 body {
     background-color: #e2e0df;
-    padding-top:1em;
+    padding-top: 0;
 }
 
 .container-table {
@@ -32,7 +32,7 @@ body {
     height: 72vh;
     background-color:white;
     overflow: auto;
-    padding: 1em;
+    padding: 0;
 }
 
 .post-box {
@@ -54,4 +54,5 @@ body {
 .time-box {
     height: 3vh;
     color: white;
+    padding-bottom: 30px;
 }
