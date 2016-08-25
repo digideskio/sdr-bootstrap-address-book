@@ -3,6 +3,12 @@ import Comment from 'components/Comment';
 
 export default class CommentList extends Component {
 
+    componentDidMount() {
+        const { getMassegeListAction } = this.props;
+        //Get list of messages from server
+        getMassegeListAction();
+    }
+
     render() {
         const {onSelectComment, listOfMessages} = this.props;
 
@@ -29,5 +35,6 @@ export default class CommentList extends Component {
 
 CommentList.propTypes = {
     listOfMessages: PropTypes.array.isRequired,
-    onSelectComment: PropTypes.func
+    getMassegeListAction: PropTypes.func.isRequired,
+    onSelectComment: PropTypes.func,
 };

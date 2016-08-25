@@ -1,31 +1,18 @@
-/**
- * Created by Olexiy Lyhun on 18.08.2016.
- */
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import * as actionCreators from './actions';
+import { bindActionCreators } from 'redux';
 import { createStructuredSelector } from 'reselect';
+import * as actions from './actions';
 import { getListOfMessages } from './selectors';
-import CommentList from '../../components/CommentList';
+import CommentList from 'components/CommentList';
 
 
-class ChatLoader extends Component {
-
-    componentDidMount() {
-        const { getMassegeListAction, timeOfUpdate } = this.props;
-        getMassegeListAction();
-    }
-
-    render() {
-        const { listOfMessages } = this.props;
-        return (
-            <CommentList listOfMessages={listOfMessages} />
-        )
-    }
-}
+const mapDispatchToProps = dispatch => bindActionCreators({...actions}, dispatch);
 
 const mapStateToProps = createStructuredSelector({
     listOfMessages: getListOfMessages(),
 });
 
-export default connect(mapStateToProps, {...actionCreators})(ChatLoader);
+const ChatLoader = connect(mapStateToProps, mapDispatchToProps)(CommentList);
+
+export default ChatLoader;
