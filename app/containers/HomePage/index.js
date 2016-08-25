@@ -50,7 +50,6 @@ export default class HomePage extends React.Component { // eslint-disable-line r
                     </div>
                 </div>
             </div>
-
-    );
-  }
+        );
+    }
 }
