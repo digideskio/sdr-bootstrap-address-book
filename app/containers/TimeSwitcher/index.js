@@ -1,24 +1,12 @@
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
-import { changeTimeOfUpdateAction, incrementSecondsAction } from './actions';
+import { bindActionCreators } from 'redux';
+import * as actions from './actions';
 import TimeSwitcherPanel from 'components/TimeSwitcherPanel';
 import { getTimeOfUpdate, getTotalSeconds } from './selectors'
 
 
-
-
-const mapDispatchToProps = (dispatch, ownProps) => {
-    return {
-        onClick: (e) => {
-            e.preventDefault();
-            dispatch(changeTimeOfUpdateAction(parseInt(e.target.value)));
-        },
-        onTimer: () => {
-            dispatch(incrementSecondsAction());
-        }
-    }
-};
-
+const mapDispatchToProps = dispatch => bindActionCreators({...actions}, dispatch);
 
 const mapStateToProps = createStructuredSelector({
     selectedTime: getTimeOfUpdate(),

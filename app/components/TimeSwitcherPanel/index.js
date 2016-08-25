@@ -6,8 +6,14 @@ const FREQUENCY = [1000, 5000, 30000];
 class TimeSwitcherPanel extends Component {
 
     componentDidMount = () => {
-        const { onTimer } = this.props;
-        setInterval(onTimer, 1000);
+        const { incrementSecondsAction } = this.props;
+        setInterval(incrementSecondsAction, 1000);
+    }
+
+    onClick = (e) => {
+        e.preventDefault();
+        const { changeTimeOfUpdateAction } = this.props;
+        changeTimeOfUpdateAction(e.target.value);
     }
 
     render() {
@@ -19,14 +25,16 @@ class TimeSwitcherPanel extends Component {
         const unselectedStyle = {border: "0px"};
         const timelist = FREQUENCY.map((time, index) => {
             return (
-                <li onClick={onClick}
-                style={FREQUENCY[index]==selectedTime ? selectedStyle : unselectedStyle}
-                key={index}
-                value={time}>
+                <li onClick={this.onClick}
+                    style={FREQUENCY[index]==selectedTime ? selectedStyle : unselectedStyle}
+                    key={index}
+                    value={time}>
+
                     {`${time/1000}sec`}
                 </li>
             );
         });
+        
         return (
             <div>
                 <ul className="list-inline">
@@ -42,8 +50,8 @@ class TimeSwitcherPanel extends Component {
 }
 
 TimeSwitcherPanel.propTypes = {
-    onClick: PropTypes.func.isRequired,
-    onTimer: PropTypes.func.isRequired,
+    changeTimeOfUpdateAction: PropTypes.func.isRequired,
+    incrementSecondsAction: PropTypes.func.isRequired,
     selectedTime: PropTypes.number,
     totalSeconds: PropTypes.number,
 };
