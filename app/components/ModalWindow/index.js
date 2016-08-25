@@ -3,6 +3,7 @@
  */
 
 import React, { Component, PropTypes } from 'react';
+import ReactDOM from 'react-dom';
 import styles from './styles.css';
 
 class ModalWindow extends Component {
@@ -17,7 +18,9 @@ class ModalWindow extends Component {
         this.close = this.close.bind(this);
         this.onInputChange = this.onInputChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
+
     }
+
     onInputChange(){
         if (this.userName.value.length > 0) {
             this.setState({userName: this.userName.value.trim(),
@@ -28,7 +31,10 @@ class ModalWindow extends Component {
         }
     }
 
-    onSubmit(){
+    onSubmit(e){
+        e.stopPropagation();
+        e.preventDefault();
+
         this.props.getUserName(this.state.userName);
         this.setState({buttonDisabled: true});
         this.close();
@@ -65,25 +71,27 @@ class ModalWindow extends Component {
                         <div className="modal-header">
                             <h3 className="modal-title">{ this.props.headerText }</h3>
                         </div>
+                        <form onSubmit={this.onSubmit}>
                         <div className="modal-body">
                             <h4>{ this.props.bodyText }</h4>
                             <input type="text"
                                    className="form-control"
                                    placeholder="Your nickname..."
                                    value={this.state.value}
+                                   autoFocus
                                    ref={ me => this.userName = me }
                                    onChange={ this.onInputChange }
                             />
                         </div>
                         <div className="modal-footer">
                             {cancelButton}
-                            <button type="button"
+                            <button type="submit"
                                     className="btn btn-primary"
-                                    onClick={ this.onSubmit }
                                     disabled={ this.state.buttonDisabled }>
                                 Join the Chat
                             </button>
                         </div>
+                        </form>
                     </div>
                     </div>
                 </div>

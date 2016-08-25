@@ -26,10 +26,11 @@ class TimeSwitcherPanel extends Component {
     render() {
         const {onClick, selectedTime, totalSeconds} = this.props;
         const selectedStyle = {
+
             border:"solid #347bb7 1px",
             color: selectedTime/1000 === totalSeconds ? 'black' : '#347bb7'
         };
-        const unselectedStyle = {border: "0px"};
+        const unselectedStyle = {border: "0px", cursor:'pointer'};
         const timeStyle = {
             backgroundColor: '#549bd7',
             color: 'white'

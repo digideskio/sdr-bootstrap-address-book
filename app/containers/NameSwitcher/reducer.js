@@ -29,7 +29,6 @@ function nicknamesReducer(state=initialState, action) {
         case "DEL_NICKNAME": {
             const nicksList = state.nicknamesList;
             const index = action.nicknameIndex;
-            console.log(index);
             if (nicksList.length > 1) {
                 return {
                     nicknamesList: deleteNick(nicksList,index),

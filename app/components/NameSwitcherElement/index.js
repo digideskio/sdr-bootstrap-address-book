@@ -23,6 +23,7 @@ export default class NameSwitcherElement extends Component {
 
     render() {
         const hoveredStyle = {
+            cursor: 'pointer',
             padding: '8px 16px',
             display: 'block',
             backgroundColor: this.state.hovered ? '#d9e4ed' : 'white',
