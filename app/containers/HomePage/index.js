@@ -24,29 +24,33 @@ import TimeSwitcher from 'containers/TimeSwitcher';
 export default class HomePage extends React.Component { // eslint-disable-line react/prefer-stateless-function
 
     render() {
-
         return (
             <div className="container">
                 <div className="row">
-                    <div className="col-lg-3 col-md-3 col-sm-4 col-xs-4">
-                        <NameSwitcher />
-                    </div>
+                    <div className="col-md-8 col-md-push-4">
+                        <div className="panel panel-primary">
+                            <div className="panel-heading">
+                                <h3 className="panel-title">Chat...</h3>
+                            </div>
+                            <div className="panel-body">
+                                <div className={styles['time-box']}>
+                                    <TimeSwitcher />
+                                </div>
 
-                    <div className="col-lg-9 col-md-9 col-sm-8 col-xs-8">
-                        <div className={styles["chatLoaderHeader"]}>
-                            <h4>Chat...</h4>
-                        </div>
-                        <div style={{border:"solid white 2px", padding:"0.5em 1em"}}>
-                            <div className={styles['time-box']}>
-                                <TimeSwitcher />
+
+                                <div style={{border:"solid #347bb7 1px", padding:"0.5em 1em"}}>
+                                <div className={styles['chat-box']}>
+                                    <ChatLoader />
+                                </div>
                             </div>
-                            <div className={styles['chat-box']}>
-                                <ChatLoader />
+                            <div className={styles['post-box']}>
+                                <PostForm />
+                            </div>
                             </div>
                         </div>
-                        <div className={styles['post-box']}>
-                            <PostForm />
-                        </div>
+                    </div>
+                    <div className="col-md-4 col-md-pull-8">
+                        <NameSwitcher />
                     </div>
                 </div>
             </div>

@@ -10,10 +10,10 @@ class NickStat extends Component {
         const {nickName, messages,lastAt} = this.props.params;
 
         const lastPostAt= (messages > 0) ?
-            "Last message was posted:"+lastAt : "";
+            "Last message was posted: "+lastAt : "";
         return (
             <div className="container">
-                <div className="panel panel-default">
+                <div className="panel panel-primary">
                     <div className="panel-heading">
                         <h3 className="panel-title">
                             Nickname Statistics
