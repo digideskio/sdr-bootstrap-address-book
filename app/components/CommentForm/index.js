@@ -38,7 +38,6 @@ export default class CommentForm extends Component {
             'border': "solid white 1px"
         });
 
-
         return (
             <form
                 className="commentForm"
@@ -72,8 +71,8 @@ export default class CommentForm extends Component {
 }
 
 CommentForm.propTypes = {
-    currentPost: PropTypes.object.isRequired,
-    currentAuthor: PropTypes.string.isRequired,
     changeCurrentPostAction: PropTypes.func.isRequired,
     sendPostAction: PropTypes.func.isRequired,
+    currentPost: PropTypes.object.isRequired,
+    currentAuthor: PropTypes.string,
 }
