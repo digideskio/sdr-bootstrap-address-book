@@ -42,7 +42,7 @@ class TimeSwitcherPanel extends Component {
                     {timelist}
                     <li>Time to next Update: </li>
                     <li style={selectedStyle}>{totalSeconds}</li>
-                    <li><Timer startValue={selectedTime/1000} /></li>
+                    
                 </ul>
             </div>
         );
