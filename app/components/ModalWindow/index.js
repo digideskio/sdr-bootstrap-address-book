@@ -3,6 +3,7 @@
  */
 
 import React, { Component, PropTypes } from 'react';
+import ReactDOM from 'react-dom';
 import styles from './styles.css';
 
 class ModalWindow extends Component {
@@ -17,7 +18,9 @@ class ModalWindow extends Component {
         this.close = this.close.bind(this);
         this.onInputChange = this.onInputChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
+
     }
+
     onInputChange(){
         if (this.userName.value.length > 0) {
             this.setState({userName: this.userName.value.trim(),
