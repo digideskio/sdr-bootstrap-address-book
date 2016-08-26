@@ -12,15 +12,11 @@ export const changeCurrentPostAction = (author, text) => {
     }
 }
 
-export const sendPostAction = () => {
+export const sendPostAction = (currentAuthor) => {
     return (dispatch, getState) => {
         const newPost = getState().get('postForm').currentPost;
-        const niknamesList = getState().get('nicknames').nicknamesList;
-        const currentNickIndex = getState().get('nicknames').currentNickIndex;
-        const currentAuthor = niknamesList[currentNickIndex];
         return fetchSendPost(newPost)
             .then( () => {
-                const { author } = newPost;
                 dispatch(changeCurrentPostAction(currentAuthor, ' '));
             })
             .catch(err => console.log(err));

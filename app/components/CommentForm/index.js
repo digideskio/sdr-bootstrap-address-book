@@ -7,27 +7,17 @@ import styles from './styles.css';
 let commentFormStyles = classNames.bind(styles);
 
 export default class CommentForm extends Component {
-    //Change current author
-    componentWillReceiveProps = (nextProps) => {
-        const { changeCurrentPostAction, currentAuthor } = this.props;
-        if (nextProps.currentAuthor !== currentAuthor) {
-            changeCurrentPostAction(nextProps.currentAuthor, '');
-        }
-    }
 
     handleSubmit = (e) => {
         e.preventDefault();
         e.stopPropagation();
-        const { changeCurrentPostAction, sendPostAction } = this.props;
+        const { onSendPost } = this.props;
         const author = this.inputForAuthor.getValue().trim();
         const text = this.inputForText.getValue().trim();
         if (!text || !author) {
           return;
         }
-        //Change currentPost before send post action
-        changeCurrentPostAction(author, text);
-        //Send post to server
-        sendPostAction();
+        onSendPost(author, text);
     };
 
     render() {
@@ -71,8 +61,6 @@ export default class CommentForm extends Component {
 }
 
 CommentForm.propTypes = {
-    changeCurrentPostAction: PropTypes.func.isRequired,
-    sendPostAction: PropTypes.func.isRequired,
     currentPost: PropTypes.object.isRequired,
-    currentAuthor: PropTypes.string,
+    onSendPost: PropTypes.func.isRequired,
 }

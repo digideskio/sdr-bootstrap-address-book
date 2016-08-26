@@ -37,7 +37,7 @@ export default class HomePage extends React.Component { // eslint-disable-line r
                                     <TimeSwitcher />
                                 </div>
 
-
+                                
                                 <div style={{padding:0}}>
                                     <div className={styles['chat-box']}>
                                         <ChatLoader />
